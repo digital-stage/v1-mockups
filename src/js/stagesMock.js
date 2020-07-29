@@ -6,14 +6,14 @@ export const stages = {
     {
       name: "celo",
       participants: [
+        { name: "guitar 1", image: "https://www.rollingstone.com/wp-content/uploads/2020/06/GettyImages-1213057145.jpg?w=200" },
+        { name: "guitar 1", image: "https://cdn.lynda.com/course/510645/510645-636431592504296952-16x9.jpg" },
         { name: "guitar 1", image: img1 },
         { name: "guitar 1", image: img1 },
+        { name: "guitar 1", image: "https://cdn.lynda.com/course/510645/510645-636431592504296952-16x9.jpg" },
         { name: "guitar 1", image: img1 },
         { name: "guitar 1", image: img1 },
-        { name: "guitar 1", image: img1 },
-        { name: "guitar 1", image: img1 },
-        { name: "guitar 1", image: img1 },
-        { name: "guitar 1", image: img1 },
+        // { name: "guitar 1", image: "https://www.rollingstone.com/wp-content/uploads/2020/06/GettyImages-1213057145.jpg?w=200" },
         // {name:"celo 1", image:"https://via.placeholder.com/150/D3D3D3/FFFFFF/?text=celo 1"},
         // {name:"celo 2", image:"https://via.placeholder.com/150/D3D3D3/FFFFFF/?text=celo 2"},
         // {name:"celo 3", image:"https://via.placeholder.com/150/D3D3D3/FFFFFF/?text=celo 3"},
@@ -49,4 +49,4 @@ export const stages = {
   ],
 };
 
-export const preview = ["portrait", "landscape", "masonary"];
+export const preview = ["portrait", "landscape", "masonry"];

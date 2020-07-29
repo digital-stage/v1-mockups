@@ -1,7 +1,7 @@
 import React from "react";
 import Stage from "./Stage";
 import { stages } from "../../js/stagesMock";
-import "./Stage.css";
+import "./Stage.scss";
 
 const Stages = () => {
   return (

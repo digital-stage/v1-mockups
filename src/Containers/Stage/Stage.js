@@ -1,7 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./Stage.css";
+import "./Stage.scss";
 import Select from "../../Components/Form/Select";
+import Masonry from "./StagePreviews/Masonry";
+import Portrait from "./StagePreviews/Portrait";
+import Landscape from "./StagePreviews/Landscape";
 
 class Stage extends React.Component {
   constructor(props) {
@@ -27,49 +30,51 @@ class Stage extends React.Component {
     const { selectedValue, overlayWidth } = this.state;
     console.log(overlayWidth);
     return (
-      <div
-        ref={(el) => (this.container = el)}
-        className={
-          selectedValue === "masonary" ? "masonary" : "stage-container"
-        }
-        style={{
-          width: `calc(100% / ${totalStages})`,
-        }}
-      >
+      <>
         <div
-          className="overlay"
+          ref={(el) => (this.container = el)}
+          className={
+            selectedValue === "masonry" ? "masonry" : "stage-container"
+          }
           style={{
-            width: `${overlayWidth - 50}px`,
+            width: `calc(100% / ${totalStages})`,
           }}
         >
-          <Select value={selectedValue} onChange={this.onSelectChange} />
-        </div>
+          <div
+            className="overlay"
+            style={{
+              width: `${overlayWidth - 50}px`,
+            }}
+          >
+            <Select value={selectedValue} onChange={this.onSelectChange} />
+          </div>
 
-        <div className={selectedValue === "masonary" ? "item" : "photos"}>
-          {participants.map((participant, i) => {
-            let portraitWidth = `calc(100%/${participants.length})`;
-            let portraitHeight = "100vh";
-            let landscapeWidth = "50%";
-            let landscapeHeight = `calc(100vh/${participants.length / 2})`;
-            return (
-              <img
-                src={participant.image}
-                style={{
-                  width:
-                    selectedValue === "portrait"
-                      ? portraitWidth
-                      : landscapeWidth,
-                  height:
-                    selectedValue === "portrait"
-                      ? portraitHeight
-                      : landscapeHeight,
-                }}
-                key={i}
-              />
-            );
-          })}
+          {selectedValue != "masonry" ? (
+            <div className={selectedValue === "masonry" ? "item" : "photos"}>
+              {participants.map((participant, i) => {
+                if (selectedValue === "portrait")
+                  return (
+                    <Portrait
+                      participant={participant}
+                      participants={participants}
+                      i={i}
+                    />
+                  );
+                else if (selectedValue === "landscape")
+                  return (
+                    <Landscape
+                      participant={participant}
+                      participants={participants}
+                      i={i}
+                    />
+                  );
+              })}
+            </div>
+          ) : (
+            <Masonry participants={participants} />
+          )}
         </div>
-      </div>
+      </>
     );
   }
 }
