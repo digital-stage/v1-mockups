@@ -8,7 +8,7 @@ div.masonary_test {
 }
 
 div.item_test {
-  height: 40vh;
+  height: 30vh;
   flex-grow: 1;
 }
 
@@ -20,3 +20,24 @@ div.item_test {
 
 
 
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 0px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.349); 
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.349); 
+}

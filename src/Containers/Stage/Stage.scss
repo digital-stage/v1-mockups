@@ -23,6 +23,11 @@ body {
   justify-content: flex-start;
   align-content: stretch;
 }
+
+// .photos img:last-child{
+//   margin:0 auto;
+// }
+
 .photos img {
   object-fit: cover;
   object-position: 50% 50%;
@@ -83,3 +88,10 @@ div.item {
   width: 100% !important;
   height: auto !important;
 }
+
+
+// @media (max-width: 500px) {
+//   .overflow-container {
+//     overflow-x: scroll;
+//   }
+// }

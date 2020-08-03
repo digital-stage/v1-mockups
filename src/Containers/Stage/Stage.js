@@ -5,6 +5,7 @@ import Select from "../../Components/Form/Select";
 import Masonry from "./StagePreviews/Masonry";
 import Portrait from "./StagePreviews/Portrait";
 import Landscape from "./StagePreviews/Landscape";
+import SoundControler from "../../Components/StageControlers/SoundControler";
 
 class Stage extends React.Component {
   constructor(props) {
@@ -26,7 +27,13 @@ class Stage extends React.Component {
   };
 
   render() {
-    const { name, totalStages, participants } = this.props;
+    const {
+      name,
+      totalStages,
+      participants,
+      color,
+      soundTrackerHeight,
+    } = this.props;
     const { selectedValue, overlayWidth } = this.state;
     console.log(overlayWidth);
     return (
@@ -48,7 +55,10 @@ class Stage extends React.Component {
           >
             <Select value={selectedValue} onChange={this.onSelectChange} />
           </div>
-
+          <SoundControler
+            color={color}
+            soundTrackerHeight={soundTrackerHeight}
+          />
           {selectedValue != "masonry" ? (
             <div className={selectedValue === "masonry" ? "item" : "photos"}>
               {participants.map((participant, i) => {

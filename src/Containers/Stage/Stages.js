@@ -7,12 +7,14 @@ const Stages = () => {
   return (
     <div className="stages-container">
       {stages.stagesParticipants.map((stage) => {
-        const { name, participants } = stage;
+        const { name, participants, color, soundTrackerHeight } = stage;
         return (
           <Stage
             name={name}
             participants={participants}
             totalStages={stages.total}
+            color={color}
+            soundTrackerHeight={soundTrackerHeight}
             key={name}
           />
         );
