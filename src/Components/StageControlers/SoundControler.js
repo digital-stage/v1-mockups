@@ -49,13 +49,13 @@ class SoundControler extends React.Component {
     const { color, soundTrackerHeight } = this.props;
     const SoundControlerStyle = {
       div: {
-        height: "calc(100vh - 70px)",
+        height: "calc(100vh - 104px)",
         width: "10px",
         position: "absolute",
-        top: "35px",
+        top: "2px",
       },
       span: {
-        maxHeight: "calc(100vh - 70px)",
+        maxHeight: "calc(100vh - 104px)",
         minWidth: "10px",
         display: "inline-block",
         position: "absolute",
@@ -68,7 +68,7 @@ class SoundControler extends React.Component {
         <span
           style={{
             backgroundColor: color,
-            height: `calc(${soundTrackerHeight} + 10px)`,
+            height: soundTrackerHeight,
             ...SoundControlerStyle.span,
           }}
         ></span>

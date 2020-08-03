@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./Stage.scss";
+import "../../styles/Stage.scss";
 import Select from "../../Components/Form/Select";
 import Masonry from "./StagePreviews/Masonry";
 import Portrait from "./StagePreviews/Portrait";
@@ -26,6 +26,28 @@ class Stage extends React.Component {
     this.setState({ selectedValue: e.target.value });
   };
 
+  stageWidth = (width) => {
+    switch (width) {
+      case 12:
+      case 11:
+      case 10:
+      case 9:
+        return { width: "50%", minWidth: "50%" };
+      case 8:
+      case 7:
+      case 6:
+      case 5:
+        return { width: "30%", minWidth: "30%" };
+      case 4:
+      case 3:
+      case 2:
+      case 1:
+        return { width: "20%", minWidth: "20%" };
+      default:
+        return { width: "auto", minWidth: "auto" };
+    }
+  };
+
   render() {
     const {
       name,
@@ -44,13 +66,17 @@ class Stage extends React.Component {
             selectedValue === "masonry" ? "masonry" : "stage-container"
           }
           style={{
-            width: `calc(100% / ${totalStages})`,
+            ...this.stageWidth(participants.length),
+            position: "relative",
+            // width: participants.length === 6 ? "35%" : "auto",
+            // minWidth: participants.length === 6 ? "35%" : "auto",
+            // `calc(100% / ${totalStages})`,
           }}
         >
           <div
             className="overlay"
             style={{
-              width: `${overlayWidth - 50}px`,
+              width: `calc(100% - 28px)`,
             }}
           >
             <Select value={selectedValue} onChange={this.onSelectChange} />

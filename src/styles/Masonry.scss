@@ -24,6 +24,7 @@ div.item_test {
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
+  background-color: #333333;
 }
 
 /* Track */
@@ -33,11 +34,11 @@ div.item_test {
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.349); 
+  background: #707070; 
   border-radius: 5px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.349); 
+  background: #707070; 
 }

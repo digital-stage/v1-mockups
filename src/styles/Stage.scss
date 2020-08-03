@@ -9,11 +9,53 @@ body {
 }
 
 /* Stages */
+.stages {
+  background-image: linear-gradient(to bottom, #808080, #3d3d3d, #333333);
+  height: calc(100vh -50px);
+  padding-left: 10px;
+  padding-right: 10px;
+
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    img {
+      height: 30px;
+      width: auto;
+    }
+
+    h5 {
+      padding-left: 15px;
+      display: inline-block;
+      color: white;
+      font-size: 13px;
+      vertical-align: top;
+    }
+  }
+}
+
 .stages-container {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  height: calc(100vh - 50px);
 }
+
+.stage-container {
+  padding: 0px 10px 20px 10px;
+  // background-image: linear-gradient(to bottom, #808080, #3d3d3d, #333333);
+  // background: #3d3d3d #333333;
+  // flex: 0 0 25%;
+}
+
+// .scroll::-webkit-scrollbar {
+//   display: none;
+// }
 
 /* Stage */
 .photos {
@@ -22,6 +64,7 @@ body {
   flex-wrap: wrap;
   justify-content: flex-start;
   align-content: stretch;
+  background: transparent;
 }
 
 // .photos img:last-child{
@@ -34,32 +77,28 @@ body {
   flex: 1 0 auto;
 }
 
-.stage-container {
-  padding: 30px 20px;
-  background: #3d3d3d;
-}
-
 img {
-  padding: 5px;
+  padding: 2px;
 }
 
 /* Stage overlay */
 .stage-containe {
   /* position:relative; */
 }
+
 .overlay {
   position: absolute;
-  top: 35px;
+  top: 2px;
   /* left:25px;
   right:25px;  */
-  background: rgba(0, 0, 0, 0.678);
+  background: rgba(0, 0, 0, 0.445);
   color: #f1f1f1;
   /* width: 50%; */
   transition: 0.5s ease;
   opacity: 0;
   color: white;
   font-size: 20px;
-  padding: 20px;
+  padding: 15px;
   margin: 0 15px 0 5px;
   text-align: center;
 }
@@ -74,14 +113,14 @@ div.masonry {
   padding: 30px 20px;
   background: #3d3d3d;
   height: 100%;
-  min-height: 100%; 
-  max-height: 100vh !important; 
+  min-height: 100%;
+  max-height: 100vh !important;
   /* overflow-y: scroll; */
 }
 
 div.item {
   column-count: 3;
- 
+
 }
 
 .item img {

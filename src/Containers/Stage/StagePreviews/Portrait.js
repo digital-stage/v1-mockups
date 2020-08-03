@@ -7,7 +7,7 @@ const Portrait = (props) => {
       : props.participants.length
   })`;
   let portraitHeight = `${
-    props.participants.length > 2 ? "calc(50vh - 30px)" : "calc(100vh - 60px)"
+    props.participants.length > 2 ? "calc(50vh - 50px)" : "calc(100vh - 100px)"
   }`;
   return (
     <img

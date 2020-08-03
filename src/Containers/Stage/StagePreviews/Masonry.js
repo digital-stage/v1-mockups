@@ -1,5 +1,5 @@
 import React from "react";
-import "./Masonry.scss";
+import "../../../styles/Masonry.scss";
 
 class Masonry extends React.Component {
   render() {
@@ -8,7 +8,7 @@ class Masonry extends React.Component {
       <div
         className="masonary_test"
         style={{
-          maxHeight: "calc(100vh - 70px)",
+          maxHeight: "calc(100vh - 60px)",
           overflowY: "scroll",
           overflowX: "hidden"
         }}
