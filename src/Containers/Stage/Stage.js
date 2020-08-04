@@ -1,28 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "../../styles/Stage.scss";
-import Select from "../../Components/Form/Select";
+// import Select from "../../Components/Form/Select";
 import Masonry from "./StagePreviews/Masonry";
 import Portrait from "./StagePreviews/Portrait";
 import Landscape from "./StagePreviews/Landscape";
 import SoundControler from "../../Components/StageControlers/SoundControler";
 import Dropdown from "../../Components/Form/Dropdown";
+import { stageWidth, splitArray } from "../../js/Utils";
 
 class Stage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedValue: "portrait",
-      overlayWidth: 0,
       closeDropdown: false,
+      next: false,
     };
   }
 
-  componentDidMount() {
-    this.setState({
-      overlayWidth: this.container.offsetWidth,
-    });
-  }
+  componentDidMount() {}
 
   onSelectChange = (e) => {
     this.setState({ selectedValue: e.target.value });
@@ -41,38 +38,27 @@ class Stage extends React.Component {
     });
   };
 
-  stageWidth = (width) => {
-    switch (width) {
-      case 12:
-      case 11:
-      case 10:
-      case 9:
-        return { width: "50%", minWidth: "50%" };
-      case 8:
-      case 7:
-      case 6:
-      case 5:
-        return { width: "30%", minWidth: "30%" };
-      case 4:
-      case 3:
-      case 2:
-      case 1:
-        return { width: "20%", minWidth: "20%" };
-      default:
-        return { width: "auto", minWidth: "auto" };
+  nextParticipants = () => {
+    this.setState({
+      next: !this.state.next,
+    });
+  };
+
+  participantsToMap = () => {
+    let splitedArray = splitArray(this.props.participants);
+    if (this.props.participants.length <= 6) {
+      return this.props.participants;
+    } else if (this.props.participants.length > 6 && !this.state.next) {
+      return splitedArray.first;
+    } else {
+      return splitedArray.second;
     }
   };
 
   render() {
-    const {
-      name,
-      totalStages,
-      participants,
-      color,
-      soundTrackerHeight,
-    } = this.props;
-    const { selectedValue, overlayWidth, closeDropdown } = this.state;
-    console.log(closeDropdown);
+    const { participants, color, soundTrackerHeight } = this.props;
+    const { selectedValue, closeDropdown, next } = this.state;
+
     return (
       <>
         <div
@@ -81,7 +67,7 @@ class Stage extends React.Component {
             selectedValue === "masonry" ? "masonry" : "stage-container"
           }
           style={{
-            ...this.stageWidth(participants.length),
+            ...stageWidth(participants.length),
             position: "relative",
             // width: participants.length === 6 ? "35%" : "auto",
             // minWidth: participants.length === 6 ? "35%" : "auto",
@@ -106,23 +92,49 @@ class Stage extends React.Component {
             color={color}
             soundTrackerHeight={soundTrackerHeight}
           />
-          {selectedValue != "masonry" ? (
+          {!next &&
+            this.props.participants.length > 6 &&
+            selectedValue !== "masonry" && (
+              <div className="arrow-next" onClick={this.nextParticipants}>
+                <img
+                  src={require("../../assets/images/next.png")}
+                  alt="next"
+                  width="30px"
+                  height="30px"
+                />
+              </div>
+            )}
+          {next &&
+            this.props.participants.length > 6 &&
+            selectedValue !== "masonry" && (
+              <div className="arrow-prev" onClick={this.nextParticipants}>
+                <img
+                  src={require("../../assets/images/prev.png")}
+                  alt="next"
+                  width="30px"
+                  height="30px"
+                />
+              </div>
+            )}
+          {selectedValue !== "masonry" ? (
             <div className={selectedValue === "masonry" ? "item" : "photos"}>
-              {participants.map((participant, i) => {
+              {this.participantsToMap().map((participant, i) => {
                 if (selectedValue === "portrait")
                   return (
                     <Portrait
                       participant={participant}
-                      participants={participants}
+                      participants={this.participantsToMap()}
                       i={i}
+                      key={i}
                     />
                   );
                 else if (selectedValue === "landscape")
                   return (
                     <Landscape
                       participant={participant}
-                      participants={participants}
+                      participants={this.participantsToMap()}
                       i={i}
+                      key={i}
                     />
                   );
               })}

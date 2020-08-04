@@ -5,15 +5,15 @@ import { preview } from "../../js/stagesMock";
 
 const Dropdown = (props) => {
   return (
-    <div class="dropdown" onMouseLeave={props.hover}>
-      <button class="dropbtn" onMouseEnter={props.hover}>
+    <div className="dropdown" onMouseLeave={props.hover}>
+      <button className="dropbtn" onMouseEnter={props.hover}>
         <Icon icon={props.value} />
       </button>
       {props.closeDropdown && (
-        <div class="dropdown-content">
+        <div className="dropdown-content">
           {preview.map((el) => {
             return (
-              <div onClick={() => props.onClick(el)}>
+              <div onClick={() => props.onClick(el)} key={el}>
                 <Icon icon={el} />
                 <span>{el.charAt(0).toUpperCase() + el.slice(1)}</span>
               </div>

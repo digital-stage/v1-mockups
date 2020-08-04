@@ -4,7 +4,7 @@ const Landscape = (props) => {
   let landscapeWidth = "50%";
   let landscapeHeight = `calc((100vh - 100px)/${Math.floor(
     props.participants.length / 2
-  ) + (props.participants.length % 2 == 0 ? 0 : 1)})`;
+  ) + (props.participants.length % 2 === 0 ? 0 : 1)})`;
   return (
     <img
       src={props.participant.image}
@@ -14,6 +14,7 @@ const Landscape = (props) => {
         height: landscapeHeight,
       }}
       key={props.i}
+      alt={"landscape"+ props.i}
     />
   );
 };

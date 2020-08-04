@@ -10,11 +10,11 @@ const Stages = () => {
     <div className="stages">
       <div className="header">
         <div className="header-left">
-          <img src={logo} />
+          <img src={logo} alt="logo"/>
           <h5>Bohemian Rhapsody</h5>
         </div>
         <div className="header-right">
-          <img src={profile} />
+          <img src={profile} alt="profile-pic"/>
         </div>
       </div>
       <div className="stages-container">

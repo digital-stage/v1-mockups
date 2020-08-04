@@ -1,7 +1,5 @@
-import React, { Fragment } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import { preview } from "../../js/stagesMock";
-import Icon from "../Icons/Icons";
 
 const style = {
   fontSize: "12px",
@@ -22,7 +20,5 @@ const Select = (props) => {
     </select>
   );
 };
-
-Select.propTypes = {};
 
 export default Select;

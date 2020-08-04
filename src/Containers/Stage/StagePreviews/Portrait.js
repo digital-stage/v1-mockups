@@ -18,6 +18,7 @@ const Portrait = (props) => {
         height: portraitHeight,
       }}
       key={props.i}
+      alt={"portrait" + props.i}
     />
   );
 };

@@ -134,3 +134,27 @@ div.item {
 //     overflow-x: scroll;
 //   }
 // }
+
+.arrow-next {
+  position: absolute;
+  right: 20px;
+  bottom: 50px;
+  background-color: #707070;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: #3d3d3d;
+  }
+}
+
+.arrow-prev {
+  position: absolute;
+  left: 30px;
+  bottom: 50px;
+  background-color: #707070;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: #3d3d3d;
+  }
+}
