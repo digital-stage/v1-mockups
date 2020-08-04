@@ -6,6 +6,7 @@ import Masonry from "./StagePreviews/Masonry";
 import Portrait from "./StagePreviews/Portrait";
 import Landscape from "./StagePreviews/Landscape";
 import SoundControler from "../../Components/StageControlers/SoundControler";
+import Dropdown from "../../Components/Form/Dropdown";
 
 class Stage extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class Stage extends React.Component {
     this.state = {
       selectedValue: "portrait",
       overlayWidth: 0,
+      closeDropdown: false,
     };
   }
 
@@ -24,6 +26,19 @@ class Stage extends React.Component {
 
   onSelectChange = (e) => {
     this.setState({ selectedValue: e.target.value });
+  };
+
+  onDropDownClick = (el) => {
+    this.setState({
+      selectedValue: el,
+      closeDropdown: !this.state.closeDropdown,
+    });
+  };
+
+  hover = () => {
+    this.setState({
+      closeDropdown: !this.state.closeDropdown,
+    });
   };
 
   stageWidth = (width) => {
@@ -56,8 +71,8 @@ class Stage extends React.Component {
       color,
       soundTrackerHeight,
     } = this.props;
-    const { selectedValue, overlayWidth } = this.state;
-    console.log(overlayWidth);
+    const { selectedValue, overlayWidth, closeDropdown } = this.state;
+    console.log(closeDropdown);
     return (
       <>
         <div
@@ -79,7 +94,13 @@ class Stage extends React.Component {
               width: `calc(100% - 28px)`,
             }}
           >
-            <Select value={selectedValue} onChange={this.onSelectChange} />
+            <Dropdown
+              value={selectedValue}
+              onClick={this.onDropDownClick}
+              closeDropdown={closeDropdown}
+              hover={this.hover}
+            />
+            {/* <Select value={selectedValue} onChange={this.onSelectChange} /> */}
           </div>
           <SoundControler
             color={color}

@@ -1,9 +1,9 @@
 div.masonary_test {
-  background: #3d3d3d;
+  background: transparent;
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
-  height:calc(100vh - 30px);
+  width: calc(100% - 20px);
+  height:calc(100vh - 100px);
   // align-items: center;
 }
 

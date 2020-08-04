@@ -8,7 +8,7 @@ class Masonry extends React.Component {
       <div
         className="masonary_test"
         style={{
-          maxHeight: "calc(100vh - 60px)",
+          maxHeight: "calc(100vh - 100px)",
           overflowY: "scroll",
           overflowX: "hidden"
         }}

@@ -2,7 +2,7 @@ import React from "react";
 
 const Landscape = (props) => {
   let landscapeWidth = "50%";
-  let landscapeHeight = `calc((100vh - 60px)/${Math.floor(
+  let landscapeHeight = `calc((100vh - 100px)/${Math.floor(
     props.participants.length / 2
   ) + (props.participants.length % 2 == 0 ? 0 : 1)})`;
   return (
