@@ -56,7 +56,7 @@ class Stage extends React.Component {
   };
 
   render() {
-    const { participants, color, soundTrackerHeight } = this.props;
+    const { participants, color, soundTrackerHeight, totalStages } = this.props;
     const { selectedValue, closeDropdown, next } = this.state;
 
     return (
@@ -67,8 +67,8 @@ class Stage extends React.Component {
             selectedValue === "masonry" ? "masonry" : "stage-container"
           }
           style={{
-            ...stageWidth(participants.length),
-            position: "relative",
+            ...stageWidth(participants.length,totalStages ),
+            position: "relative"
             // width: participants.length === 6 ? "35%" : "auto",
             // minWidth: participants.length === 6 ? "35%" : "auto",
             // `calc(100% / ${totalStages})`,
