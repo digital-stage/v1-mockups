@@ -1,6 +1,8 @@
 import React from "react";
+import { useBreakpoint } from "../../breakpoint.js";
+import { stages } from "../../js/stagesMock.js";
 
-class SoundControler extends React.Component {
+const SoundControler = (props) => {
   //   constructor(props) {
   //     super(props);
   //     this.state = { audioData: new Uint8Array(0) };
@@ -45,36 +47,45 @@ class SoundControler extends React.Component {
   //     this.rafId = requestAnimationFrame(this.tick);
   //   }
 
-  render() {
-    const { color, soundTrackerHeight } = this.props;
-    const SoundControlerStyle = {
-      div: {
-        height: "calc(100vh - 104px)",
-        width: "10px",
-        position: "absolute",
-        top: "2px",
-      },
-      span: {
-        maxHeight: "calc(100vh - 104px)",
-        minWidth: "10px",
-        display: "inline-block",
-        position: "absolute",
-        bottom: "0",
-        right: 0,
-      },
-    };
-    return (
-      <div style={{ backgroundColor: "grey", ...SoundControlerStyle.div }}>
-        <span
-          style={{
-            backgroundColor: color,
-            height: soundTrackerHeight,
-            ...SoundControlerStyle.span,
-          }}
-        ></span>
-      </div>
-    );
-  }
-}
+  const breakpoints = useBreakpoint();
+
+  const { color, soundTrackerHeight } = props;
+  const SoundControlerStyle = {
+    div: {
+      height:
+        breakpoints.sm && stages.orinetation === "portrait"
+          ? "calc(50vh - 54px)"
+          : "calc(100vh - 104px)",
+      width: "10px",
+      position: "absolute",
+      top: "2px",
+    },
+    span: {
+      maxHeight:
+        breakpoints.sm && stages.orinetation === "portrait"
+          ? "calc(50vh - 54px)"
+          : "calc(100vh - 104px)",
+      minWidth: "10px",
+      display: "inline-block",
+      position: "absolute",
+      bottom: "0",
+      right: 0,
+    },
+  };
+  return (
+    <div style={{ backgroundColor: "grey", ...SoundControlerStyle.div }}>
+      <span
+        style={{
+          backgroundColor: color,
+          height:
+            breakpoints.sm && stages.orinetation === "portrait"
+              ? `calc(${soundTrackerHeight} / 2)`
+              : soundTrackerHeight,
+          ...SoundControlerStyle.span,
+        }}
+      ></span>
+    </div>
+  );
+};
 
 export default SoundControler;

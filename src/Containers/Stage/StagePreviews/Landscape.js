@@ -1,11 +1,16 @@
 import React from "react";
+import { useBreakpoint } from "../../../breakpoint.js";
+import { stages } from "../../../js/stagesMock.js";
 
 const Landscape = (props) => {
+  const breakpoints = useBreakpoint();
+  const height = breakpoints.sm && stages.orinetation === "portrait" ? "50vh" : "100vh";
+  const padding = breakpoints.sm && stages.orinetation === "portrait" ? "50px" : "100px";
   let landscapeWidth = props.participants.length <= 4 ? "100%" : "50%";
   let landscapeHeight =
     props.participants.length <= 4
-      ? `calc((100vh - 100px)/${props.participants.length}`
-      : `calc((100vh - 100px)/${
+      ? `calc((${height} - ${padding})/${props.participants.length}`
+      : `calc((${height} - ${padding})/${
           Math.floor(props.participants.length / 2) +
           (props.participants.length % 2 === 0 ? 0 : 1)
         })`;

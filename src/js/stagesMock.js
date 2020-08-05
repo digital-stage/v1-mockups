@@ -1,7 +1,8 @@
 import img1 from "../assets/images/img1.png";
 
 export const stages = {
-  total: 8,
+  orinetation: "landscape",
+  total: 3,
   stagesParticipants: [
     {
       name: "celo",
@@ -48,24 +49,24 @@ export const stages = {
         { name: "guitar 1", image: img1 },
       ],
     },
-    {
-      name: "guitar",
-      color:"teal",
-      soundTrackerHeight:"100vh",
-      participants: [
-        { name: "guitar 1", image: img1 },
-        { name: "guitar 1", image: img1 },
-      ],
-    },
-    {
-      name: "guitar",
-      color:"pink",
-      soundTrackerHeight:"50vh",
-      participants: [
-        { name: "guitar 1", image: img1 },
-        // { name: "guitar 1", image: img1 },
-      ],
-    },
+    // {
+    //   name: "guitar",
+    //   color:"teal",
+    //   soundTrackerHeight:"100vh",
+    //   participants: [
+    //     { name: "guitar 1", image: img1 },
+    //     { name: "guitar 1", image: img1 },
+    //   ],
+    // },
+    // {
+    //   name: "guitar",
+    //   color:"pink",
+    //   soundTrackerHeight:"50vh",
+    //   participants: [
+    //     { name: "guitar 1", image: img1 },
+    //     // { name: "guitar 1", image: img1 },
+    //   ],
+    // },
     // {
     //   name: "guitar",
     //   color:"lime",
