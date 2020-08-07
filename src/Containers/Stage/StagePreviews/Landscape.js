@@ -4,8 +4,10 @@ import { stages } from "../../../js/stagesMock.js";
 
 const Landscape = (props) => {
   const breakpoints = useBreakpoint();
-  const height = breakpoints.sm && stages.orinetation === "portrait" ? "50vh" : "100vh";
-  const padding = breakpoints.sm && stages.orinetation === "portrait" ? "50px" : "100px";
+  const height =
+    breakpoints.sm && stages.orinetation === "portrait" ? "50vh" : "100vh";
+  const padding =
+    breakpoints.sm && stages.orinetation === "portrait" ? "50px" : "100px";
   let landscapeWidth = props.participants.length <= 4 ? "100%" : "50%";
   let landscapeHeight =
     props.participants.length <= 4
@@ -16,11 +18,22 @@ const Landscape = (props) => {
         })`;
   return (
     <img
+      draggable
+      onDragStart={props.onDragStart}
+      onDragOver={props.onDragOver}
+      onDrop={props.onDrop}
+      dragover={props.dragover}
       src={props.participant.image}
       style={{
         width: landscapeWidth,
         maxWidth: landscapeWidth,
         height: landscapeHeight,
+        opacity:
+          props.dragStarted === props.i
+            ? "0"
+            : props.dragover === props.i
+            ? "0.1"
+            : "1",
       }}
       key={props.i}
       alt={"landscape" + props.i}

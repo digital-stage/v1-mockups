@@ -16,10 +16,19 @@ class Stage extends React.Component {
       selectedValue: "portrait",
       closeDropdown: false,
       next: false,
+      participants: [],
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.participantsToMap();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.next !== prevState.next) {
+      this.participantsToMap();
+    }
+  }
 
   onSelectChange = (e) => {
     this.setState({ selectedValue: e.target.value });
@@ -47,18 +56,57 @@ class Stage extends React.Component {
   participantsToMap = () => {
     let splitedArray = splitArray(this.props.participants);
     if (this.props.participants.length <= 6) {
-      return this.props.participants;
+      this.setState({
+        ...this.state,
+        participants: this.props.participants,
+      });
     } else if (this.props.participants.length > 6 && !this.state.next) {
-      return splitedArray.first;
+      this.setState({
+        ...this.state,
+        participants: splitedArray.first,
+      });
     } else {
-      return splitedArray.second;
+      this.setState({
+        ...this.state,
+        participants: splitedArray.second,
+      });
     }
   };
 
-  render() {
-    const { participants, color, soundTrackerHeight, totalStages, breakpoints } = this.props;
-    const { selectedValue, closeDropdown, next } = this.state;
+  handleDragStart(e, data, i) {
+    this.setState({
+      ...this.state,
+      elementToDrop: data,
+      dragStarted: i,
+    });
+  }
 
+  onDragOverHandler = (e, i) => {
+    e.preventDefault();
+    this.setState({
+      dragover: i,
+    });
+  };
+
+  handleDrop = (e, data, i) => {
+    e.stopPropagation();
+    let dragedData = this.state.participants.indexOf(this.state.elementToDrop);
+    let dataToDrop = this.state.participants.indexOf(data);
+    let final = this.state.participants;
+    final[dragedData] = data;
+    final[dataToDrop] = this.state.elementToDrop;
+    this.setState({
+      ...this.state,
+      participants: final,
+      dragStarted: null,
+      dragover: null,
+    });
+  };
+
+  render() {
+    const { color, soundTrackerHeight, totalStages, breakpoints } = this.props;
+    const { selectedValue, closeDropdown, next, participants } = this.state;
+    console.log(this.state.dropHover);
     return (
       <>
         <div
@@ -67,8 +115,13 @@ class Stage extends React.Component {
             selectedValue === "masonry" ? "masonry" : "stage-container"
           }
           style={{
-            ...stageWidth(this.participantsToMap().length, selectedValue, breakpoints, totalStages),
-            position: "relative"
+            ...stageWidth(
+              participants.length,
+              selectedValue,
+              breakpoints,
+              totalStages
+            ),
+            position: "relative",
             // `calc(100% / ${totalStages})`,
           }}
         >
@@ -116,12 +169,19 @@ class Stage extends React.Component {
             )}
           {selectedValue !== "masonry" ? (
             <div className={selectedValue === "masonry" ? "item" : "photos"}>
-              {this.participantsToMap().map((participant, i) => {
+              {participants.map((participant, i) => {
                 if (selectedValue === "portrait")
                   return (
                     <Portrait
+                      onDragStart={(e) =>
+                        this.handleDragStart(e, participant, i)
+                      }
+                      onDragOver={(e) => this.onDragOverHandler(e, i)}
+                      onDrop={(e) => this.handleDrop(e, participant, i)}
+                      dragStarted={this.state.dragStarted}
+                      dragover={this.state.dragover}
                       participant={participant}
-                      participants={this.participantsToMap()}
+                      participants={participants}
                       i={i}
                       key={i}
                     />
@@ -129,8 +189,15 @@ class Stage extends React.Component {
                 else if (selectedValue === "landscape")
                   return (
                     <Landscape
+                      onDragStart={(e) =>
+                        this.handleDragStart(e, participant, i)
+                      }
+                      onDragOver={(e) => this.onDragOverHandler(e, i)}
+                      onDrop={(e) => this.handleDrop(e, participant, i)}
+                      dragStarted={this.state.dragStarted}
+                      dragover={this.state.dragover}
                       participant={participant}
-                      participants={this.participantsToMap()}
+                      participants={participants}
                       i={i}
                       key={i}
                     />

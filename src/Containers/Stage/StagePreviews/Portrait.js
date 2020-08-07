@@ -29,11 +29,22 @@ const Portrait = (props) => {
   }
   return (
     <img
+      draggable
+      onDragStart={props.onDragStart}
+      onDragOver={props.onDragOver}
+      onDrop={props.onDrop}
+      dragover={props.dragover}
       src={props.participant.image}
       style={{
         width: portraitWidth,
         maxWidth: portraitWidth,
         height: portraitHeight,
+        opacity:
+          props.dragStarted === props.i
+            ? "0"
+            : props.dragover === props.i
+            ? "0.1"
+            : "1",
       }}
       key={props.i}
       alt={"portrait" + props.i}
