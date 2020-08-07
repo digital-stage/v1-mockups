@@ -5,6 +5,11 @@
     font-size: 12px;
     border: none;
     cursor: pointer;
+
+    &:focus,
+    &:active {
+        outline: 0;
+    }
 }
 
 .dropdown {
@@ -57,4 +62,44 @@
 
 .dropdown:hover .dropbtn {
     background-color: #ffff;
+}
+
+
+.dropdown.show-screens-dropdown {
+    background-color: transparent;
+
+    &:hover {
+        background-color: transparent;
+    }
+
+    .dropbtn-screens {
+        background-color: transparent;
+        color: white;
+        padding: 10px;
+        font-size: 12px;
+        border: none;
+        cursor: pointer;
+
+        &:focus,
+        &:active {
+            outline: 0;
+        }
+    }
+
+    .dropbtn-screens {
+        background-color: transparent;
+
+        &:hover {
+            background-color: transparent;
+
+            .btn-icon>* {
+                stroke: #707070
+            }
+        }
+
+    }
+
+    .btn-icon>* {
+        stroke: #979797;
+    }
 }

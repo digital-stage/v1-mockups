@@ -114,7 +114,7 @@ export const stageWidth = (width, preview, breakpoints, totalStages) => {
           return { width: "40%", minWidth: "40%" };
         case 4:
         case 3:
-          return { width: "15%", minWidth: "15%" };
+          return { width: "25%", minWidth: "25%" };
         case 2:
         case 1:
           return { width: "25%", minWidth: "25%" };

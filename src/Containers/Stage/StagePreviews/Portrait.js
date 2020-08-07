@@ -1,6 +1,7 @@
 import React from "react";
 import { useBreakpoint } from "../../../breakpoint.js";
 import { stages } from "../../../js/stagesMock.js";
+import { MdClear } from "react-icons/md";
 
 const Portrait = (props) => {
   const breakpoints = useBreakpoint();
@@ -28,27 +29,40 @@ const Portrait = (props) => {
     }`;
   }
   return (
-    <img
+    <div
+      style={{
+        position: "relative",
+        width: portraitWidth,
+        maxWidth: portraitWidth,
+        height: portraitHeight,
+      }}
       draggable
       onDragStart={props.onDragStart}
       onDragOver={props.onDragOver}
       onDrop={props.onDrop}
       dragover={props.dragover}
-      src={props.participant.image}
-      style={{
-        width: portraitWidth,
-        maxWidth: portraitWidth,
-        height: portraitHeight,
-        opacity:
-          props.dragStarted === props.i
-            ? "0"
-            : props.dragover === props.i
-            ? "0.1"
-            : "1",
-      }}
-      key={props.i}
-      alt={"portrait" + props.i}
-    />
+    >
+     {props.enableHideScreens && props.participants.length > 1 && (
+        <div className="hide-screen" onClick={props.hideScreen}>
+          <MdClear title="Hide screen" size="1em" />
+        </div>
+      )}
+      <img
+        src={props.participant.image}
+        style={{
+          width: "100%",
+          height: "100%",
+          opacity:
+            props.dragStarted === props.i
+              ? "0"
+              : props.dragover === props.i
+              ? "0.1"
+              : "1",
+        }}
+        key={props.i}
+        alt={"portrait" + props.i}
+      />
+    </div>
   );
 };
 

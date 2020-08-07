@@ -90,18 +90,17 @@ img {
 .overlay {
   position: absolute;
   top: 2px;
-  /* left:25px;
-  right:25px;  */
   background: rgba(0, 0, 0, 0.664);
   color: #f1f1f1;
-  /* width: 50%; */
   transition: 0.5s ease;
   opacity: 0;
   color: white;
-  // font-size: 20px;
   padding: 15px;
   margin: 0 15px 0 5px;
   text-align: center;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
 }
 
 .stage-container:hover .overlay,
@@ -136,6 +135,7 @@ div.item {
   bottom: 50px;
   background-color: #707070;
   border-radius: 50%;
+  z-index: 100;
 
   &:hover {
     background-color: #3d3d3d;
@@ -147,6 +147,7 @@ div.item {
   left: 30px;
   bottom: 50px;
   background-color: #707070;
+  z-index: 100;
   border-radius: 50%;
 
   &:hover {
@@ -167,3 +168,11 @@ div.item {
 //     padding:0px
 //   }
 // }
+
+.hide-screen {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  z-index: 100;
+  color: white;
+}

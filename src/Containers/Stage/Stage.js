@@ -8,6 +8,7 @@ import Landscape from "./StagePreviews/Landscape";
 import SoundControler from "../../Components/StageControlers/SoundControler";
 import Dropdown from "../../Components/Form/Dropdown";
 import { stageWidth, splitArray } from "../../js/Utils";
+import ShowScreensDropdown from "../../Components/Form/ShowScreensDropdown";
 
 class Stage extends React.Component {
   constructor(props) {
@@ -17,6 +18,8 @@ class Stage extends React.Component {
       closeDropdown: false,
       next: false,
       participants: [],
+      hiddenScreens: [],
+      enableHideScreens: false,
     };
   }
 
@@ -103,10 +106,44 @@ class Stage extends React.Component {
     });
   };
 
+  hideScreenHandler = (i) => {
+    let hiddenScreens = [
+      ...this.state.hiddenScreens,
+      this.state.participants[i],
+    ];
+    this.state.participants.splice(i, 1);
+    this.setState({
+      hiddenScreens,
+      participants: this.state.participants,
+    });
+  };
+
+  onShowScreenClick = (el) => {
+    let participants = [...this.state.participants, el];
+    this.state.hiddenScreens.splice(this.state.hiddenScreens.indexOf(el), 1);
+    this.setState({
+      participants,
+    });
+  };
+
+  enableHideScreensHandler = () => {
+    console.log("he re");
+    this.setState({
+      enableHideScreens: !this.state.enableHideScreens,
+    });
+  };
+
   render() {
     const { color, soundTrackerHeight, totalStages, breakpoints } = this.props;
-    const { selectedValue, closeDropdown, next, participants } = this.state;
-    console.log(this.state.dropHover);
+    const {
+      selectedValue,
+      closeDropdown,
+      next,
+      participants,
+      hiddenScreens,
+      enableHideScreens,
+    } = this.state;
+    console.log(this.state.enableHideScreens);
     return (
       <>
         <div
@@ -131,6 +168,12 @@ class Stage extends React.Component {
               width: `calc(100% - 28px)`,
             }}
           >
+            <ShowScreensDropdown
+              hiddenScreens={hiddenScreens}
+              onShowScreenClick={this.onShowScreenClick}
+              enableHideScreensHandler={this.enableHideScreensHandler}
+              enableHideScreens={enableHideScreens}
+            />
             <Dropdown
               value={selectedValue}
               onClick={this.onDropDownClick}
@@ -173,6 +216,8 @@ class Stage extends React.Component {
                 if (selectedValue === "portrait")
                   return (
                     <Portrait
+                      hideScreen={() => this.hideScreenHandler(i)}
+                      enableHideScreens={enableHideScreens}
                       onDragStart={(e) =>
                         this.handleDragStart(e, participant, i)
                       }
@@ -189,6 +234,8 @@ class Stage extends React.Component {
                 else if (selectedValue === "landscape")
                   return (
                     <Landscape
+                      hideScreen={() => this.hideScreenHandler(i)}
+                      enableHideScreens={enableHideScreens}
                       onDragStart={(e) =>
                         this.handleDragStart(e, participant, i)
                       }

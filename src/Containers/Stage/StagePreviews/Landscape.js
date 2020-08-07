@@ -1,6 +1,7 @@
 import React from "react";
 import { useBreakpoint } from "../../../breakpoint.js";
 import { stages } from "../../../js/stagesMock.js";
+import { MdClear } from "react-icons/md";
 
 const Landscape = (props) => {
   const breakpoints = useBreakpoint();
@@ -17,27 +18,40 @@ const Landscape = (props) => {
           (props.participants.length % 2 === 0 ? 0 : 1)
         })`;
   return (
-    <img
+    <div
       draggable
       onDragStart={props.onDragStart}
       onDragOver={props.onDragOver}
       onDrop={props.onDrop}
       dragover={props.dragover}
-      src={props.participant.image}
       style={{
+        position: "relative",
         width: landscapeWidth,
         maxWidth: landscapeWidth,
         height: landscapeHeight,
-        opacity:
-          props.dragStarted === props.i
-            ? "0"
-            : props.dragover === props.i
-            ? "0.1"
-            : "1",
       }}
-      key={props.i}
-      alt={"landscape" + props.i}
-    />
+    >
+      {props.enableHideScreens && props.participants.length > 1 && (
+        <div className="hide-screen" onClick={props.hideScreen}>
+          <MdClear title="Hide screen" size="1em" />
+        </div>
+      )}
+      <img
+        src={props.participant.image}
+        style={{
+          width: "100%",
+          height: "100%",
+          opacity:
+            props.dragStarted === props.i
+              ? "0"
+              : props.dragover === props.i
+              ? "0.1"
+              : "1",
+        }}
+        key={props.i}
+        alt={"landscape" + props.i}
+      />
+    </div>
   );
 };
 
