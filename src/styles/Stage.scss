@@ -176,3 +176,14 @@ div.item {
   z-index: 100;
   color: white;
 }
+
+.volume-icon {
+  margin: auto 0;
+  margin-right: 12px;
+  padding-bottom: 2px;
+  color: #979797;
+
+  &:hover {
+    color: #707070;
+  }
+}

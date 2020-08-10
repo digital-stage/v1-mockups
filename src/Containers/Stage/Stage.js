@@ -9,6 +9,8 @@ import SoundControler from "../../Components/StageControlers/SoundControler";
 import Dropdown from "../../Components/Form/Dropdown";
 import { stageWidth, splitArray } from "../../js/Utils";
 import ShowScreensDropdown from "../../Components/Form/ShowScreensDropdown";
+import { FaVolumeUp } from "react-icons/fa";
+import VolumeSlider from "../../Components/StageControlers/VolumeSlider";
 
 class Stage extends React.Component {
   constructor(props) {
@@ -20,6 +22,7 @@ class Stage extends React.Component {
       participants: [],
       hiddenScreens: [],
       enableHideScreens: false,
+      arrangeVolume: false,
     };
   }
 
@@ -127,9 +130,14 @@ class Stage extends React.Component {
   };
 
   enableHideScreensHandler = () => {
-    console.log("he re");
     this.setState({
       enableHideScreens: !this.state.enableHideScreens,
+    });
+  };
+
+  arrangeVolumeHandler = () => {
+    this.setState({
+      arrangeVolume: !this.state.arrangeVolume,
     });
   };
 
@@ -142,6 +150,7 @@ class Stage extends React.Component {
       participants,
       hiddenScreens,
       enableHideScreens,
+      arrangeVolume,
     } = this.state;
     console.log(this.state.enableHideScreens);
     return (
@@ -168,6 +177,9 @@ class Stage extends React.Component {
               width: `calc(100% - 28px)`,
             }}
           >
+            <div className="volume-icon" onClick={this.arrangeVolumeHandler}>
+              <FaVolumeUp title={arrangeVolume ? "Show volume controler" : "Hide volume controler"} />
+            </div>
             <ShowScreensDropdown
               hiddenScreens={hiddenScreens}
               onShowScreenClick={this.onShowScreenClick}
@@ -182,6 +194,7 @@ class Stage extends React.Component {
             />
             {/* <Select value={selectedValue} onChange={this.onSelectChange} /> */}
           </div>
+          {arrangeVolume && <VolumeSlider />}
           <SoundControler
             color={color}
             soundTrackerHeight={soundTrackerHeight}
