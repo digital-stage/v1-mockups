@@ -10,7 +10,7 @@ export const stageWidth = (width, preview, breakpoints, totalStages) => {
     if (breakpoints.mobile) return { width: "100%", minWidth: "100%" };
     else return { width: "35%", minWidth: "35%" };
   }
-  if (preview === "portrait") {
+  if (preview === "portrait" || preview === "masonry") {
     if (breakpoints.mobile) {
       switch (width) {
         case 6:

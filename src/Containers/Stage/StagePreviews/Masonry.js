@@ -1,26 +1,39 @@
 import React from "react";
 import "../../../styles/Masonry.scss";
+import { MdClear } from "react-icons/md";
 
 class Masonry extends React.Component {
   render() {
-    const { participants } = this.props;
+    const {
+      participant,
+      participants,
+      i,
+      onDragStart,
+      onDragOver,
+      onDrop,
+      dragover,
+      enableHideScreens,
+      hideScreen,
+    } = this.props;
     return (
       <div
-        className="masonary_test"
+        draggable
+        onDragStart={onDragStart}
+        onDragOver={onDragOver}
+        onDrop={onDrop}
+        dragover={dragover}
+        className="item_test"
         style={{
-          maxHeight: "calc(100vh - 100px)",
-          overflowY: "scroll",
-          overflowX: "hidden",
+          position: "relative",
+          height: `calc((100vh - 100px)/ ${Math.round(participants.length / 2)})`,
         }}
       >
-        {participants &&
-          participants.map((participant, i) => {
-            return (
-              <div className="item_test">
-                <img src={participant.image} alt={"masonry-image" + i} />
-              </div>
-            );
-          })}
+        {enableHideScreens && participants.length > 1 && (
+          <div className="hide-screen" onClick={hideScreen}>
+            <MdClear title="Hide screen" size="1em" />
+          </div>
+        )}
+        <img src={participant.image} alt={"masonry-image" + i} />
       </div>
     );
   }

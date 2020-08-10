@@ -157,9 +157,7 @@ class Stage extends React.Component {
       <>
         <div
           ref={(el) => (this.container = el)}
-          className={
-            selectedValue === "masonry" ? "masonry" : "stage-container"
-          }
+          className={"stage-container"}
           style={{
             ...stageWidth(
               participants.length,
@@ -178,7 +176,13 @@ class Stage extends React.Component {
             }}
           >
             <div className="volume-icon" onClick={this.arrangeVolumeHandler}>
-              <FaVolumeUp title={arrangeVolume ? "Show volume controler" : "Hide volume controler"} />
+              <FaVolumeUp
+                title={
+                  arrangeVolume
+                    ? "Show volume controler"
+                    : "Hide volume controler"
+                }
+              />
             </div>
             <ShowScreensDropdown
               hiddenScreens={hiddenScreens}
@@ -199,74 +203,81 @@ class Stage extends React.Component {
             color={color}
             soundTrackerHeight={soundTrackerHeight}
           />
-          {!next &&
-            this.props.participants.length > 6 &&
-            selectedValue !== "masonry" && (
-              <div className="arrow-next" onClick={this.nextParticipants}>
-                <img
-                  src={require("../../assets/images/next.png")}
-                  alt="next"
-                  width="30px"
-                  height="30px"
-                />
-              </div>
-            )}
-          {next &&
-            this.props.participants.length > 6 &&
-            selectedValue !== "masonry" && (
-              <div className="arrow-prev" onClick={this.nextParticipants}>
-                <img
-                  src={require("../../assets/images/prev.png")}
-                  alt="next"
-                  width="30px"
-                  height="30px"
-                />
-              </div>
-            )}
-          {selectedValue !== "masonry" ? (
-            <div className={selectedValue === "masonry" ? "item" : "photos"}>
-              {participants.map((participant, i) => {
-                if (selectedValue === "portrait")
-                  return (
-                    <Portrait
-                      hideScreen={() => this.hideScreenHandler(i)}
-                      enableHideScreens={enableHideScreens}
-                      onDragStart={(e) =>
-                        this.handleDragStart(e, participant, i)
-                      }
-                      onDragOver={(e) => this.onDragOverHandler(e, i)}
-                      onDrop={(e) => this.handleDrop(e, participant, i)}
-                      dragStarted={this.state.dragStarted}
-                      dragover={this.state.dragover}
-                      participant={participant}
-                      participants={participants}
-                      i={i}
-                      key={i}
-                    />
-                  );
-                else if (selectedValue === "landscape")
-                  return (
-                    <Landscape
-                      hideScreen={() => this.hideScreenHandler(i)}
-                      enableHideScreens={enableHideScreens}
-                      onDragStart={(e) =>
-                        this.handleDragStart(e, participant, i)
-                      }
-                      onDragOver={(e) => this.onDragOverHandler(e, i)}
-                      onDrop={(e) => this.handleDrop(e, participant, i)}
-                      dragStarted={this.state.dragStarted}
-                      dragover={this.state.dragover}
-                      participant={participant}
-                      participants={participants}
-                      i={i}
-                      key={i}
-                    />
-                  );
-              })}
+          {!next && this.props.participants.length > 6 && (
+            <div className="arrow-next" onClick={this.nextParticipants}>
+              <img
+                src={require("../../assets/images/next.png")}
+                alt="next"
+                width="30px"
+                height="30px"
+              />
             </div>
-          ) : (
-            <Masonry participants={participants} />
           )}
+          {next && this.props.participants.length > 6 && (
+            <div className="arrow-prev" onClick={this.nextParticipants}>
+              <img
+                src={require("../../assets/images/prev.png")}
+                alt="next"
+                width="30px"
+                height="30px"
+              />
+            </div>
+          )}
+
+          <div
+            className={selectedValue === "masonry" ? "masonary_test" : "photos"}
+          >
+            {participants.map((participant, i) => {
+              if (selectedValue === "portrait")
+                return (
+                  <Portrait
+                    hideScreen={() => this.hideScreenHandler(i)}
+                    enableHideScreens={enableHideScreens}
+                    onDragStart={(e) => this.handleDragStart(e, participant, i)}
+                    onDragOver={(e) => this.onDragOverHandler(e, i)}
+                    onDrop={(e) => this.handleDrop(e, participant, i)}
+                    dragStarted={this.state.dragStarted}
+                    dragover={this.state.dragover}
+                    participant={participant}
+                    participants={participants}
+                    i={i}
+                    key={i}
+                  />
+                );
+              else if (selectedValue === "landscape")
+                return (
+                  <Landscape
+                    hideScreen={() => this.hideScreenHandler(i)}
+                    enableHideScreens={enableHideScreens}
+                    onDragStart={(e) => this.handleDragStart(e, participant, i)}
+                    onDragOver={(e) => this.onDragOverHandler(e, i)}
+                    onDrop={(e) => this.handleDrop(e, participant, i)}
+                    dragStarted={this.state.dragStarted}
+                    dragover={this.state.dragover}
+                    participant={participant}
+                    participants={participants}
+                    i={i}
+                    key={i}
+                  />
+                );
+              else if (selectedValue === "masonry")
+                return (
+                  <Masonry
+                    hideScreen={() => this.hideScreenHandler(i)}
+                    enableHideScreens={enableHideScreens}
+                    onDragStart={(e) => this.handleDragStart(e, participant, i)}
+                    onDragOver={(e) => this.onDragOverHandler(e, i)}
+                    onDrop={(e) => this.handleDrop(e, participant, i)}
+                    dragStarted={this.state.dragStarted}
+                    dragover={this.state.dragover}
+                    participant={participant}
+                    participants={participants}
+                    i={i}
+                    key={i}
+                  />
+                );
+            })}
+          </div>
         </div>
       </>
     );
