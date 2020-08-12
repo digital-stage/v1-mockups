@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import Stage from "./Stage";
 import { stages } from "../../js/stagesMock";
 import "../../styles/Stage.scss";
 import logo from "../../assets/images/logo.png";
 import profile from "../../assets/images/profil.png";
 import { useBreakpoint } from "../../breakpoint.js";
+import { BsArrowClockwise } from "react-icons/bs";
 
 const Stages = () => {
+  const [count, setCount] = useState(0);
+
+  function handleChange() {
+    console.log(count);
+    if (count === 2) {
+      setCount(0);
+    } else {
+      setCount(count + 1);
+    }
+  }
+
   const breakpoints = useBreakpoint();
   const stagesContainer =
     stages.orinetation === "landscape"
@@ -35,9 +47,13 @@ const Stages = () => {
               soundTrackerHeight={soundTrackerHeight}
               key={name + i}
               breakpoints={breakpoints}
+              changeStagePreview={count}
             />
           );
         })}
+      </div>
+      <div class="change-icon" onClick={handleChange} title="Change stage preview">
+        <BsArrowClockwise color="#d5d5d5" style={{ marginTop: "-5px" }} />
       </div>
     </div>
   );

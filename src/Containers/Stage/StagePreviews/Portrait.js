@@ -42,7 +42,7 @@ const Portrait = (props) => {
       onDrop={props.onDrop}
       dragover={props.dragover}
     >
-     {props.enableHideScreens && props.participants.length > 1 && (
+      {props.enableHideScreens && props.participants.length > 1 && (
         <div className="hide-screen" onClick={props.hideScreen}>
           <MdClear title="Hide screen" size="1em" />
         </div>
@@ -54,10 +54,10 @@ const Portrait = (props) => {
           height: "100%",
           opacity:
             props.dragStarted === props.i
-              ? "0"
-              : props.dragover === props.i
               ? "0.1"
-              : "1",
+              : props.dragover === props.i
+              ? "0.2"
+              : "1"
         }}
         key={props.i}
         alt={"portrait" + props.i}

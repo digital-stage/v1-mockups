@@ -23,6 +23,7 @@ class Stage extends React.Component {
       hiddenScreens: [],
       enableHideScreens: false,
       arrangeVolume: false,
+      effect: false,
     };
   }
 
@@ -33,6 +34,11 @@ class Stage extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (this.state.next !== prevState.next) {
       this.participantsToMap();
+    }
+    if (this.state.participants !== prevState.participants) {
+      this.setState({
+        effect: !this.state.effect,
+      });
     }
   }
 
@@ -142,7 +148,13 @@ class Stage extends React.Component {
   };
 
   render() {
-    const { color, soundTrackerHeight, totalStages, breakpoints } = this.props;
+    const {
+      color,
+      soundTrackerHeight,
+      totalStages,
+      breakpoints,
+      changeStagePreview,
+    } = this.props;
     const {
       selectedValue,
       closeDropdown,
@@ -151,22 +163,28 @@ class Stage extends React.Component {
       hiddenScreens,
       enableHideScreens,
       arrangeVolume,
+      effect,
     } = this.state;
-    console.log(this.state.enableHideScreens);
+    console.log(effect);
+    const stagesWidth =
+      changeStagePreview === 0
+        ? stageWidth(
+            participants.length,
+            selectedValue,
+            breakpoints,
+            totalStages
+          )
+        : null;
     return (
       <>
         <div
           ref={(el) => (this.container = el)}
           className={"stage-container"}
           style={{
-            ...stageWidth(
-              participants.length,
-              selectedValue,
-              breakpoints,
-              totalStages
-            ),
+            ...stagesWidth,
             position: "relative",
-            // `calc(100% / ${totalStages})`,
+            width:
+              changeStagePreview === 1 ? `calc(100% / ${totalStages})` : null,
           }}
         >
           <div
