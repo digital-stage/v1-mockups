@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import "../../styles/Stage.scss";
 // import Select from "../../Components/Form/Select";
-import Masonry from "./StagePreviews/Masonry";
 import Portrait from "./StagePreviews/Portrait";
 import Landscape from "./StagePreviews/Landscape";
 import SoundControler from "../../Components/StageControlers/SoundControler";
@@ -11,6 +10,7 @@ import { stageWidth, splitArray } from "../../js/Utils";
 import ShowScreensDropdown from "../../Components/Form/ShowScreensDropdown";
 import { FaVolumeUp } from "react-icons/fa";
 import VolumeSlider from "../../Components/StageControlers/VolumeSlider";
+import Masonry from "./StagePreviews/Masonry";
 
 class Stage extends React.Component {
   constructor(props) {
@@ -243,7 +243,8 @@ class Stage extends React.Component {
           )}
 
           <div
-            className={selectedValue === "masonry" ? "masonary_test" : "photos"}
+            className={"photos"}
+            style={{ display: selectedValue !== "masonry" && "flex" }}
           >
             {participants.map((participant, i) => {
               if (selectedValue === "portrait")
