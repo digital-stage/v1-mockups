@@ -8,6 +8,26 @@ body {
   box-sizing: border-box;
 }
 
+// General
+
+.stage-container-animation {
+  animation-delay: 2s;
+  -webkit-animation: fadein 2s;
+  -moz-animation: fadein 2s;
+  -ms-animation: fadein 2s;
+  animation: fadein 2s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 /* Stages */
 .stages {
   background-image: linear-gradient(to bottom, #808080, #3d3d3d, #333333);
@@ -46,52 +66,11 @@ body {
   height: calc(100vh - 50px);
 }
 
+// Stage
 .stage-container {
   padding: 0px 10px 20px 10px;
-  // background-image: linear-gradient(to bottom, #808080, #3d3d3d, #333333);
-  // background: #3d3d3d #333333;
-  // flex: 0 0 25%;
-  // position: absolute;
-  // left: -100px;
-  // -webkit-animation: slide 0.5s forwards;
-  // -webkit-animation-delay: 2s;
-  // animation: slide 0.5s forwards;
 }
 
-.stage-container-animation {
-  animation-delay: 2s;
-  -webkit-animation: fadein 2s;
-  -moz-animation: fadein 2s;
-  -ms-animation: fadein 2s;
-  animation: fadein 2s;
-}
-
-// .scroll::-webkit-scrollbar {
-//   display: none;
-// }
-@keyframes fadein {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes slide {
-  100% {
-    left: 0;
-  }
-}
-
-@keyframes slide {
-  100% {
-    left: 0;
-  }
-}
-
-/* Stage */
 .photos {
   // display: flex;
   flex-direction: row;
@@ -101,8 +80,6 @@ body {
   background: transparent;
 
 }
-
-
 
 // .photos img:last-child{
 //   margin:0 auto;
@@ -132,10 +109,6 @@ img {
 }
 
 /* Stage overlay */
-.stage-containe {
-  /* position:relative; */
-}
-
 .overlay {
   position: absolute;
   top: 2px;
@@ -157,27 +130,7 @@ img {
   opacity: 1;
 }
 
-/* Masonary */
-div.masonry {
-  // padding: 30px 20px;
-  // background: #3d3d3d;
-  height: 100%;
-  min-height: 100%;
-  max-height: 100vh !important;
-  /* overflow-y: scroll; */
-}
-
-div.item {
-  column-count: 3;
-
-}
-
-.item img {
-  width: 100% !important;
-  height: auto !important;
-}
-
-
+// Arrows at stage
 .arrow-next {
   position: absolute;
   right: 25px;
@@ -188,6 +141,7 @@ div.item {
   box-shadow: 3px 3px 3px 0 rgba(167, 167, 167, 0.2);
   transition: all .5s ease-in;
   animation: fadein 1s;
+
   &:hover {
     background-color: #3d3d3d;
     cursor: pointer;
@@ -205,6 +159,7 @@ div.item {
   box-shadow: 3px 3px 3px 0 rgba(167, 167, 167, 0.2);
   transition: all .5s ease-in;
   animation: fadein 1s;
+
   &:hover {
     background-color: #3d3d3d;
     cursor: pointer;
@@ -213,7 +168,7 @@ div.item {
 
 }
 
-
+// Hide screens
 .hide-screen {
   position: absolute;
   bottom: 2px;
@@ -222,6 +177,7 @@ div.item {
   color: white;
 }
 
+// Volume 
 .volume-icon {
   margin: auto 0;
   margin-right: 12px;
