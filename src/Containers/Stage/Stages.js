@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Stage from "./Stage";
 import { stages } from "../../js/stagesMock";
-import "../../styles/Stage.scss";
 import logo from "../../assets/images/logo.png";
 import profile from "../../assets/images/profil.png";
 import { useBreakpoint } from "../../breakpoint.js";

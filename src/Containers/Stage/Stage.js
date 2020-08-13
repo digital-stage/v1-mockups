@@ -1,7 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "../../styles/Stage.scss";
-// import Select from "../../Components/Form/Select";
 import Portrait from "./StagePreviews/Portrait";
 import Landscape from "./StagePreviews/Landscape";
 import SoundControler from "../../Components/StageControlers/SoundControler";
@@ -234,7 +232,6 @@ class Stage extends React.Component {
               closeDropdown={closeDropdown}
               hover={this.hover}
             />
-            {/* <Select value={selectedValue} onChange={this.onSelectChange} /> */}
           </div>
           {arrangeVolume && <VolumeSlider />}
           <SoundControler

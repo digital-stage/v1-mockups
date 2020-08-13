@@ -1,5 +1,4 @@
 import React from "react";
-import "../../styles/Range.scss";
 import { FaVolumeUp } from "react-icons/fa";
 
 const VolumeSlider = () => {

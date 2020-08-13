@@ -1,5 +1,4 @@
 import React from "react";
-import "../../../styles/Masonry.scss";
 import { MdClear } from "react-icons/md";
 
 class Masonry extends React.Component {

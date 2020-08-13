@@ -1,5 +1,4 @@
 import React from "react";
-import "../../styles/Dropdown.scss";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { TiUserAdd } from "react-icons/ti";
 

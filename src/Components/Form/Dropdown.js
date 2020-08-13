@@ -1,6 +1,5 @@
 import React from "react";
 import Icon from "../Icons/Icons";
-import "../../styles/Dropdown.scss";
 import { preview } from "../../js/stagesMock";
 
 const Dropdown = (props) => {
