@@ -103,3 +103,9 @@
         stroke: #979797;
     }
 }
+
+IconButton{
+    &:focus{
+        outline:0 !important
+    }
+}
