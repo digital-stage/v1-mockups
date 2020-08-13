@@ -92,6 +92,11 @@ class Masonry extends React.Component {
           </div>
         )}
         <img
+          className={
+            this.props.effectOnSingleImage === this.props.i
+              ? "stage-container-animation"
+              : ""
+          }
           src={participant.image}
           style={{
             width: "100%",

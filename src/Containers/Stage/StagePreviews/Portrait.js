@@ -48,7 +48,11 @@ const Portrait = (props) => {
         </div>
       )}
       <img
-      className={props.effectOnSingleImage === props.i ? 'stage-container-animation' : ''}
+        className={
+          props.effectOnSingleImage === props.i
+            ? "stage-container-animation"
+            : ""
+        }
         src={props.participant.image}
         style={{
           width: "100%",
@@ -58,7 +62,7 @@ const Portrait = (props) => {
               ? "0.1"
               : props.dragover === props.i
               ? "0.2"
-              : "1"
+              : "1",
         }}
         key={props.i}
         alt={"portrait" + props.i}

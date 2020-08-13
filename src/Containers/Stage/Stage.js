@@ -182,7 +182,7 @@ class Stage extends React.Component {
       enableHideScreens,
       arrangeVolume,
       effect,
-      effectOnSingleImage
+      effectOnSingleImage,
     } = this.state;
     const stagesWidth =
       changeStagePreview === 0
@@ -287,6 +287,7 @@ class Stage extends React.Component {
               else if (selectedValue === "landscape")
                 return (
                   <Landscape
+                    effectOnSingleImage={effectOnSingleImage}
                     hideScreen={() => this.hideScreenHandler(i)}
                     enableHideScreens={enableHideScreens}
                     onDragStart={(e) => this.handleDragStart(e, participant, i)}
@@ -303,6 +304,7 @@ class Stage extends React.Component {
               else if (selectedValue === "masonry")
                 return (
                   <Masonry
+                    effectOnSingleImage={effectOnSingleImage}
                     hideScreen={() => this.hideScreenHandler(i)}
                     enableHideScreens={enableHideScreens}
                     onDragStart={(e) => this.handleDragStart(e, participant, i)}
