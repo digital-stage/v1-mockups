@@ -9,14 +9,18 @@ import { BsArrowClockwise } from "react-icons/bs";
 
 const Stages = () => {
   const [count, setCount] = useState(0);
+  const [stagesEffect, setStagesEffect] = useState(false);
 
   function handleChange() {
-    console.log(count);
     if (count === 2) {
       setCount(0);
     } else {
       setCount(count + 1);
     }
+    setStagesEffect(true);
+    setTimeout(() => {
+      setStagesEffect(false);
+    }, 1000);
   }
 
   const breakpoints = useBreakpoint();
@@ -48,11 +52,16 @@ const Stages = () => {
               key={name + i}
               breakpoints={breakpoints}
               changeStagePreview={count}
+              stagesEffect={stagesEffect}
             />
           );
         })}
       </div>
-      <div class="change-icon" onClick={handleChange} title="Change stage preview">
+      <div
+        className="change-icon"
+        onClick={handleChange}
+        title="Change stage preview"
+      >
         <BsArrowClockwise color="#d5d5d5" style={{ marginTop: "-5px" }} />
       </div>
     </div>

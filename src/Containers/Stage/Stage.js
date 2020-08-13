@@ -29,16 +29,19 @@ class Stage extends React.Component {
 
   componentDidMount() {
     this.participantsToMap();
+    this.setState({
+      effect: !this.state.effect,
+    });
+    setTimeout(() => {
+      this.setState({
+        effect: !this.state.effect,
+      });
+    }, 2000);
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.next !== prevState.next) {
       this.participantsToMap();
-    }
-    if (this.state.participants !== prevState.participants) {
-      this.setState({
-        effect: !this.state.effect,
-      });
     }
   }
 
@@ -50,7 +53,13 @@ class Stage extends React.Component {
     this.setState({
       selectedValue: el,
       closeDropdown: !this.state.closeDropdown,
+      effect: !this.state.effect,
     });
+    setTimeout(() => {
+      this.setState({
+        effect: !this.state.effect,
+      });
+    }, 2000);
   };
 
   hover = () => {
@@ -62,7 +71,13 @@ class Stage extends React.Component {
   nextParticipants = () => {
     this.setState({
       next: !this.state.next,
+      effect: !this.state.effect,
     });
+    setTimeout(() => {
+      this.setState({
+        effect: !this.state.effect,
+      });
+    }, 2000);
   };
 
   participantsToMap = () => {
@@ -124,6 +139,7 @@ class Stage extends React.Component {
     this.setState({
       hiddenScreens,
       participants: this.state.participants,
+      effectOnSingleImage: i,
     });
   };
 
@@ -132,6 +148,7 @@ class Stage extends React.Component {
     this.state.hiddenScreens.splice(this.state.hiddenScreens.indexOf(el), 1);
     this.setState({
       participants,
+      effectOnSingleImage: this.state.participants.length,
     });
   };
 
@@ -154,6 +171,7 @@ class Stage extends React.Component {
       totalStages,
       breakpoints,
       changeStagePreview,
+      stagesEffect,
     } = this.props;
     const {
       selectedValue,
@@ -164,8 +182,8 @@ class Stage extends React.Component {
       enableHideScreens,
       arrangeVolume,
       effect,
+      effectOnSingleImage
     } = this.state;
-    console.log(effect);
     const stagesWidth =
       changeStagePreview === 0
         ? stageWidth(
@@ -175,11 +193,13 @@ class Stage extends React.Component {
             totalStages
           )
         : null;
+    const addEffectClass =
+      effect || stagesEffect ? "stage-container-animation" : "";
     return (
       <>
         <div
           ref={(el) => (this.container = el)}
-          className={"stage-container"}
+          className={["stage-container", addEffectClass].join(" ")}
           style={{
             ...stagesWidth,
             position: "relative",
@@ -250,6 +270,7 @@ class Stage extends React.Component {
               if (selectedValue === "portrait")
                 return (
                   <Portrait
+                    effectOnSingleImage={effectOnSingleImage}
                     hideScreen={() => this.hideScreenHandler(i)}
                     enableHideScreens={enableHideScreens}
                     onDragStart={(e) => this.handleDragStart(e, participant, i)}

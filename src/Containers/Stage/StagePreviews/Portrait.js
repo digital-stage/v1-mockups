@@ -48,6 +48,7 @@ const Portrait = (props) => {
         </div>
       )}
       <img
+      className={props.effectOnSingleImage === props.i ? 'stage-container-animation' : ''}
         src={props.participant.image}
         style={{
           width: "100%",
