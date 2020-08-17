@@ -1,6 +1,6 @@
 import React from "react";
 import { useBreakpoint } from "../../breakpoint.js";
-import { stages } from "../../js/stagesMock.js";
+import { group } from "../../js/stageMock.js";
 
 const SoundControler = (props) => {
   const breakpoints = useBreakpoint();
@@ -9,7 +9,7 @@ const SoundControler = (props) => {
   const SoundControlerStyle = {
     div: {
       height:
-        breakpoints.sm && stages.orinetation === "portrait"
+        breakpoints.sm && group.orinetation === "portrait"
           ? "calc(50vh - 54px)"
           : "calc(100vh - 104px)",
       width: "10px",
@@ -19,7 +19,7 @@ const SoundControler = (props) => {
     },
     span: {
       maxHeight:
-        breakpoints.sm && stages.orinetation === "portrait"
+        breakpoints.sm && group.orinetation === "portrait"
           ? "calc(50vh - 54px)"
           : "calc(100vh - 104px)",
       minWidth: "10px",
@@ -36,7 +36,7 @@ const SoundControler = (props) => {
         style={{
           backgroundColor: color,
           height:
-            breakpoints.sm && stages.orinetation === "portrait"
+            breakpoints.sm && group.orinetation === "portrait"
               ? `calc(${soundTrackerHeight} / 2)`
               : soundTrackerHeight,
           ...SoundControlerStyle.span,

@@ -1,7 +1,7 @@
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
-  background-color: #333333;
+  background-color: $dark-gray-01;
 }
 
 /* Track */
@@ -11,13 +11,13 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #707070;
+  background: $med-gray-01;
   border-radius: 5px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #707070;
+  background: $med-gray-01;
 }
 
 // .scroll::-webkit-scrollbar {

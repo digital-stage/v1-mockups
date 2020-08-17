@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import Stages from './Containers/Stage/Stages'
+import Stage from './Containers/Stage/Stage'
 
 function App() {
   return (
     <div className="App">
-      <Stages/>
+      <Stage/>
     </div>
   );
 }

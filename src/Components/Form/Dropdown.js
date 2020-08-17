@@ -1,6 +1,6 @@
 import React from "react";
 import Icon from "../Icons/Icons";
-import { preview } from "../../js/stagesMock";
+import { preview } from "../../js/stageMock";
 
 const Dropdown = (props) => {
   return (
@@ -14,7 +14,7 @@ const Dropdown = (props) => {
             return (
               <div onClick={() => props.onClick(el)} key={el}>
                 <Icon icon={el} />
-                <span>{el.charAt(0).toUpperCase() + el.slice(1)}</span>
+                <p className="d-inline my-auto">{el.charAt(0).toUpperCase() + el.slice(1)}</p>
               </div>
             );
           })}

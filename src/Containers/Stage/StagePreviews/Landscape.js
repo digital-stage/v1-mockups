@@ -1,14 +1,14 @@
 import React from "react";
 import { useBreakpoint } from "../../../breakpoint.js";
-import { stages } from "../../../js/stagesMock.js";
+import { group } from "../../../js/stageMock.js";
 import { MdClear } from "react-icons/md";
 
 const Landscape = (props) => {
   const breakpoints = useBreakpoint();
   const height =
-    breakpoints.sm && stages.orinetation === "portrait" ? "50vh" : "100vh";
+    breakpoints.sm && group.orinetation === "portrait" ? "50vh" : "100vh";
   const padding =
-    breakpoints.sm && stages.orinetation === "portrait" ? "50px" : "100px";
+    breakpoints.sm && group.orinetation === "portrait" ? "50px" : "100px";
   let landscapeWidth = props.participants.length <= 4 ? "100%" : "50%";
   let landscapeHeight =
     props.participants.length <= 4

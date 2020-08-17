@@ -30,7 +30,7 @@ body {
 
 /* Stages */
 .stages {
-  background-image: linear-gradient(to bottom, #808080, #3d3d3d, #333333);
+  background-image: linear-gradient(to bottom, $med-gray-01, $dark-gray-01);
   height: calc(100vh -50px);
   padding-left: 10px;
   padding-right: 10px;
@@ -48,7 +48,7 @@ body {
       width: auto;
     }
 
-    h5 {
+    h6 {
       padding-left: 15px;
       display: inline-block;
       color: white;

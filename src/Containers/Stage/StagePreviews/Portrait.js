@@ -1,13 +1,13 @@
 import React from "react";
 import { useBreakpoint } from "../../../breakpoint.js";
-import { stages } from "../../../js/stagesMock.js";
+import { group } from "../../../js/stageMock.js";
 import { MdClear } from "react-icons/md";
 
 const Portrait = (props) => {
   const breakpoints = useBreakpoint();
   let portraitWidth;
   let portraitHeight;
-  if (stages.orinetation === "portrait" && breakpoints.sm) {
+  if (group.orinetation === "portrait" && breakpoints.sm) {
     portraitWidth = `calc(100%/${
       props.participants.length > 2
         ? Math.round(props.participants.length / 2)
