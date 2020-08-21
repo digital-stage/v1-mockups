@@ -5,6 +5,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BreakpointProvider } from "./breakpoint";
+import { BrowserRouter } from "react-router-dom";
 
 const queries = {
   mobile: "(max-width: 375px)",
@@ -15,11 +16,13 @@ const queries = {
 };
 
 ReactDOM.render(
-  <BreakpointProvider queries={queries}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </BreakpointProvider>,
+        <BreakpointProvider queries={queries}>
+          <React.StrictMode>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </React.StrictMode>
+        </BreakpointProvider>,
   document.getElementById("root")
 );
 
