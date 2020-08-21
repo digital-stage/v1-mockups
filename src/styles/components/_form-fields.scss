@@ -11,7 +11,17 @@
     text-transform: none !important;
     padding: 2px 37px !important;
     font-weight: 600 !important;
-    &:focus{
-        outline:0;
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+a {
+    text-decoration: none !important;
+
+    &:hover {
+        text-decoration: none !important;
+
     }
 }
