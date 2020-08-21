@@ -13,7 +13,7 @@ const Welcome = (props) => {
   };
 
   return (
-    <Box component="body" className="body_color">
+    <Box component="body" className="body">
       <Grid container direction="column" justify="center" alignItems="center">
         <Grid item>
           <img

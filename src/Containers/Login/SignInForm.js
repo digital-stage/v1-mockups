@@ -1,23 +1,22 @@
 import React, { useState } from "react";
-// import Button from "@material-ui/core/Button";
-// import {Input as MaterialInput }from "@material-ui/core/Input";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import Alert from "@material-ui/lab/Alert";
-
-import { IconButton } from "@material-ui/core";
-import Icon from "@material-ui/core/Icon";
-import { loadCSS } from "fg-loadcss";
-import Input from "../../Components/Form/Input";
-import ButtonStyled from "../../Components/Form/Button";
+import {
+  FormControlLabel,
+  Checkbox,
+  Link,
+  Grid,
+  Typography,
+  Container,
+  IconButton,
+  Icon,
+} from "@material-ui/core";
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
+import { makeStyles } from "@material-ui/core/styles";
+import Alert from "@material-ui/lab/Alert";
+import { loadCSS } from "fg-loadcss";
+
+import Input from "../../Components/Form/Input";
+import ButtonStyled from "../../Components/Form/Button";
 
 //Firebase
 import * as firebase from "firebase/app";
@@ -25,19 +24,14 @@ import "firebase/auth";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    // marginTop: theme.spacing(0),
     display: "flex",
     justifyContent: "center",
     padding: "0",
-    // flexDirection: "column",
-    // alignItems: "center",
   },
   back: {
-    // backgroundColor: "#000",
     borderRadius: "5px",
     color: "white",
   },
-
   form: {
     width: "70%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
@@ -103,7 +97,6 @@ export default function SignInForm(props) {
             id="password"
             onInputChange={(e) => setPassword(e.target.value)}
           />
-
           <Grid
             container
             direction="column"
@@ -154,15 +147,12 @@ export default function SignInForm(props) {
                 </h6>
               </Link>
             </Grid>
-
             <Grid item>
               <h5 style={{ color: "white" }} align="center">
                 Or Via
               </h5>
-
               <Link>
                 <IconButton disabled={true}>
-                  {" "}
                   <span
                     style={{
                       backgroundColor: "#897FE4",
@@ -180,7 +170,6 @@ export default function SignInForm(props) {
               </Link>
               <Link>
                 <IconButton>
-                  {" "}
                   <span
                     style={{
                       backgroundColor: "#897FE4",

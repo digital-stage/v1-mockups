@@ -1,22 +1,9 @@
 import React, { useState } from "react";
+import { Box, Grid, Typography } from "@material-ui/core";
+
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
-
-// import "../styles/main.scss";
-
-import Grid from "@material-ui/core/Grid";
-import { Box } from "@material-ui/core";
-
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import logo from "../../assets/images/welcome_icon.png";
-
-const useStyles = makeStyles((theme) => ({
-  h2: {
-    color: "white",
-    fontWeight:"600"
-  },
-}));
 
 const Login = (props) => {
   const [LoginOpen, setLoginOpen] = useState(true);
@@ -33,7 +20,7 @@ const Login = (props) => {
   };
 
   return (
-    <Box component="body" className="body_color">
+    <Box component="body" className="body">
       <Grid container direction="column" justify="center" alignItems="center">
         <Grid item>
           <img
@@ -46,7 +33,7 @@ const Login = (props) => {
         </Grid>
         <Typography
           variant="h2"
-          style={{ color: "white"}}
+          style={{ color: "white" }}
           className="mt-4 mb-5 welcome"
         >
           Welcome
@@ -83,7 +70,7 @@ const Login = (props) => {
             </div>
           </div>
           <Box>
-            {LoginOpen && <SignInForm {...props}/>}
+            {LoginOpen && <SignInForm {...props} />}
             {SignupOpen && <SignUpForm />}
           </Box>
         </div>
@@ -95,9 +82,9 @@ const Login = (props) => {
           color="white"
           variant="h6"
           className="pt-5"
-          style={{color:"#C2C1C1"}}
+          style={{ color: "#C2C1C1" }}
         >
-            <h6>Enter stage ID to join as Guest</h6>
+          <h6>Enter stage ID to join as Guest</h6>
         </Box>
       </div>
     </Box>

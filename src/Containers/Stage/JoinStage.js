@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Box, Grid, Typography, Button, Input } from "@material-ui/core";
+import { Box, Grid, Typography } from "@material-ui/core";
 import logo from "../../assets/images/white_logo.png";
+import ButtonStyled from "../../Components/Form/Button";
 
 const JoinStage = (props) => {
   const [stageId, setStageId] = useState(null);
@@ -12,7 +13,7 @@ const JoinStage = (props) => {
   };
 
   return (
-    <Box component="body" className="body_color">
+    <Box component="body" className="body">
       <Grid container direction="column" justify="center" alignItems="center">
         <Grid item>
           <img
@@ -33,23 +34,23 @@ const JoinStage = (props) => {
         <Grid item></Grid>
       </Grid>
 
-      <div className="root-container" style={{ height: "calc(100vh - 300px)" }}>
-        <div style={{ color: "white", textAlign: "center" }}>
-          <h3 style={{ fontWeight: "600 !important" }}>Join stage</h3>
+      <div className="root-container">
+        <div>
+          <h3
+            className="mt-5"
+            style={{
+              color: "white",
+              textAlign: "center",
+            }}
+          >
+            Join stage
+          </h3>
           <form noValidate onSubmit={handleSubmit}>
-            <Button
+            <ButtonStyled
               type="submit"
-              medium
-              variant="contained"
-              style={{
-                backgroundColor: "#897FE4",
-                color: "white",
-                borderRadius: "24px",
-                textDecorationL: "none",
-              }}
-            >
-              Join stage
-            </Button>
+              text="Join stage"
+              className="button-primary"
+            />
           </form>
         </div>
 
@@ -59,10 +60,9 @@ const JoinStage = (props) => {
           justifyContent="center"
           color="#C2C1C1"
           variant="h3"
-          className="pt-4"
-          style={{ fontWeight: "600 !important" }}
+          className="pt-3"
         >
-          Enter stage ID to join as Guest
+          <h6>Enter stage ID to join as Guest</h6>
         </Box>
       </div>
     </Box>

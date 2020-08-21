@@ -1,44 +1,4 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {}
-
-// .logo {
-//   top: 64px;
-//   left: 34px;
-//   width: 30px;
-//   height: 30px;
-//   transform: matrix(0.85, -0.53, 0.53, 0.85, 0, 0);
-//   background: #ebf7fe 0% 0% no-repeat padding-box;
-//   opacity: 1;
-// }
-
-$background: #ffffff;
-$header: #060606cc;
-$guitar: #ee04ff;
-$cello: #bbc80b;
-$vocals: #3fe2d3;
-$border: #5dcef8;
-$bottomDiv: rgb(77, 68, 68);
-
-.footerDiv {
-  position: absolute;
-  width: 100%;
-  background-color: $bottomDiv;
-  opacity: 0.6;
-  line-height: 1rem;
-  bottom: 0px;
-  z-index: 1;
-
-  color: $background;
-  padding-top: 5px;
-}
-
-.body_color {
-  // background: rgb(97, 23, 66);
+.body {
   background: linear-gradient(30deg,
       $stage-dark-blue 2%,
       $stage-red);
@@ -55,68 +15,11 @@ $bottomDiv: rgb(77, 68, 68);
   }
 }
 
-// .abc {
-//   display: flex;
-//   background: rgb(97, 23, 66);
-//   background: linear-gradient(
-//     80deg,
-//     rgba(97, 23, 66, 1) 0%,
-//     rgba(245, 9, 71, 1) 100%,
-//     rgba(255, 255, 255, 1) 100%
-//   );
-//   color: whitesmoke;
-//   font-weight: bold;
-//   font-size: large;
-//   height: 100vh;
-//   width: auto;
-// }
-
 .center {
   margin: auto;
   height: 90vh;
   width: auto;
 }
-
-// // //btn group
-// // .btn-primary {
-// //   color: $background;
-// //   background-color: $background;
-// //   line-height: 1rem;
-// //   overflow: hidden;
-// //   border: none;
-
-// //   border-color: $background;
-
-// //   &:hover {
-// //     color: $background;
-// //     background-color: $background;
-// //     border-color: $background;
-// //   }
-
-// //   &:focus,
-// //   &:active {
-// //     color: $background;
-// //     background-color: $background;
-// //     border-color: $background;
-// //     outline: 0;
-// //   }
-// // }
-
-// //fonts awesome
-.fontAwesome {
-  color: $background;
-  position: absolute;
-
-  left: 0rem;
-  top: 0;
-
-  border-radius: 50px;
-  background-color: $header;
-}
-
-//form
-
-
 
 //sigin and signup boxes in login form
 .box-controller {
@@ -124,11 +27,9 @@ $bottomDiv: rgb(77, 68, 68);
   align-items: center;
 
   margin-right: auto;
-  // width: 60%;
   margin-left: auto;
   height: 24px;
 
-  // background-color: #000;
   border-radius: 5px;
   color: #F5F5F5
 }

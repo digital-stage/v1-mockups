@@ -1,23 +1,21 @@
 import React from "react";
-// import Button from "@material-ui/core/Button";
-// import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-
-import { IconButton } from "@material-ui/core";
-import Icon from "@material-ui/core/Icon";
-import { loadCSS } from "fg-loadcss";
-import Input from "../../Components/Form/Input";
-import ButtonStyled from "../../Components/Form/Button";
+import {
+  FormControlLabel,
+  Checkbox,
+  Link,
+  Grid,
+  Typography,
+  Container,
+  IconButton,
+  Icon,
+} from "@material-ui/core";
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
+import { makeStyles } from "@material-ui/core/styles";
+import { loadCSS } from "fg-loadcss";
+
+import Input from "../../Components/Form/Input";
+import ButtonStyled from "../../Components/Form/Button";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -28,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
   back: {
     color: "white",
   },
-
   form: {
     width: "70%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
@@ -67,7 +64,6 @@ export default function SignUpForm() {
       <div className={classes.paper}>
         <form className={classes.form} noValidate>
           <Input required id="email" placeholder="Email" name="email" />
-
           <Input
             required
             id="Username"
@@ -130,12 +126,10 @@ export default function SignUpForm() {
                 text="Sign up"
               />
             </Grid>
-
             <Grid item className="mt-3">
-            <h5 style={{ color: "white" }} align="center">
+              <h5 style={{ color: "white" }} align="center">
                 Or Via
               </h5>
-
               <Link>
                 <IconButton disabled={true}>
                   <span
@@ -146,7 +140,10 @@ export default function SignUpForm() {
                       borderRadius: "20px",
                     }}
                   >
-                    <Icon className="fab fa-facebook-f" style={{ color: "#fff", fontSize: "20px" }} />
+                    <Icon
+                      className="fab fa-facebook-f"
+                      style={{ color: "#fff", fontSize: "20px" }}
+                    />
                   </span>
                 </IconButton>
               </Link>
@@ -160,7 +157,10 @@ export default function SignUpForm() {
                       borderRadius: "20px",
                     }}
                   >
-                    <Icon className="fab fa-google" style={{ color: "#fff", fontSize: "20px" }} />
+                    <Icon
+                      className="fab fa-google"
+                      style={{ color: "#fff", fontSize: "20px" }}
+                    />
                   </span>
                 </IconButton>
               </Link>
@@ -174,7 +174,10 @@ export default function SignUpForm() {
                       borderRadius: "20px",
                     }}
                   >
-                    <Icon className="fab fa-microsoft" style={{ color: "#fff", fontSize: "20px" }}/>
+                    <Icon
+                      className="fab fa-microsoft"
+                      style={{ color: "#fff", fontSize: "20px" }}
+                    />
                   </span>
                 </IconButton>
               </Link>
