@@ -10,6 +10,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import VideocamOutlinedIcon from "@material-ui/icons/VideocamOutlined";
 import VolumeUpOutlinedIcon from "@material-ui/icons/VolumeUpOutlined";
+import DevicesOtherIcon from '@material-ui/icons/DevicesOther';
 
 const useStyles = makeStyles((theme) => ({
   menuButton: {
@@ -44,7 +45,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SideDrawer(props) {
+type Props = {
+  handleDrawerClose: () => void,
+  open: boolean
+}
+
+export default function SideDrawer(props:Props) {
   const classes = useStyles();
   const theme = useTheme();
 
@@ -81,6 +87,11 @@ export default function SideDrawer(props) {
           <ListItem button key="audio">
             <ListItemIcon className={classes.listIcon}>
               <VolumeUpOutlinedIcon />
+            </ListItemIcon>
+          </ListItem>
+          <ListItem button key="audio">
+            <ListItemIcon className={classes.listIcon}>
+              <DevicesOtherIcon />
             </ListItemIcon>
           </ListItem>
         </List>

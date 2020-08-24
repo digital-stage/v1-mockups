@@ -3,8 +3,23 @@ import { useBreakpoint } from "../../../breakpoint.js";
 import { group } from "../../../js/stageMock.js";
 import { MdClear } from "react-icons/md";
 
-const Landscape = (props) => {
-  const breakpoints = useBreakpoint();
+
+type Props = {
+  participants: Array<Object>,
+  onDragStart: (event: React.DragEvent<HTMLDivElement>) => void,
+  onDragOver: (event: React.DragEvent<HTMLDivElement>) => void,
+  onDrop: (event: React.DragEvent<HTMLDivElement>) => void,
+  dragoverElement: number | null | undefined,
+  enableHideScreens: boolean,
+  hideScreen: () => void,
+  effectOnSingleImage: number | null,
+  participant: any,
+  dragStarted: number | null,
+  i: number
+}
+
+const Landscape = (props: Props) => {
+  const breakpoints: any = useBreakpoint();
   const height =
     breakpoints.sm && group.orinetation === "portrait" ? "50vh" : "100vh";
   const padding =
@@ -14,16 +29,15 @@ const Landscape = (props) => {
     props.participants.length <= 4
       ? `calc((${height} - ${padding})/${props.participants.length}`
       : `calc((${height} - ${padding})/${
-          Math.floor(props.participants.length / 2) +
-          (props.participants.length % 2 === 0 ? 0 : 1)
-        })`;
+      Math.floor(props.participants.length / 2) +
+      (props.participants.length % 2 === 0 ? 0 : 1)
+      })`;
   return (
     <div
       draggable
       onDragStart={props.onDragStart}
       onDragOver={props.onDragOver}
       onDrop={props.onDrop}
-      dragover={props.dragover}
       style={{
         position: "relative",
         width: landscapeWidth,
@@ -49,9 +63,9 @@ const Landscape = (props) => {
           opacity:
             props.dragStarted === props.i
               ? "0"
-              : props.dragover === props.i
-              ? "0.1"
-              : "1",
+              : props.dragoverElement === props.i
+                ? "0.1"
+                : "1",
         }}
         key={props.i}
         alt={"landscape" + props.i}

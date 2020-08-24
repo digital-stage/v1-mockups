@@ -13,6 +13,7 @@ import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import { makeStyles } from "@material-ui/core/styles";
 import Alert from "@material-ui/lab/Alert";
+// @ts-ignore
 import { loadCSS } from "fg-loadcss";
 
 import Input from "../../Components/Form/Input";
@@ -48,10 +49,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignInForm(props) {
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
-  const [error, setError] = useState(null);
+type Props = {
+  history?: Array<string> | undefined,
+}
+
+export default function SignInForm(props: Props) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const classes = useStyles();
 
@@ -66,13 +71,13 @@ export default function SignInForm(props) {
     };
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((res) => {
-        props.history.push("/join-stage");
+        props.history && props.history.push("/join-stage");
       })
       .catch((error) => setError(error.message));
   };
@@ -87,7 +92,8 @@ export default function SignInForm(props) {
             id="email"
             placeholder="Username"
             name="email"
-            onInputChange={(e) => setEmail(e.target.value)}
+            type="text"
+            onInputChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
           />
           <Input
             required
@@ -95,7 +101,7 @@ export default function SignInForm(props) {
             placeholder="Password"
             type="password"
             id="password"
-            onInputChange={(e) => setPassword(e.target.value)}
+            onInputChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
           />
           <Grid
             container
@@ -135,9 +141,9 @@ export default function SignInForm(props) {
             </Grid>
             <Grid item className="my-2">
               <ButtonStyled
-                type="submit"
                 className="button-primary"
                 text="Sign in"
+                type="submit"
               />
             </Grid>
             <Grid item>
@@ -148,7 +154,7 @@ export default function SignInForm(props) {
               </Link>
             </Grid>
             <Grid item>
-              <h5 style={{ color: "white" }} align="center">
+              <h5 style={{ color: "white" }}>
                 Or Via
               </h5>
               <Link>

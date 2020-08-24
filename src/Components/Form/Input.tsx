@@ -31,13 +31,22 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Input = (props) => {
+
+type Props = {
+  onInputChange?:(e: React.ChangeEvent<HTMLInputElement>)  => void,
+  placeholder:string,
+  required:boolean,
+  type:string,
+  id:string,
+  name:string
+}
+
+const Input = (props:Props) => {
   const classes = useStyles();
 
   return (
     <MuiThemeProvider theme={theme}>
       <TextField
-        id="outlined-basic"
         variant="outlined"
         className="without-padding"
         InputProps={{
@@ -46,7 +55,10 @@ const Input = (props) => {
         onChange={props.onInputChange}
         placeholder={props.placeholder}
         required={props.required}
-        {...props}
+        type={props.type}
+        id={props.id}
+        name={props.name}
+        // {...props}
       />
     </MuiThemeProvider>
   );

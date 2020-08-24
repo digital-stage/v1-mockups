@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
 import logo from "../../assets/images/white_logo.png";
 import ButtonStyled from "../../Components/Form/Button";
 
-const JoinStage = (props) => {
-  const [stageId, setStageId] = useState(null);
-  const [password, setPassword] = useState(null);
+type Props = {
+  history: Array<string>,
+}
 
-  const handleSubmit = (e) => {
+const JoinStage = (props:Props) => {
+  // const [stageId, setStageId] = useState(null);
+  // const [password, setPassword] = useState(null);
+
+  const handleSubmit = (e:{preventDefault: ()=>void}) => {
     e.preventDefault();
     props.history.push("/stage");
   };
@@ -45,9 +49,11 @@ const JoinStage = (props) => {
           >
             Join stage
           </h3>
-          <form noValidate onSubmit={handleSubmit}>
+          {/* onSubmit={handleSubmit} */}
+          <form noValidate >
             <ButtonStyled
-              type="submit"
+              // type="submit"
+              onClick={handleSubmit}
               text="Join stage"
               className="button-primary"
             />
@@ -59,7 +65,6 @@ const JoinStage = (props) => {
           display="flex"
           justifyContent="center"
           color="#C2C1C1"
-          variant="h3"
           className="pt-3"
         >
           <h6>Enter stage ID to join as Guest</h6>

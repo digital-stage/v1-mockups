@@ -12,6 +12,7 @@ import {
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import { makeStyles } from "@material-ui/core/styles";
+// @ts-ignore
 import { loadCSS } from "fg-loadcss";
 
 import Input from "../../Components/Form/Input";
@@ -45,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 export default function SignUpForm() {
   const classes = useStyles();
 
@@ -63,24 +65,26 @@ export default function SignUpForm() {
     <Container maxWidth="sm" className={`${classes.back}, p-0 mt-0`}>
       <div className={classes.paper}>
         <form className={classes.form} noValidate>
-          <Input required id="email" placeholder="Email" name="email" />
+          <Input required id="email" type="text" placeholder="Email" name="email" />
           <Input
             required
             id="Username"
             placeholder="Username"
             name="Username"
+            type="text"
           />
           <Input
-            margin="normal"
             required
             id="passwrod"
             placeholder="Password"
             name="password"
+            type="password"
           />
           <Input
             required
             id="Repeat password"
             placeholder="Repeat password"
+            type="password"
             name="password"
           />
           <Grid
@@ -121,13 +125,12 @@ export default function SignUpForm() {
             </Grid>
             <Grid item>
               <ButtonStyled
-                type="submit"
                 className="button-primary"
                 text="Sign up"
               />
             </Grid>
             <Grid item className="mt-3">
-              <h5 style={{ color: "white" }} align="center">
+              <h5 style={{ color: "white", textAlign:"center" }}>
                 Or Via
               </h5>
               <Link>

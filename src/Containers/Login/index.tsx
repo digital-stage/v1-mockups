@@ -5,7 +5,11 @@ import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
 import logo from "../../assets/images/welcome_icon.png";
 
-const Login = (props) => {
+type Props = {
+  history: Array<string> | undefined
+}
+
+const Login = (props: Props) => {
   const [LoginOpen, setLoginOpen] = useState(true);
   const [SignupOpen, setSignupOpen] = useState(false);
 
@@ -70,7 +74,7 @@ const Login = (props) => {
             </div>
           </div>
           <Box>
-            {LoginOpen && <SignInForm {...props} />}
+            {LoginOpen && <SignInForm history={props.history} />}
             {SignupOpen && <SignUpForm />}
           </Box>
         </div>
@@ -80,7 +84,6 @@ const Login = (props) => {
           display="flex"
           justifyContent="center"
           color="white"
-          variant="h6"
           className="pt-5"
           style={{ color: "#C2C1C1" }}
         >
