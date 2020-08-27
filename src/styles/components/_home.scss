@@ -1,0 +1,81 @@
+.home {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+
+
+    .left-side {
+        width: 370px;
+        display: inline-block;
+        min-height: 100vh;
+        background-image: linear-gradient(to bottom, $med-gray-01, $dark-gray-01);
+
+        .search {
+            text-align: center;
+            background-color: #242424;
+            border-radius: 18px;
+            min-height: calc(100vh - 100px);
+
+            .search-section {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .stage-card {
+                width: 100%;
+                display: flex;
+                padding-left: 20px;
+                justify-content: space-between;
+
+                span.online {
+                    margin-right: 25px;
+                    width: 16px;
+                    height: 16px;
+                    background-color: #00FF08;
+                    border-radius: 25px
+                }
+
+                .stage-card-left {
+                    display: flex;
+
+                    .stage-card-details {
+                        text-align: left;
+
+                        img {
+                            display: inline-block;
+                        }
+
+                        p {
+                            display: inline-block;
+                            color: white;
+                        }
+                    }
+                }
+            }
+
+            .stages-list {
+                max-height: calc(100vh - 200px);
+                overflow-y: scroll;
+
+                h5.title {
+                    color: white;
+                    text-align: left;
+                    padding-left: 20px;
+                    display:inline-block;
+                    float:left;
+                }
+                span{
+                    text-align: left;
+                    margin-top:3px;
+                }
+            }
+        }
+    }
+
+    .content {
+        display: inline-block;
+        width: calc(100vw - 370px);
+        padding-top: 150px;
+    }
+}

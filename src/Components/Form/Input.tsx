@@ -9,7 +9,7 @@ theme.overrides = {
   MuiOutlinedInput: {
     root: {
       "&$focused $notchedOutline": {
-        borderColor: "#897FE4",
+        borderColor: "#707070",
         borderWidth: 2,
       },
     },
@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
     width: "199px",
     fontFamily: "Poppins",
     fontSize: "14px",
-    boxShadow: "0px 5px 30px #0B2140",
+    // boxShadow: "0px 5px 30px #0B2140",
     marginTop: "20px",
     fontWeight: 600,
   },
@@ -38,7 +38,9 @@ type Props = {
   required:boolean,
   type:string,
   id:string,
-  name:string
+  name:string,
+  InputProps?: Object,
+  value?: string
 }
 
 const Input = (props:Props) => {
@@ -51,6 +53,7 @@ const Input = (props:Props) => {
         className="without-padding"
         InputProps={{
           className: classes.input,
+          ...props.InputProps
         }}
         onChange={props.onInputChange}
         placeholder={props.placeholder}
@@ -58,6 +61,7 @@ const Input = (props:Props) => {
         type={props.type}
         id={props.id}
         name={props.name}
+        value={props.value}
         // {...props}
       />
     </MuiThemeProvider>

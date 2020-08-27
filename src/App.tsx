@@ -8,6 +8,7 @@ import { FIREBASE_CONFIG } from "./env";
 import { Switch, Route } from "react-router-dom";
 import JoinStage from "./Containers/Stage/JoinStage";
 import Welcome from "./Containers/Login/Welcome";
+import Home from "./Containers/Home";
 
 if (!firebase.apps.length) {
   firebase.initializeApp(FIREBASE_CONFIG);
@@ -21,6 +22,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route path="/stage" component={Stage} />
         <Route path="/join-stage" component={JoinStage} />
+        <Route path="/home" component={Home} />
       </Switch>
     </div>
   );
