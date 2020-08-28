@@ -1,5 +1,5 @@
 import React from "react";
-import Search from "./Search";
+import StagesLink from "./StagesList";
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -10,7 +10,11 @@ import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import VideoLabelIcon from '@material-ui/icons/VideoLabel';
 import SettingsIcon from '@material-ui/icons/Settings';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
-
+import StageDetails from "./StageDetails";
+import StageIcon from "../../assets/images/stage-icon.png"
+import UserIcon1 from "../../assets/images/user-img-1.png"
+import UserIcon2 from "../../assets/images/user-img-2.png"
+import UserIcon3 from "../../assets/images/user-img-3.png"
 interface TabPanelProps {
   children?: React.ReactNode;
   index: any;
@@ -84,12 +88,34 @@ const useStyles = makeStyles((theme: any) => ({
   }
 }));
 
+const stages = [
+  { title: 'Bulshemier Theatre', mineStage: true, image: StageIcon, online: true, users: [{ userPhoto: UserIcon1 }] },
+  { title: 'National Theatre', mineStage: false, image: StageIcon, online: true, users: [{ userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }] },
+  { title: 'Theatre National Royal', mineStage: true, image: StageIcon, online: false, users: [{ userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }, { userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }] },
+  { title: 'The Old Theatre', mineStage: false, image: StageIcon, online: false, users: [{ userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }] },
+  { title: 'Lyceum Theatre', mineStage: true, image: StageIcon, online: true, users: [{ userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }, { userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }, { userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }] },
+  // { title: 'Fortune Theatre', mineStage: false, image: StageIcon, online: false },
+  // { title: 'Royal Opera House', mineStage: true, image: StageIcon, online: true },
+  // { title: "Dominion Theatre", mineStage: false, image: StageIcon, online: true },
+  // { title: 'The London Palladium', mineStage: true, image: StageIcon, online: false }
+];
+
+enum Selected {
+  HOME = "HOME",
+  STAGES = "STAGES",
+  SETTINGS = "SETTINGS",
+  ACTIVITIES = "ACTIVITIES"
+}
+
 const Home = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [stageId, setStageId] = React.useState(0);
+  const [selectedStage, setSelectedStage] = React.useState(Selected.HOME);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
+    console.log(value,selectedStage)
   };
 
   return (
@@ -105,29 +131,31 @@ const Home = () => {
               textColor="primary"
               aria-label="scrollable force tabs example"
             >
-              <Tab label="Home" classes={{ selected: classes.selected }} icon={<HomeOutlinedIcon />} {...a11yProps(0)} />
-              <Tab label="Stages" icon={<VideoLabelIcon />} {...a11yProps(1)} />
-              <Tab label="Settings" icon={<SettingsIcon />} {...a11yProps(2)} />
-              <Tab label="Activities" icon={<NotificationsNoneIcon />} {...a11yProps(3)} />
+              <Tab label="Home" classes={{ selected: classes.selected }} icon={<HomeOutlinedIcon />} {...a11yProps(0)} onClick={() => setSelectedStage(Selected.HOME)} />
+              <Tab label="Stages" icon={<VideoLabelIcon />} {...a11yProps(1)} onClick={() => setSelectedStage(Selected.STAGES)} />
+              <Tab label="Settings" icon={<SettingsIcon />} {...a11yProps(2)} onClick={() => setSelectedStage(Selected.SETTINGS)} />
+              <Tab label="Activities" icon={<NotificationsNoneIcon />} {...a11yProps(3)} onClick={() => setSelectedStage(Selected.ACTIVITIES)} />
             </Tabs>
           </AppBar>
           <TabPanel value={value} index={0}>
             Home
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <Search />
+            <StagesLink onClick={(id) => setStageId(id)} />
           </TabPanel>
           <TabPanel value={value} index={2}>
             Settings
           </TabPanel>
-              <TabPanel value={value} index={3}>
-                Activities
+          <TabPanel value={value} index={3}>
+            Activities
           </TabPanel>
         </div>
-        {/* <Search /> */}
       </div>
       <div className="content">
-        <h3>Feed</h3>
+        {selectedStage === Selected.HOME && <h4>Home</h4>}
+        {selectedStage === Selected.STAGES && <StageDetails stage={stages[stageId]} />}
+        {selectedStage === Selected.SETTINGS && <h4>Settings</h4>}
+        {selectedStage === Selected.ACTIVITIES && <h4>Activities</h4>}
       </div>
     </div>
   );

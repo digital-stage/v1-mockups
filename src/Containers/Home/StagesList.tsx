@@ -8,6 +8,9 @@ import StageCard from "./StageCard";
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Collapse } from "@material-ui/core";
+import ButtonStyled from "../../Components/Form/Button";
+import AddIcon from '@material-ui/icons/Add';
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 
 
 const stages = [
@@ -22,11 +25,12 @@ const stages = [
     // { title: 'The London Palladium', mineStage: true, image: StageIcon, online: false }
 ];
 
-const Search = () => {
+const StagesLink = (props: { onClick(i: number): void }) => {
     const [list, setList] = React.useState(stages);
     const [selected, setSelected] = React.useState("");
     const [checkedMyStage, setCheckedMyStage] = React.useState(true);
     const [checkedJoindedStages, setCheckedJoinedStages] = React.useState(true);
+    const [clickedId, setclickedId] = React.useState(0);
 
     const handleMySatgeClick = () => {
         setCheckedMyStage((prev) => !prev);
@@ -69,43 +73,45 @@ const Search = () => {
                 <h5 className="pt-3 title">My stages</h5>
                 <span className="pt-2 pl-2" onClick={handleMySatgeClick}>{!checkedMyStage ? <ExpandMoreIcon /> : <ExpandLessIcon />}</span>
             </div>
-            <div> {list.map(option => {
+            <div> {list.map((option, i) => {
                 return (
-                    <>
+                    <div onClick={() => { props.onClick(i); setclickedId(i) }} className={`clickable ${clickedId === i ? 'left-border' : null}`}>
                         <Collapse in={checkedMyStage}>
                             {option.mineStage &&
                                 <StageCard stage={option} usersNumber={option.users.length} />
                             }</Collapse>
-                    </>
+                    </div>
                 )
             })}</div>
             <div className="d-flex">
                 <h5 className="pt-3 title">Joined stages</h5>
                 <span className="pt-2 pl-2" onClick={handleJoindeStagesClick}>{!checkedJoindedStages ? <ExpandMoreIcon /> : <ExpandLessIcon />}</span>
             </div>
-            <div> {list.map(option => {
+            <div> {list.map((option, i) => {
                 return (
-                    <>
+                    <div onClick={() => { props.onClick(i); setclickedId(i) }} className={`clickable ${clickedId === i ? 'left-border' : null}`}>
                         <Collapse in={checkedJoindedStages}>
                             {!option.mineStage && <StageCard stage={option} usersNumber={option.users.length} />}
                         </Collapse>
-                    </>
+                    </div>
                 )
             })}</div>
         </div>
-        <div>
-            {/* <ButtonStyled
-                className="button-primary"
+        <div className="float-right mb-2">
+            <ButtonStyled
+                className="button-red"
                 text="New stage"
                 type="submit"
+                startIcon={<AddIcon />}
             />
             <ButtonStyled
-                className="button-primary"
+                className="button-white ml-3"
                 text="Enter link"
                 type="submit"
-            /> */}
+                startIcon={<EditOutlinedIcon />}
+            />
         </div>
     </div>;
 };
 
-export default Search;
+export default StagesLink;
