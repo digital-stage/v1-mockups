@@ -1,10 +1,12 @@
 $stage-blue: #0B2D71;
 $stage-dark-blue:#012340;
 $stage-red: #F20544;
+$stage-dark-red:#721542;
 $stage-mint: #53E0DB;
 $stage-ice: #74ECFF;
 $stage-light: #EEFFBE;
 $sun-flower: #C4C4C4;
+$light-violet: #897FE4;
 
 $gray-01:#ffffff;
 $gray-02:#EEEEEE;
@@ -19,3 +21,16 @@ $black:#121212;
 
 $dg-font-family-poppins: Poppins;
 $dg-font-family-source-sans-pro: Source Sans Pro;
+
+$border-radius: 24px;
+
+// A map of breakpoints.
+$breakpoints: (
+  xs: 576px,
+  sm: 768px,
+  md: 992px,
+  lg: 1200px
+);
+
+// Get the small breakpoint.
+$breakpoint: map-get($breakpoints, sm);

@@ -1,8 +1,15 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import Icon from "../Icons/Icons";
 import { preview } from "../../js/stageMock";
 
-const Dropdown = (props) => {
+type Props = {
+  hover: MouseEventHandler,
+  value: string,
+  closeDropdown: boolean,
+  onClick(el: string): void
+}
+
+const Dropdown = (props: Props) => {
   return (
     <div className="dropdown" onMouseLeave={props.hover}>
       <button className="dropbtn" onMouseEnter={props.hover}>
@@ -10,7 +17,7 @@ const Dropdown = (props) => {
       </button>
       {props.closeDropdown && (
         <div className="dropdown-content">
-          {preview.map((el) => {
+          {preview.map((el: string) => {
             return (
               <div onClick={() => props.onClick(el)} key={el}>
                 <Icon icon={el} />

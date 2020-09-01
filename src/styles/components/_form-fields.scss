@@ -1,0 +1,57 @@
+.without-padding input {
+    padding: 10px;
+    padding-left: 18px;
+}
+
+.button-primary {
+    background-color: $light-violet !important;
+    border-radius: $border-radius !important;
+    color: $gray-01 !important;
+    font-family: $dg-font-family-poppins !important;
+    text-transform: none !important;
+    padding: 2px 37px !important;
+    font-weight: 600 !important;
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+.button-red {
+    background-color: $stage-red !important;
+    border-radius: $border-radius !important;
+    color: white !important;
+    font-family: $dg-font-family-poppins !important;
+    text-transform: none !important;
+    padding: 5px 10px !important;
+    font-size:12px !important;
+    font-weight: 600 !important;
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+.button-white {
+    background-color: white !important;
+    border-radius: $border-radius !important;
+    color: black !important;
+    font-family: $dg-font-family-poppins !important;
+    text-transform: none !important;
+    padding: 5px 10px !important;
+    font-size:12px !important;
+    font-weight: 600 !important;
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+a {
+    text-decoration: none !important;
+
+    &:hover {
+        text-decoration: none !important;
+
+    }
+}

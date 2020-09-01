@@ -1,7 +1,21 @@
 import React from "react";
 import { MdClear } from "react-icons/md";
 
-class Masonry extends React.Component {
+interface Props {
+  participants: Array<Object>,
+  onDragStart: (event: React.DragEvent<HTMLDivElement>) => void,
+  onDragOver: (event: React.DragEvent<HTMLDivElement>) => void,
+  onDrop: (event: React.DragEvent<HTMLDivElement>) => void,
+  dragoverElement: number | null | undefined,
+  enableHideScreens: boolean,
+  hideScreen: () => void,
+  effectOnSingleImage: number | null,
+  participant: any,
+  dragStarted: number | null,
+  i: number
+}
+
+class Masonry extends React.Component<Props> {
   calculateHeight = () => {
     if (this.props.participants.length === 3) {
       if (this.props.participant === this.props.participants[0]) {
@@ -62,10 +76,11 @@ class Masonry extends React.Component {
       onDragStart,
       onDragOver,
       onDrop,
-      dragover,
+      dragoverElement,
       enableHideScreens,
       hideScreen,
       dragStarted,
+      effectOnSingleImage
     } = this.props;
     const masonryWidth = this.calculateWidth();
     const masonryHeight = this.calculateHeight();
@@ -75,7 +90,6 @@ class Masonry extends React.Component {
         onDragStart={onDragStart}
         onDragOver={onDragOver}
         onDrop={onDrop}
-        dragover={dragover}
         className="item_test1"
         style={{
           position: "relative",
@@ -92,7 +106,7 @@ class Masonry extends React.Component {
         )}
         <img
           className={
-            this.props.effectOnSingleImage === this.props.i
+            effectOnSingleImage === i
               ? "stage-container-animation"
               : ""
           }
@@ -100,7 +114,7 @@ class Masonry extends React.Component {
           style={{
             width: "100%",
             height: "100%",
-            opacity: dragStarted === i ? "0.1" : dragover === i ? "0.2" : "1",
+            opacity: dragStarted === i ? "0.1" : dragoverElement === i ? "0.2" : "1",
           }}
           key={i}
           alt={"masonry" + i}

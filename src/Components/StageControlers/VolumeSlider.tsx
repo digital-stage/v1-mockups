@@ -6,11 +6,10 @@ const VolumeSlider = () => {
     <div className="volume-slider">
       <input
         type="range"
-        orient="vertical"
-        class="slider vertical-lowest-first round range"
+        className="slider vertical-lowest-first round range"
       />
       <br />
-      <div class="icon">
+      <div className="icon">
         <FaVolumeUp />
       </div>
     </div>

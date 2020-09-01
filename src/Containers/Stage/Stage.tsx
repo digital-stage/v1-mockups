@@ -5,14 +5,14 @@ import logo from "../../assets/images/logo.png";
 import profile from "../../assets/images/profil.png";
 import { useBreakpoint } from "../../breakpoint.js";
 import { BsArrowClockwise } from "react-icons/bs";
-import { makeStyles } from "@material-ui/core";
 import SideDrawer from "../../Components/SideDrawer";
 import IconButton from "@material-ui/core/IconButton";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 
 const drawerWidth = 60;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => createStyles({
   appBar: {
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     top: "44px",
     left: "-4px",
     color: "#3D3D3D",
-    zIndex: "999999",
+    // zIndex: "99999",
   },
   button: {
     backgroundColor: "transparent",
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     "&:focus": {
       outline: "0px",
     },
-  },
+  }
 }));
 
 const Stage = () => {
@@ -78,10 +78,10 @@ const Stage = () => {
   };
 
   const breakpoints = useBreakpoint();
-  const stagesContainer =
-    group.orinetation === "landscape"
-      ? { flexWrap: "no-wrap" }
-      : { flexWrap: "wrap", minHeight: "calc(100vh - 50px)" };
+  // const stagesContainer =
+  //   group.orinetation === "landscape"
+  //     ? { flexWrap: "no-wrap" }
+  //     : { flexWrap: "wrap", minHeight: "calc(100vh - 50px)" };
   return (
     <div className="stages">
       <div
@@ -93,8 +93,6 @@ const Stage = () => {
           <img src={logo} alt="logo" />
           <h6>Bohemian Rhapsody</h6>
           <IconButton
-            variant="contained"
-            color="primary"
             size="small"
             className={classes.button}
             onClick={handleDrawerOpen}
@@ -110,9 +108,9 @@ const Stage = () => {
         className={[
           "stages-container",
           classes.appBar,
-          open && classes.appBarShift,
+          open && classes.appBarShift
         ].join(" ")}
-        style={stagesContainer}
+      // style={stagesContainer}
       >
         {open && (
           <SideDrawer open={open} handleDrawerClose={handleDrawerClose} />
@@ -121,7 +119,6 @@ const Stage = () => {
           const { name, participants, color, soundTrackerHeight } = stage;
           return (
             <Group
-              name={name}
               participants={participants}
               totalStages={group.total}
               color={color}

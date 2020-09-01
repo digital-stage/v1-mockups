@@ -2,11 +2,16 @@ import React from "react";
 import { useBreakpoint } from "../../breakpoint.js";
 import { group } from "../../js/stageMock.js";
 
-const SoundControler = (props) => {
-  const breakpoints = useBreakpoint();
+type Props = {
+  color: string,
+  soundTrackerHeight: string
+}
+
+const SoundControler = (props: Props) => {
+  const breakpoints : any = useBreakpoint();
 
   const { color, soundTrackerHeight } = props;
-  const SoundControlerStyle = {
+  const SoundControlerStyle:{div:{},span:{}} = {
     div: {
       height:
         breakpoints.sm && group.orinetation === "portrait"
@@ -14,7 +19,7 @@ const SoundControler = (props) => {
           : "calc(100vh - 104px)",
       width: "10px",
       position: "absolute",
-      zIndex:"150",
+      zIndex: "150",
       top: "2px",
     },
     span: {
@@ -25,7 +30,7 @@ const SoundControler = (props) => {
       minWidth: "10px",
       display: "inline-block",
       position: "absolute",
-      zIndex:"150",
+      zIndex: "150",
       bottom: "0",
       right: 0,
     },
