@@ -1,5 +1,5 @@
 import React from "react";
-import { createMuiTheme, makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import { createMuiTheme } from "@material-ui/core/styles";
 import Input from "../../Components/Form/Input";
 import ClearIcon from '@material-ui/icons/Clear';
 import { IconButton } from "@material-ui/core";
@@ -17,28 +17,6 @@ theme.overrides = {
         },
     },
 };
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        inputRoot: {
-            color: "#8A8A8A",
-            height: "36px",
-            backgroundColor: "white",
-            borderColor: "#707070",
-            borderRadius: "24px",
-            fontFamily: "Poppins",
-            fontSize: "12px",
-            fontWeight: 600,
-            padding: "0 !important",
-            "&>*": {
-                fontFamily: "Poppins",
-                fontSize: "12px",
-                color: "#8A8A8A",
-                fontWeight: 600,
-            }
-        }
-    })
-)
 
 
 const SearchInput = (props: { list: Array<{ title: string }>, onChange: any, clear: () => void, selected: string, style?: Object }) => {
