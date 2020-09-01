@@ -15,6 +15,9 @@ import StageIcon from "../../assets/images/stage-icon.png"
 import UserIcon1 from "../../assets/images/user-img-1.png"
 import UserIcon2 from "../../assets/images/user-img-2.png"
 import UserIcon3 from "../../assets/images/user-img-3.png"
+import MenuIcon from '@material-ui/icons/Menu';
+import { IconButton} from "@material-ui/core";
+
 interface TabPanelProps {
   children?: React.ReactNode;
   index: any;
@@ -112,21 +115,27 @@ const Home = () => {
   const [value, setValue] = React.useState(0);
   const [stageId, setStageId] = React.useState(0);
   const [selectedStage, setSelectedStage] = React.useState(Selected.HOME);
+  const [showLeftMenu, setShowLeftMenu] = React.useState(false);
+  const [showToggleButton, setShowToggleButton] = React.useState(true);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
-    console.log(value,selectedStage)
+    console.log(value, selectedStage)
   };
 
   return (
     <div className="home">
-      <div className="left-side">
+      {showToggleButton && <div className="toggle-home-tabs hide-toggle-button">
+        <IconButton aria-label="hide" onClick={() => { setShowLeftMenu(true); setShowToggleButton(false) }}>
+          <MenuIcon />
+        </IconButton>
+      </div>}
+      <div className={["left-side", !showLeftMenu && "show"].join(" ")}>
         <div className={classes.root}>
           <AppBar position="static" color="transparent">
             <Tabs classes={{ indicator: classes.indicator }}
               value={value}
               onChange={handleChange}
-              // variant="scrollable"
               scrollButtons="on"
               textColor="primary"
               aria-label="scrollable force tabs example"
@@ -141,7 +150,7 @@ const Home = () => {
             Home
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <StagesLink onClick={(id) => setStageId(id)} />
+            <StagesLink onClick={(id) => { setStageId(id); setShowLeftMenu(false); setShowToggleButton(true) }} />
           </TabPanel>
           <TabPanel value={value} index={2}>
             Settings

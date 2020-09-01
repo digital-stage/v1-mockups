@@ -77,7 +77,7 @@ export default function SignInForm(props: Props) {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((res) => {
-        props.history && props.history.push("/join-stage");
+        props.history && props.history.push("/home");
       })
       .catch((error) => setError(error.message));
   };

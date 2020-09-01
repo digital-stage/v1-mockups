@@ -23,3 +23,14 @@ $dg-font-family-poppins: Poppins;
 $dg-font-family-source-sans-pro: Source Sans Pro;
 
 $border-radius: 24px;
+
+// A map of breakpoints.
+$breakpoints: (
+  xs: 576px,
+  sm: 768px,
+  md: 992px,
+  lg: 1200px
+);
+
+// Get the small breakpoint.
+$breakpoint: map-get($breakpoints, sm);

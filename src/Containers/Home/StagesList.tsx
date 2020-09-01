@@ -12,7 +12,6 @@ import ButtonStyled from "../../Components/Form/Button";
 import AddIcon from '@material-ui/icons/Add';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 
-
 const stages = [
     { title: 'Bulshemier Theatre', mineStage: true, image: StageIcon, online: true, users: [{ userPhoto: UserIcon1 }] },
     { title: 'National Theatre', mineStage: false, image: StageIcon, online: true, users: [{ userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }] },
@@ -56,12 +55,11 @@ const StagesLink = (props: { onClick(i: number): void }) => {
         if (selected.length === 0) {
             setList(stages)
         }
-        console.log(selected)
 
     }, [selected]);
 
 
-    return <div className="search">
+    return <div className="stages-list">
         <div className="search-section">
             <h4 style={{ color: "white", display: "inline-block", marginTop: "30px", marginRight: "15px" }}>Stages</h4>
             <div style={{ display: "inline-block" }}>

@@ -29,21 +29,22 @@ const useStyles = makeStyles(() => ({
     marginTop: "20px",
     fontWeight: 600,
   },
+
 }));
 
 
 type Props = {
-  onInputChange?:(e: React.ChangeEvent<HTMLInputElement>)  => void,
-  placeholder:string,
-  required:boolean,
-  type:string,
-  id:string,
-  name:string,
+  onInputChange?: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  placeholder: string,
+  required: boolean,
+  type: string,
+  id: string,
+  name: string,
   InputProps?: Object,
   value?: string
 }
 
-const Input = (props:Props) => {
+const Input = (props: Props) => {
   const classes = useStyles();
 
   return (
@@ -62,7 +63,7 @@ const Input = (props:Props) => {
         id={props.id}
         name={props.name}
         value={props.value}
-        // {...props}
+      // {...props}
       />
     </MuiThemeProvider>
   );

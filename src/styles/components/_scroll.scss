@@ -1,22 +1,22 @@
 /* width */
-::-webkit-scrollbar {
+.stages-container::-webkit-scrollbar {
   width: 5px;
   background-color: $dark-gray-01;
 }
 
 /* Track */
-::-webkit-scrollbar-track {
+.stages-container::-webkit-scrollbar-track {
   border-radius: 0px;
 }
 
 /* Handle */
-::-webkit-scrollbar-thumb {
+.stages-container::-webkit-scrollbar-thumb {
   background: $med-gray-01;
   border-radius: 5px;
 }
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
+.stages-container::-webkit-scrollbar-thumb:hover {
   background: $med-gray-01;
 }
 
