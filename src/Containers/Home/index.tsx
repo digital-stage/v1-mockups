@@ -18,7 +18,7 @@ import UserIcon3 from "../../assets/images/user-img-3.png"
 import MenuIcon from '@material-ui/icons/Menu';
 import { IconButton} from "@material-ui/core";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { useAuth } from "../../Hooks/useAuth";
+import { useAuth } from "../../hooks/useAuth";
 import { Redirect } from "react-router-dom";
 
 interface TabPanelProps {
@@ -127,12 +127,12 @@ const Home = (props:any) => {
     console.log(value, selectedStage)
   };
 
-  useEffect(() => {
-    if(Object.keys(auth.cookie).length === 0){
-      console.log(auth.cookie)
-      props.history.push("/login");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if(Object.keys(auth.cookie).length === 0){
+  //     console.log(auth.cookie)
+  //     props.history.push("/login");
+  //   }
+  // }, []);
 
   //  if (!auth.user) {
   //   return <Redirect to='/' />

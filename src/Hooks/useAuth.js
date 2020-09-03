@@ -27,18 +27,24 @@ function useProvideAuth() {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [cookie, setCookie, removeCookie] = useCookies(null);
+  const [redirectToLogin, setRedirectToLogin] = useState(false);
 
   // Wrap any Firebase methods we want to use making sure ...
   // ... to save the user to state.
   const signin = (email, password) => {
     return firebase
       .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((response) => {
-        // setUser(response.user);
-        setError(null);
-        setCookie("digital-stage", response.user.uid, {  maxAge: 10 });
-        return response.user;
+      .setPersistence(firebase.auth.Auth.Persistence.NONE)
+      .then(() => {
+        return firebase
+          .auth()
+          .signInWithEmailAndPassword(email, password)
+          .then((response) => {
+            setUser(response.user);
+            setError(null);
+            setCookie("digital-stage", response.user, { maxAge: 20 });
+            return response.user;
+          });
       })
       .catch((error) => {
         setError(error.message);
@@ -46,12 +52,15 @@ function useProvideAuth() {
       });
   };
 
-  const signup = (email, password) => {
+  const signup = (email, password, username) => {
     return firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((response) => {
-        // setUser(response.user);
+        response.user.updateProfile({ displayName: username }).then(() => {
+          setRedirectToLogin(true);
+        });
+        setUser(response.user);
         setError(null);
         return response.user;
       })
@@ -66,9 +75,9 @@ function useProvideAuth() {
       .auth()
       .signOut()
       .then(() => {
-        // setUser(false);
+        setUser(false);
         setError(null);
-        removeCookie("digital-stage")
+        removeCookie("digital-stage");
       })
       .catch((error) => {
         setError(error.message);
@@ -93,7 +102,7 @@ function useProvideAuth() {
         return true;
       });
   };
-  
+
   // Subscribe to user on mount
   // Because this sets state in the callback it will cause any ...
   // ... component that utilizes this hook to re-render with the ...
@@ -119,6 +128,7 @@ function useProvideAuth() {
     sendPasswordResetEmail,
     confirmPasswordReset,
     error,
-    cookie
+    cookie,
+    redirectToLogin,
   };
 }

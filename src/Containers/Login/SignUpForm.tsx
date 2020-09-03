@@ -18,7 +18,7 @@ import { loadCSS } from "fg-loadcss";
 import Input from "../../Components/Form/Input";
 import ButtonStyled from "../../Components/Form/Button";
 
-import { useAuth } from "../../Hooks/useAuth";
+import { useAuth } from "../../hooks/useAuth";
 import { Redirect } from "react-router-dom";
 import validator from 'validator';
 
@@ -112,7 +112,7 @@ export default function SignUpForm() {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length === 0) {
-      auth.signup(email, password);
+      auth.signup(email, password, username);
     }
   };
 
@@ -161,8 +161,9 @@ export default function SignUpForm() {
             direction="column"
             justify="center"
             alignItems="center"
+            className="mt-4"
           >
-            <Grid item xs className="my-2">
+            {/* <Grid item xs className="my-2">
               <FormControlLabel
                 className="mb-0 mt-2"
                 control={
@@ -191,7 +192,7 @@ export default function SignUpForm() {
                   </Typography>
                 }
               />
-            </Grid>
+            </Grid> */}
             <Grid item>
               <ButtonStyled
                 className="button-primary"

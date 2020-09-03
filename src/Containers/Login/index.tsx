@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
 
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
 import logo from "../../assets/images/welcome_icon.png";
+import { useAuth } from "../../hooks/useAuth";
 
 type Props = {
   history: Array<string> | undefined
 }
 
 const Login = (props: Props) => {
+  const auth = useAuth();
   const [LoginOpen, setLoginOpen] = useState(true);
   const [SignupOpen, setSignupOpen] = useState(false);
 
@@ -22,6 +24,14 @@ const Login = (props: Props) => {
     setSignupOpen(true);
     setLoginOpen(false);
   };
+  
+  useEffect(() => {
+    if (auth.redirectToLogin) {
+      setLoginOpen(true);
+      setSignupOpen(false);
+    }
+  }, [auth.redirectToLogin])
+
 
   return (
     <Box component="body" className="body">

@@ -18,7 +18,7 @@ import { loadCSS } from "fg-loadcss";
 import Input from "../../Components/Form/Input";
 import ButtonStyled from "../../Components/Form/Button";
 
-import { useAuth } from "../../Hooks/useAuth";
+import { useAuth } from "../../hooks/useAuth";
 import { Redirect } from "react-router-dom";
 import validator from 'validator';
 
@@ -65,6 +65,7 @@ export default function SignInForm(props: Props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showAlert, setShowAlert] = useState(false);
+
   const [errors, setErrors] = useState<IError>({});
 
   const classes = useStyles();
@@ -86,14 +87,14 @@ export default function SignInForm(props: Props) {
     if (auth.error){
       setShowAlert(true)
     }
-    if(Object.keys(auth.cookie).length > 0){
-      console.log(auth.cookie)
-      props.history && props.history.push("/home");
-    }
-    if(Object.keys(auth.cookie).length === 0){
-      console.log(auth.cookie)
-      props.history && props.history.push("/login");
-    }
+    // if(Object.keys(auth.cookie).length > 0){
+    //   console.log(auth.cookie)
+    //   props.history && props.history.push("/home");
+    // }
+    // if(Object.keys(auth.cookie).length === 0){
+    //   console.log(auth.cookie)
+    //   props.history && props.history.push("/login");
+    // }
   }, [auth.error, auth.cookie]);
 
   const validate = () => {
