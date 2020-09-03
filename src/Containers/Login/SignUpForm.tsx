@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   FormControlLabel,
   Checkbox,
@@ -17,6 +17,10 @@ import { loadCSS } from "fg-loadcss";
 
 import Input from "../../Components/Form/Input";
 import ButtonStyled from "../../Components/Form/Button";
+
+import { useAuth } from "../../Hooks/useAuth";
+import { Redirect } from "react-router-dom";
+import validator from 'validator';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -46,9 +50,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+export interface IError {
+  email?: string;
+  username?: string;
+  password?: string;
+  repeatPassword?: string;
+}
 
 export default function SignUpForm() {
+  const auth = useAuth();
   const classes = useStyles();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
+  const [errors, setErrors] = useState<IError>({});
+  const [showAlert, setShowAlert] = useState(false);
 
   React.useEffect(() => {
     const node = loadCSS(
@@ -61,17 +78,65 @@ export default function SignUpForm() {
     };
   }, []);
 
+  useEffect(() => {
+    if (auth.error)
+      setShowAlert(true)
+  }, [auth.error]);
+
+  const validate = () => {
+    const errors: IError = {}
+    if (validator.isEmpty(email)) {
+      errors.email = "Email is required"
+    }
+    else if (!validator.isEmail(email)) {
+      errors.email = "Enter a valid email"
+    }
+    if (validator.isEmpty(password)) {
+      errors.password = "Password is required"
+    }
+    if (validator.isEmpty(repeatPassword)) {
+      errors.repeatPassword = "Repeat password"
+    }
+    if (validator.isEmpty(username)) {
+      errors.username = "Username is required"
+    }
+    if (!validator.equals(password, repeatPassword)) {
+      errors.repeatPassword = "Passwords must be equal"
+      errors.password = "Passwords must be equal"
+    }
+    setErrors(errors)
+    return errors
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length === 0) {
+      auth.signup(email, password);
+    }
+  };
+
   return (
     <Container maxWidth="sm" className={`${classes.back}, p-0 mt-0`}>
       <div className={classes.paper}>
-        <form className={classes.form} noValidate>
-          <Input required id="email" type="text" placeholder="Email" name="email" />
+        {showAlert && <div className="alert-box"><p>{auth.error}</p></div>}
+        <form className={classes.form} noValidate onSubmit={handleSubmit}>
+          <Input
+            required id="email"
+            type="text"
+            placeholder="Email"
+            name="email"
+            error={errors && errors.email}
+            onInputChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+          />
           <Input
             required
             id="Username"
             placeholder="Username"
             name="Username"
             type="text"
+            error={errors && errors.username}
+            onInputChange={(e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
           />
           <Input
             required
@@ -79,6 +144,8 @@ export default function SignUpForm() {
             placeholder="Password"
             name="password"
             type="password"
+            error={errors && errors.password}
+            onInputChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
           />
           <Input
             required
@@ -86,6 +153,8 @@ export default function SignUpForm() {
             placeholder="Repeat password"
             type="password"
             name="password"
+            error={errors && errors.repeatPassword}
+            onInputChange={(e: React.ChangeEvent<HTMLInputElement>) => setRepeatPassword(e.target.value)}
           />
           <Grid
             container
@@ -130,7 +199,7 @@ export default function SignUpForm() {
               />
             </Grid>
             <Grid item className="mt-3">
-              <h5 style={{ color: "white", textAlign:"center" }}>
+              <h5 style={{ color: "white", textAlign: "center" }}>
                 Or Via
               </h5>
               <Link>

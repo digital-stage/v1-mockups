@@ -60,3 +60,20 @@
   border-radius: 6px;
   padding: 24px;
 }
+
+form{
+  text-align:initial !important;
+}
+
+.alert-box{
+  width: 220px;
+  margin: 0 auto;
+  background-color: rgb(240, 212, 209);
+  margin-top: 30px;
+  p{
+    color:rgb(97, 26, 21) !important;
+    font-size: 12px !important;
+    margin: 0 auto;
+    padding: 10px 10px;
+  }
+}
