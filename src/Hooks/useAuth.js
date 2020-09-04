@@ -31,7 +31,7 @@ function useProvideAuth() {
 
   // Wrap any Firebase methods we want to use making sure ...
   // ... to save the user to state.
-  const signin = (email, password) => {
+  const signin = (email, password, checked) => {
     return firebase
       .auth()
       .setPersistence(firebase.auth.Auth.Persistence.NONE)
@@ -42,7 +42,9 @@ function useProvideAuth() {
           .then((response) => {
             setUser(response.user);
             setError(null);
-            setCookie("digital-stage", response.user, { maxAge: 20 });
+            setCookie("digital-stage", response.user, {
+              maxAge: checked ? 20 : null,
+            });
             return response.user;
           });
       })

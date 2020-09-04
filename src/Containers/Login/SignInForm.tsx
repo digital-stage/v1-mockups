@@ -19,7 +19,6 @@ import Input from "../../Components/Form/Input";
 import ButtonStyled from "../../Components/Form/Button";
 
 import { useAuth } from "../../hooks/useAuth";
-import { Redirect } from "react-router-dom";
 import validator from 'validator';
 
 const useStyles = makeStyles((theme) => ({
@@ -65,6 +64,7 @@ export default function SignInForm(props: Props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showAlert, setShowAlert] = useState(false);
+  const [checked, setChecked] = useState(false);
 
   const [errors, setErrors] = useState<IError>({});
 
@@ -87,14 +87,6 @@ export default function SignInForm(props: Props) {
     if (auth.error){
       setShowAlert(true)
     }
-    // if(Object.keys(auth.cookie).length > 0){
-    //   console.log(auth.cookie)
-    //   props.history && props.history.push("/home");
-    // }
-    // if(Object.keys(auth.cookie).length === 0){
-    //   console.log(auth.cookie)
-    //   props.history && props.history.push("/login");
-    // }
   }, [auth.error, auth.cookie]);
 
   const validate = () => {
@@ -115,16 +107,11 @@ export default function SignInForm(props: Props) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const validationErrors = validate();
-    console.log(auth)
+    console.log(checked)
     if (Object.keys(validationErrors).length === 0) {
-      auth.signin(email, password);
+      auth.signin(email, password, checked);
     }
   };
-
-  // if ((Object.keys(auth.cookie).length === 0)) {
-  //   return <Redirect to='/home' />
-  // }
-
 
   return (
     <Container maxWidth="sm" className={`${classes.back}, p-0`}>
@@ -162,6 +149,8 @@ export default function SignInForm(props: Props) {
                   <Checkbox
                     value="remember"
                     color="primary"
+                    onChange={() => setChecked(!checked)} 
+                    checked={checked}
                     checkedIcon={
                       <CheckRoundedIcon
                         style={{

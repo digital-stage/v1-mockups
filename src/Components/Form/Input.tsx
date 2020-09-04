@@ -44,13 +44,15 @@ const Input = (props: Props) => {
       fontWeight: 600,
       borderBottom: `${props.error && "1px solid #F20544"}`
     },
-    span:{
+    p:{
       color:"white",
       marginLeft: "0 !important",
       fontFamily: "Poppins",
       fontSize: "12px",
       fontWeight: 600,
-      paddingLeft:"20px"
+      paddingLeft:"20px",
+      marginTop:"5px",
+      marginBottom:"0 !important"
     }
   }));
 
@@ -74,7 +76,7 @@ const Input = (props: Props) => {
         value={props.value}
       // {...props}
       />
-      {props.error && <span className={classes.span}>{props.error}</span>}
+      {props.error && <p className={classes.p}>{props.error}</p>}
     </MuiThemeProvider>
   );
 };

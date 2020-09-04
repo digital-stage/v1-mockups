@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import Stage from "./Containers/Stage/Stage";
 import Login from "./Containers/Login";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, useLocation, useHistory } from "react-router-dom";
 import JoinStage from "./Containers/Stage/JoinStage";
 import Welcome from "./Containers/Login/Welcome";
 import Home from "./Containers/Home";
@@ -21,14 +21,14 @@ function App() {
 
 function Routes() {
   const auth = useAuth();
+  const location = useLocation();
+  const history = useHistory();
 
   // useEffect(() => {
-  //   return () => {
-  //     window.onbeforeunload = (e:any) =>
-  //       {
-  //         e.preventDefault();
-  //         auth.removeCookie('digital-stage')
-  //       }
+  //   let { pathname } = location;
+  //   console.log('New path:', pathname);
+  //   if(!(Object.keys(auth.cookie).length === 0 )){
+  //     history.push("/");
   //   }
   // }, [])
 

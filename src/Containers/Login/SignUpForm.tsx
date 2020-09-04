@@ -94,6 +94,9 @@ export default function SignUpForm() {
     if (validator.isEmpty(password)) {
       errors.password = "Password is required"
     }
+    else if(!validator.matches(password,'^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$')){
+      errors.password = "Password must contain numbers, uppercase and lowercase letters and at least 8 chars"
+    }
     if (validator.isEmpty(repeatPassword)) {
       errors.repeatPassword = "Repeat password"
     }

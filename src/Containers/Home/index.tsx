@@ -127,17 +127,6 @@ const Home = (props:any) => {
     console.log(value, selectedStage)
   };
 
-  // useEffect(() => {
-  //   if(Object.keys(auth.cookie).length === 0){
-  //     console.log(auth.cookie)
-  //     props.history.push("/login");
-  //   }
-  // }, []);
-
-  //  if (!auth.user) {
-  //   return <Redirect to='/' />
-  // }
-
   return (
     <div className="home">
       <div className="log-out-button" onClick={()=>auth.signout()}><ExitToAppIcon/></div>
