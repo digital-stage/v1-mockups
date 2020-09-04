@@ -43,7 +43,7 @@ function useProvideAuth() {
             setUser(response.user);
             setError(null);
             setCookie("digital-stage", response.user, {
-              maxAge: checked ? 20 : null,
+              maxAge: checked ? (6*30*24*3600) : null,
             });
             return response.user;
           });
