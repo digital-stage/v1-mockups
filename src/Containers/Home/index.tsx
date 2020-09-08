@@ -16,10 +16,12 @@ import UserIcon1 from "../../assets/images/user-img-1.png"
 import UserIcon2 from "../../assets/images/user-img-2.png"
 import UserIcon3 from "../../assets/images/user-img-3.png"
 import MenuIcon from '@material-ui/icons/Menu';
-import { IconButton} from "@material-ui/core";
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { IconButton } from "@material-ui/core";
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { useAuth } from "../../hooks/useAuth";
 import { Redirect } from "react-router-dom";
+import ArrowBackIosSharpIcon from '@material-ui/icons/ArrowBackIosSharp';
+import ArrowForwardIosSharpIcon from '@material-ui/icons/ArrowForwardIosSharp';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -80,7 +82,7 @@ const useStyles = makeStyles((theme: any) => ({
       }
     },
     "& .MuiBox-root": {
-      padding: "8px"
+      padding: "0px"
     }
   },
   indicator: {
@@ -122,14 +124,14 @@ enum Selected {
   NOTIFICATIONS = "NOTIFICATIONS"
 }
 
-const Home = (props:any) => {
+const Home = (props: any) => {
   const auth = useAuth();
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const [stageId, setStageId] = React.useState(0);
   const [selectedStage, setSelectedStage] = React.useState(Selected.STAGES);
-  const [showLeftMenu, setShowLeftMenu] = React.useState(false);
-  const [showToggleButton, setShowToggleButton] = React.useState(true);
+  const [showLeftMenu, setShowLeftMenu] = React.useState(true);
+  // const [showToggleButton, setShowToggleButton] = React.useState(true);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
@@ -138,13 +140,17 @@ const Home = (props:any) => {
 
   return (
     <div className="home">
-      <div className="log-out-button" onClick={()=>auth.signout()}><ExitToAppIcon/></div>
-      {showToggleButton && <div className="toggle-home-tabs hide-toggle-button">
-        <IconButton aria-label="hide" onClick={() => { setShowLeftMenu(true); setShowToggleButton(false) }}>
-          <MenuIcon />
+      <div className="log-out-button" onClick={() => auth.signout()}><AccountCircleIcon style={{ color: "white" }} /></div>
+      {/* {showToggleButton && */}
+      {/* hide-toggle-button */}
+      <div className="toggle-home-tabs" style={showLeftMenu ? {left: "370px"}:{ left: "20px"}}>
+        <IconButton aria-label="hide" onClick={() => { setShowLeftMenu(!showLeftMenu) }}>
+          {showLeftMenu ? <ArrowBackIosSharpIcon style={{ color: "white" }} /> : <ArrowForwardIosSharpIcon style={{ color: "white" }} />}
         </IconButton>
-      </div>}
-      <div className={["left-side", !showLeftMenu && "show"].join(" ")}>
+      </div>
+      {/* } */}
+      {/* <div className={["left-side", !showLeftMenu && "show"].join(" ")}> */}
+      {showLeftMenu && <div className="left-side">
         <div className={classes.root}>
           <AppBar position="static" color="transparent">
             <Tabs classes={{ indicator: classes.indicator }}
@@ -154,31 +160,27 @@ const Home = (props:any) => {
               textColor="primary"
               aria-label="scrollable force tabs example"
             >
-              {/* <Tab label="Home" classes={{ selected: classes.selected }} icon={<HomeOutlinedIcon />} {...a11yProps(0)} onClick={() => setSelectedStage(Selected.HOME)} /> */}
               <Tab label="Stages" icon={<VideoLabelIcon />} {...a11yProps(0)} onClick={() => setSelectedStage(Selected.STAGES)} />
-              <Tab label="Settings" icon={<SettingsIcon />} {...a11yProps(1)} onClick={() => setSelectedStage(Selected.SETTINGS)} />
-              <Tab label="Notifications" icon={<NotificationsNoneIcon />} {...a11yProps(2)} onClick={() => setSelectedStage(Selected.NOTIFICATIONS)} />
+              <Tab label="Notifications" icon={<NotificationsNoneIcon />} {...a11yProps(1)} onClick={() => setSelectedStage(Selected.NOTIFICATIONS)} />
+              <Tab label="Settings" icon={<SettingsIcon />} {...a11yProps(2)} onClick={() => setSelectedStage(Selected.SETTINGS)} />
             </Tabs>
           </AppBar>
-          {/* <TabPanel value={value} index={0}>
-            Home
-          </TabPanel> */}
           <TabPanel value={value} index={0}>
-            <StagesLink onClick={(id) => { setStageId(id); setShowLeftMenu(false); setShowToggleButton(true) }} />
+            <StagesLink onClick={(id) => { setStageId(id); }} />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            Settings
-          </TabPanel>
-          <TabPanel value={value} index={2}>
             Notifications
           </TabPanel>
+          <TabPanel value={value} index={2}>
+            Settings
+          </TabPanel>
         </div>
-      </div>
-      <div className="content">
+      </div>}
+      <div className="content" style={showLeftMenu ? { width: "calc(100% -370px)" } : { width: "100%" }}>
         {/* {selectedStage === Selected.HOME && <h4>Home</h4>} */}
         {selectedStage === Selected.STAGES && <StageDetails stage={stages[stageId]} />}
-        {selectedStage === Selected.SETTINGS && <h4>Settings</h4>}
         {selectedStage === Selected.NOTIFICATIONS && <h4>Notifications</h4>}
+        {selectedStage === Selected.SETTINGS && <h4>Settings</h4>}
       </div>
     </div>
   );

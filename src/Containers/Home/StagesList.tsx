@@ -13,11 +13,11 @@ import AddIcon from '@material-ui/icons/Add';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 
 const stages = [
-    { title: 'Bulshemier Theatre', mineStage: true, image: StageIcon, online: true, users: [{ userPhoto: UserIcon1 }] },
-    { title: 'National Theatre', mineStage: false, image: StageIcon, online: true, users: [{ userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }] },
-    { title: 'Theatre National Royal', mineStage: true, image: StageIcon, online: false, users: [{ userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }, { userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }] },
-    { title: 'The Old Theatre', mineStage: false, image: StageIcon, online: false, users: [{ userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }] },
-    { title: 'Lyceum Theatre', mineStage: true, image: StageIcon, online: true, users: [{ userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }, { userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }, { userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }] },
+    { title: 'Bulshemier Theatre', mineStage: true, image: StageIcon, online: true, users: [{ userPhoto: UserIcon1 }], description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, corporis." },
+    { title: 'National Theatre', mineStage: false, image: StageIcon, online: true, users: [{ userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }], description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, corporis." },
+    { title: 'Theatre National Royal', mineStage: true, image: StageIcon, online: false, users: [{ userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }, { userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }], description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, corporis." },
+    { title: 'The Old Theatre', mineStage: false, image: StageIcon, online: false, users: [{ userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }], description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, corporis." },
+    { title: 'Lyceum Theatre', mineStage: true, image: StageIcon, online: true, users: [{ userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }, { userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }, { userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }], description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, corporis." },
     // { title: 'Fortune Theatre', mineStage: false, image: StageIcon, online: false },
     // { title: 'Royal Opera House', mineStage: true, image: StageIcon, online: true },
     // { title: "Dominion Theatre", mineStage: false, image: StageIcon, online: true },
@@ -61,41 +61,40 @@ const StagesLink = (props: { onClick(i: number): void }) => {
 
     return <div className="stages-list">
         <div className="search-section">
-            {/* <h4 style={{ color: "white", display: "inline-block", marginTop: "30px", marginRight: "15px" }}>Stages</h4> */}
             <div style={{ display: "inline-block" }}>
                 <SearchInput list={list} onChange={onChangeHandler} clear={clearInput} selected={selected} />
             </div>
         </div>
         <div className="stages-list">
             <div className="d-flex">
-                <h5 className="pt-3 title">My stages</h5>
+                <h5 className="pt-3 mb-3 title">My stages</h5>
                 <span className="pt-2 pl-2" onClick={handleMySatgeClick}>{!checkedMyStage ? <ExpandMoreIcon /> : <ExpandLessIcon />}</span>
             </div>
             <div> {list.map((option, i) => {
                 return (
-                    <div onClick={() => { props.onClick(i); setclickedId(i) }} className={`clickable ${clickedId === i ? 'left-border' : null}`}>
+                    <div onClick={() => { props.onClick(i); setclickedId(i) }} className={`clickable ${clickedId === i ? 'left-border' : 'left-border-normal'}`}>
                         <Collapse in={checkedMyStage}>
                             {option.mineStage &&
-                                <StageCard stage={option} usersNumber={option.users.length} />
+                                <StageCard stage={option}/>
                             }</Collapse>
                     </div>
                 )
             })}</div>
             <div className="d-flex">
-                <h5 className="pt-3 title">Joined stages</h5>
+                <h5 className="pt-3 mb-3 title">Joined stages</h5>
                 <span className="pt-2 pl-2" onClick={handleJoindeStagesClick}>{!checkedJoindedStages ? <ExpandMoreIcon /> : <ExpandLessIcon />}</span>
             </div>
             <div> {list.map((option, i) => {
                 return (
-                    <div onClick={() => { props.onClick(i); setclickedId(i) }} className={`clickable ${clickedId === i ? 'left-border' : null}`}>
+                    <div onClick={() => { props.onClick(i); setclickedId(i) }} className={`clickable ${clickedId === i ? 'left-border' : 'left-border-normal'}`}>
                         <Collapse in={checkedJoindedStages}>
-                            {!option.mineStage && <StageCard stage={option} usersNumber={option.users.length} />}
+                            {!option.mineStage && <StageCard stage={option} />}
                         </Collapse>
                     </div>
                 )
             })}</div>
         </div>
-        <div className="float-right mb-2">
+        <div className="float-right mb-2 mr-4">
             <ButtonStyled
                 className="button-red"
                 text="New stage"

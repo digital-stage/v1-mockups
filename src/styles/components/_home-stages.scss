@@ -5,9 +5,9 @@
     height: 100vh;
     display: flex;
 
-
     .left-side {
         min-width: 370px;
+        max-width: 370px;
         display: inline-block;
         min-height: 100vh;
         max-height: auto;
@@ -15,9 +15,8 @@
 
         .stages-list {
             text-align: center;
-            // background-color: #242424;
-            border-radius: 18px;
             min-height: calc(100vh - 100px);
+            margin-right: 10px;
 
             .search-section {
                 display: flex;
@@ -26,35 +25,40 @@
             }
 
             .stage-card {
-                width: 100%;
+                width: 95%;
                 display: flex;
-                padding-left: 20px;
+                text-align: left;
+                margin: 5px 0;
                 justify-content: space-between;
 
                 span.online {
-                    margin-right: 25px;
-                    min-width: 16px;
-                    height: 16px;
+                    min-width: 8px;
+                    height: 8px;
                     background-color: #00FF08;
-                    border-radius: 25px
+                    border-radius: 25px;
+                    margin-top: 0 !important
                 }
 
-                .stage-card-left {
-                    display: flex;
 
-                    .stage-card-details {
-                        text-align: left;
+                .stage-card-details {
+                    text-align: left;
 
-                        img {
-                            display: inline-block;
-                        }
+                    div {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                    }
 
-                        p {
-                            display: inline-block;
-                            color: white;
-                        }
+                    img {
+                        display: inline-block;
+                    }
+
+                    p {
+                        color: white !important;
+                        font-weight: initial !important;
                     }
                 }
+
             }
 
             .stages-list {
@@ -68,7 +72,6 @@
                     text-align: left;
                     padding-left: 20px;
                     display: inline-block;
-                    float: left;
                 }
 
                 span {
@@ -111,9 +114,6 @@
         }
 
         .title {
-            // display: flex;
-            // justify-content: flex-start;
-
             span,
             h5,
             h2 {
@@ -133,8 +133,8 @@
 
         img.stage-icon {
             text-align: left;
-            width: 110px;
-            height: 110px;
+            width: 171px;
+            height: 171px;
         }
 
         p {
@@ -152,7 +152,7 @@
     .toggle-home-tabs {
         position: absolute;
         top: 10px;
-        left: 10px;
+        // left: 370px;
         z-index: 99999;
 
         button:focus {
@@ -160,10 +160,10 @@
         }
     }
 
-    .log-out-button{
+    .log-out-button {
         position: absolute;
         top: 10px;
-        right: 10px;
+        right: 20px;
         z-index: 99999;
 
         button:focus {
@@ -178,6 +178,10 @@
 
 .left-border {
     border-left: 4px solid white !important;
+}
+
+.left-border-normal {
+    border-left: 4px solid $dark-gray-01 !important;
 }
 
 .show {
