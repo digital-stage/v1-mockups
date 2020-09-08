@@ -60,19 +60,23 @@ const useStyles = makeStyles((theme: any) => ({
     flexGrow: 1,
     width: '100%',
     paddingTop: "0 !important",
+    "& .MuiPaper-elevation4": {
+      boxShadow: "none !important",
+    },
     "& .MuiTabs-root": {
       "& button": {
         textTransform: "none !important",
-        color: "white !important",
+        color: "#fff !important",
         padding: "0 !important",
         fontFamily: "Poppins",
         fontSize: "12px",
         fontWeight: 600,
         minHeight: "80px",
-        minWidth: "25%",
+        minWidth: "20%",
+        margin: "auto",
         "&:focus": {
           outline: '0'
-        }
+        },
       }
     },
     "& .MuiBox-root": {
@@ -80,18 +84,23 @@ const useStyles = makeStyles((theme: any) => ({
     }
   },
   indicator: {
-    backgroundColor: "white",
-    color: "white"
+    backgroundColor: "#B71250"
   },
-  selected: {
-    color: "red",
-    ".MuiTab-textColorPrimary.Mui-selected": {
-      color: "white"
-    },
-    "& path": {
-      color: "white"
-    }
-  }
+  // ".MuiTab-textColorPrimary.Mui-selected":{
+  //   color:"white !important"
+  // },
+  ".MuiTab-textColorPrimary": {
+    color: "#999999 !important"
+  },
+  // selected: {
+  //   color: "red",
+  //   ".MuiTab-textColorPrimary.Mui-selected": {
+  //     color: "white"
+  //   },
+  //   "& path": {
+  //     color: "white"
+  //   }
+  // }
 }));
 
 const stages = [
@@ -107,10 +116,10 @@ const stages = [
 ];
 
 enum Selected {
-  HOME = "HOME",
+  // HOME = "HOME",
   STAGES = "STAGES",
   SETTINGS = "SETTINGS",
-  ACTIVITIES = "ACTIVITIES"
+  NOTIFICATIONS = "NOTIFICATIONS"
 }
 
 const Home = (props:any) => {
@@ -118,7 +127,7 @@ const Home = (props:any) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const [stageId, setStageId] = React.useState(0);
-  const [selectedStage, setSelectedStage] = React.useState(Selected.HOME);
+  const [selectedStage, setSelectedStage] = React.useState(Selected.STAGES);
   const [showLeftMenu, setShowLeftMenu] = React.useState(false);
   const [showToggleButton, setShowToggleButton] = React.useState(true);
 
@@ -145,31 +154,31 @@ const Home = (props:any) => {
               textColor="primary"
               aria-label="scrollable force tabs example"
             >
-              <Tab label="Home" classes={{ selected: classes.selected }} icon={<HomeOutlinedIcon />} {...a11yProps(0)} onClick={() => setSelectedStage(Selected.HOME)} />
-              <Tab label="Stages" icon={<VideoLabelIcon />} {...a11yProps(1)} onClick={() => setSelectedStage(Selected.STAGES)} />
-              <Tab label="Settings" icon={<SettingsIcon />} {...a11yProps(2)} onClick={() => setSelectedStage(Selected.SETTINGS)} />
-              <Tab label="Activities" icon={<NotificationsNoneIcon />} {...a11yProps(3)} onClick={() => setSelectedStage(Selected.ACTIVITIES)} />
+              {/* <Tab label="Home" classes={{ selected: classes.selected }} icon={<HomeOutlinedIcon />} {...a11yProps(0)} onClick={() => setSelectedStage(Selected.HOME)} /> */}
+              <Tab label="Stages" icon={<VideoLabelIcon />} {...a11yProps(0)} onClick={() => setSelectedStage(Selected.STAGES)} />
+              <Tab label="Settings" icon={<SettingsIcon />} {...a11yProps(1)} onClick={() => setSelectedStage(Selected.SETTINGS)} />
+              <Tab label="Notifications" icon={<NotificationsNoneIcon />} {...a11yProps(2)} onClick={() => setSelectedStage(Selected.NOTIFICATIONS)} />
             </Tabs>
           </AppBar>
-          <TabPanel value={value} index={0}>
+          {/* <TabPanel value={value} index={0}>
             Home
-          </TabPanel>
-          <TabPanel value={value} index={1}>
+          </TabPanel> */}
+          <TabPanel value={value} index={0}>
             <StagesLink onClick={(id) => { setStageId(id); setShowLeftMenu(false); setShowToggleButton(true) }} />
           </TabPanel>
-          <TabPanel value={value} index={2}>
+          <TabPanel value={value} index={1}>
             Settings
           </TabPanel>
-          <TabPanel value={value} index={3}>
-            Activities
+          <TabPanel value={value} index={2}>
+            Notifications
           </TabPanel>
         </div>
       </div>
       <div className="content">
-        {selectedStage === Selected.HOME && <h4>Home</h4>}
+        {/* {selectedStage === Selected.HOME && <h4>Home</h4>} */}
         {selectedStage === Selected.STAGES && <StageDetails stage={stages[stageId]} />}
         {selectedStage === Selected.SETTINGS && <h4>Settings</h4>}
-        {selectedStage === Selected.ACTIVITIES && <h4>Activities</h4>}
+        {selectedStage === Selected.NOTIFICATIONS && <h4>Notifications</h4>}
       </div>
     </div>
   );

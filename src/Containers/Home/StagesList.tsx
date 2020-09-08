@@ -61,7 +61,7 @@ const StagesLink = (props: { onClick(i: number): void }) => {
 
     return <div className="stages-list">
         <div className="search-section">
-            <h4 style={{ color: "white", display: "inline-block", marginTop: "30px", marginRight: "15px" }}>Stages</h4>
+            {/* <h4 style={{ color: "white", display: "inline-block", marginTop: "30px", marginRight: "15px" }}>Stages</h4> */}
             <div style={{ display: "inline-block" }}>
                 <SearchInput list={list} onChange={onChangeHandler} clear={clearInput} selected={selected} />
             </div>

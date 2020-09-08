@@ -27,6 +27,7 @@ type Props = {
   InputProps?: Object,
   value?: string,
   error?: string
+  context?:string
 }
 
 const Input = (props: Props) => {

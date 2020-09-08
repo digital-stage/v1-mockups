@@ -11,11 +11,11 @@
         display: inline-block;
         min-height: 100vh;
         max-height: auto;
-        background-image: linear-gradient(to bottom, $med-gray-01, $dark-gray-01);
+        background: $dark-gray-01;
 
         .stages-list {
             text-align: center;
-            background-color: #242424;
+            // background-color: #242424;
             border-radius: 18px;
             min-height: calc(100vh - 100px);
 
@@ -80,6 +80,7 @@
     }
 
     .content {
+        background-image: linear-gradient(to bottom, #575757, $dark-gray-01);
         display: inline-block;
         width: calc(100vw - 370px);
         max-height: 100vh;
@@ -90,12 +91,28 @@
 
     .stage-details {
         text-align: left;
-        width: 60%;
-        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        vertical-align: middle;
+        align-content: center;
+        margin-top: 30px;
+        padding: 0 4rem;
+
+        h2,
+        h5,
+        h4,
+        p {
+            color: white !important;
+        }
+
+        a {
+            color: $light-violet !important;
+        }
 
         .title {
-            display: flex;
-            justify-content: flex-start;
+            // display: flex;
+            // justify-content: flex-start;
 
             span,
             h5,
@@ -125,8 +142,8 @@
         }
 
         span.online {
-            min-width: 23px;
-            min-height: 23px;
+            width: 23px;
+            height: 23px;
             background-color: #00FF08;
             border-radius: 25px
         }
@@ -172,86 +189,86 @@
 }
 
 // Small devices (landscape phones, 576px and up)
-@media only screen and (max-width: 576px) {
-    .show {
-        display: none !important;
-    }
+// @media only screen and (max-width: 576px) {
+//     .show {
+//         display: none !important;
+//     }
 
-    .hide-toggle-button {
-        display: block !important;
-    }
+//     .hide-toggle-button {
+//         display: block !important;
+//     }
 
-    .content {
-        margin-top: 20px;
-        min-width: 100vw !important;
-    }
+//     .content {
+//         margin-top: 20px;
+//         min-width: 100vw !important;
+//     }
 
-    .stage-details {
-        min-width: 80% !important;
-    }
-}
+//     .stage-details {
+//         min-width: 80% !important;
+//     }
+// }
 
 // Medium devices (tablets, 768px and up)
-@media only screen and (max-width: 768px) {
-    .left-side {
-        min-width: 330px !important;
-    }
+// @media only screen and (max-width: 768px) {
+//     .left-side {
+//         min-width: 330px !important;
+//     }
 
-    .content {
-        width: calc(100vw - 300px) !important;
-    }
+//     .content {
+//         width: calc(100vw - 300px) !important;
+//     }
 
-    .stage-details {
-        width: 80% !important;
+//     .stage-details {
+//         width: 80% !important;
 
+//         .title {
 
-        .title {
+//             span {
+//                 font-size: 10px !important;
+//             }
 
-            span {
-                font-size: 10px !important;
-            }
+//             h5 {
+//                 font-size: 12px !important;
+//             }
 
-            h5 {
-                font-size: 12px !important;
-            }
+//             h4 {
+//                 font-size: 14px !important;
+//             }
 
-            h4 {
-                font-size: 14px !important;
-            }
+//             h2 {
+//                 font-size: 18px !important;
+//             }
 
-            h2 {
-                font-size: 18px !important;
-            }
+//         }
 
-        }
+//         img.stage-icon {
+//             width: 90px !important;
+//             height: 90px !important;
+//         }
 
-        img.stage-icon {
-            width: 90px !important;
-            height: 90px !important;
-        }
+//         p {
+//             width: 100% !important;
+//         }
+//     }
 
-        p {
-            width: 100% !important;
-        }
-    }
-    .search-section{
-        .makeStyles-input-12{
-            width:150px !important;
-        }
-    }
-}
+//     .search-section {
+//         .makeStyles-input-12 {
+//             width: 150px !important;
+//         }
+//     }
+// }
 
 // Large devices (desktops, 992px and up)
-@media only screen and (max-width: 992px) {
-    .stage-details {
-        width: 80% !important;
-    }
+// @media only screen and (max-width: 992px) {
+//     .stage-details {
+//         width: 80% !important;
+//     }
 
-    p {
-        width: 100% !important;
-    }
+//     p {
+//         width: 100% !important;
+//     }
 
-    h2 {
-        font-size: 24px !important;
-    }
-}
+//     h2 {
+//         font-size: 24px !important;
+//     }
+// }

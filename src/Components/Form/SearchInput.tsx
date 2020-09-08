@@ -25,9 +25,10 @@ const SearchInput = (props: { list: Array<{ title: string }>, onChange: any, cle
             <Input
                 required
                 name="search"
-                placeholder="Search stage"
+                placeholder="Search stages"
                 type="text"
                 id="search"
+                context="search"
                 value={props.selected}
                 onInputChange={props.onChange}
                 InputProps={{
@@ -40,7 +41,7 @@ const SearchInput = (props: { list: Array<{ title: string }>, onChange: any, cle
                     </IconButton>
                 }}
             />
-            <SearchIcon style={{ marginTop: "25px", marginLeft:"15px"}} />
+            <SearchIcon style={{ marginTop: "25px", marginLeft:"10px"}} />
         </div>
     );
 };
