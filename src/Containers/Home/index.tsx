@@ -11,7 +11,7 @@ import VideoLabelIcon from '@material-ui/icons/VideoLabel';
 import SettingsIcon from '@material-ui/icons/Settings';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import StageDetails from "./StageDetails";
-import StageIcon from "../../assets/images/stage-icon.png"
+import StageIcon from "../../assets/images/stage-icon.svg"
 import UserIcon1 from "../../assets/images/user-img-1.png"
 import UserIcon2 from "../../assets/images/user-img-2.png"
 import UserIcon3 from "../../assets/images/user-img-3.png"
@@ -108,11 +108,11 @@ const useStyles = makeStyles((theme: any) => ({
 }));
 
 const stages = [
-  { title: 'Bulshemier Theatre', mineStage: true, image: StageIcon, online: true, users: [{ userPhoto: UserIcon1 }] },
-  { title: 'National Theatre', mineStage: false, image: StageIcon, online: true, users: [{ userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }] },
-  { title: 'Theatre National Royal', mineStage: true, image: StageIcon, online: false, users: [{ userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }, { userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }] },
-  { title: 'The Old Theatre', mineStage: false, image: StageIcon, online: false, users: [{ userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }] },
-  { title: 'Lyceum Theatre', mineStage: true, image: StageIcon, online: true, users: [{ userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }, { userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }, { userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }] },
+  { title: 'Bulshemier Theatre', mineStage: true, image: StageIcon, online: true, users: [{ userPhoto: StageIcon , username: "username"}] },
+  { title: 'National Theatre', mineStage: false, image: StageIcon, online: true, users: [{ userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }] },
+  { title: 'Theatre National Royal', mineStage: true, image: StageIcon, online: false, users: [{ userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon , username: "username"}] },
+  { title: 'The Old Theatre', mineStage: false, image: StageIcon, online: false, users: [{ userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon , username: "username"}, { userPhoto: StageIcon, username: "username" }] },
+  { title: 'Lyceum Theatre', mineStage: true, image: StageIcon, online: true, users: [{ userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon , username: "username"}, { userPhoto: StageIcon , username: "username"}, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon , username: "username"}, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }] },
 ];
 
 const notifications = [
