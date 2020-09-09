@@ -19,13 +19,13 @@ theme.overrides = {
 };
 
 
-const SearchInput = (props: { list: Array<{ title: string }>, onChange: any, clear: () => void, selected: string, style?: Object }) => {
+const SearchInput = (props: { list: Array<{ title: string }>, onChange: any, clear: () => void, selected: string, style?: Object, placeholder?:any }) => {
     return (
         <div style={{ margin: "auto 0", color: "white" }}>
             <Input
                 required
                 name="search"
-                placeholder="Search stages"
+                placeholder={props.placeholder}
                 type="text"
                 id="search"
                 context="search"

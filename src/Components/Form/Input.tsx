@@ -40,7 +40,7 @@ const Input = (props: Props) => {
       width: `${props.context === "search" ? "300px" : "199px"}`,
       fontFamily: "Poppins",
       fontSize: "14px",
-      boxShadow: "0px 5px 30px #0B2140",
+      // boxShadow: "0px 5px 30px #0B2140",
       marginTop: "20px",
       fontWeight: 600,
       borderBottom: `${props.error && "1px solid #F20544"}`

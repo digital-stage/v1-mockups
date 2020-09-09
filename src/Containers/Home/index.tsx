@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import StagesLink from "./StagesList";
+import StagesList from "./StagesList";
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -22,6 +22,8 @@ import { useAuth } from "../../hooks/useAuth";
 import { Redirect } from "react-router-dom";
 import ArrowBackIosSharpIcon from '@material-ui/icons/ArrowBackIosSharp';
 import ArrowForwardIosSharpIcon from '@material-ui/icons/ArrowForwardIosSharp';
+import NotificationsList from "./NotificationsList";
+import NotificationsDetails from "./NotificationsDetails";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -111,14 +113,18 @@ const stages = [
   { title: 'Theatre National Royal', mineStage: true, image: StageIcon, online: false, users: [{ userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }, { userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }] },
   { title: 'The Old Theatre', mineStage: false, image: StageIcon, online: false, users: [{ userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }] },
   { title: 'Lyceum Theatre', mineStage: true, image: StageIcon, online: true, users: [{ userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }, { userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }, { userPhoto: UserIcon1 }, { userPhoto: UserIcon2 }, { userPhoto: UserIcon3 }] },
-  // { title: 'Fortune Theatre', mineStage: false, image: StageIcon, online: false },
-  // { title: 'Royal Opera House', mineStage: true, image: StageIcon, online: true },
-  // { title: "Dominion Theatre", mineStage: false, image: StageIcon, online: true },
-  // { title: 'The London Palladium', mineStage: true, image: StageIcon, online: false }
 ];
 
+const notifications = [
+  { title: "You have been invited to Bulshemier Theatre", time: "2500", image: StageIcon, stageId: 0, type: "invitations" },
+  { title: "National Theatre updated it's name", time: "500", image: StageIcon, stageId: 1, type: "updates" },
+  { title: "Theatre National Royal updated it's timetable", time: "2000", image: StageIcon, stageId: 2, type: "updates" },
+  { title: "You have been invited to The Old Theatre", time: "200", image: StageIcon, stageId: 3, type: "invitations" },
+  { title: "Lyceum Theatre update it's name", time: "60", image: StageIcon, stageId: 4, type: "updates" },
+  { title: "You have been invited to Bulshemier Theatre", time: "2500", image: StageIcon, stageId: 0, type: "invitations" },
+]
+
 enum Selected {
-  // HOME = "HOME",
   STAGES = "STAGES",
   SETTINGS = "SETTINGS",
   NOTIFICATIONS = "NOTIFICATIONS"
@@ -129,27 +135,22 @@ const Home = (props: any) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const [stageId, setStageId] = React.useState(0);
+  const [notificationId, setNotificationId] = React.useState(0);
   const [selectedStage, setSelectedStage] = React.useState(Selected.STAGES);
   const [showLeftMenu, setShowLeftMenu] = React.useState(true);
-  // const [showToggleButton, setShowToggleButton] = React.useState(true);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
-    console.log(value, selectedStage)
   };
 
   return (
     <div className="home">
       <div className="log-out-button" onClick={() => auth.signout()}><AccountCircleIcon style={{ color: "white" }} /></div>
-      {/* {showToggleButton && */}
-      {/* hide-toggle-button */}
-      <div className="toggle-home-tabs" style={showLeftMenu ? {left: "370px"}:{ left: "20px"}}>
+      <div className="toggle-home-tabs" style={showLeftMenu ? { left: "370px" } : { left: "20px" }}>
         <IconButton aria-label="hide" onClick={() => { setShowLeftMenu(!showLeftMenu) }}>
           {showLeftMenu ? <ArrowBackIosSharpIcon style={{ color: "white" }} /> : <ArrowForwardIosSharpIcon style={{ color: "white" }} />}
         </IconButton>
       </div>
-      {/* } */}
-      {/* <div className={["left-side", !showLeftMenu && "show"].join(" ")}> */}
       {showLeftMenu && <div className="left-side">
         <div className={classes.root}>
           <AppBar position="static" color="transparent">
@@ -166,10 +167,10 @@ const Home = (props: any) => {
             </Tabs>
           </AppBar>
           <TabPanel value={value} index={0}>
-            <StagesLink onClick={(id) => { setStageId(id); }} />
+            <StagesList onClick={(id) => { setStageId(id) }} />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            Notifications
+            <NotificationsList onClick={(id) => { setNotificationId(id) }} notifications={notifications} />
           </TabPanel>
           <TabPanel value={value} index={2}>
             Settings
@@ -179,7 +180,7 @@ const Home = (props: any) => {
       <div className="content" style={showLeftMenu ? { width: "calc(100% -370px)" } : { width: "100%" }}>
         {/* {selectedStage === Selected.HOME && <h4>Home</h4>} */}
         {selectedStage === Selected.STAGES && <StageDetails stage={stages[stageId]} />}
-        {selectedStage === Selected.NOTIFICATIONS && <h4>Notifications</h4>}
+        {selectedStage === Selected.NOTIFICATIONS && <NotificationsDetails stage={stages[notifications[notificationId].stageId]} />}
         {selectedStage === Selected.SETTINGS && <h4>Settings</h4>}
       </div>
     </div>

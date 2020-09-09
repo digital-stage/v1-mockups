@@ -26,7 +26,7 @@
 
 
   /* width */
-.stages-list::-webkit-scrollbar {
+.stages-list::-webkit-scrollbar{
   width: 15px;
   background-color: transparent;
 }
@@ -37,13 +37,39 @@
 }
 
 /* Handle */
-.stages-list::-webkit-scrollbar-thumb {
+.stages-list::-webkit-scrollbar-thumb{
   background: white;
   border-radius: 25px;
   border: solid 5px #242424;
 }
 
 /* Handle on hover */
-.stages-list::-webkit-scrollbar-thumb:hover {
+.stages-list::-webkit-scrollbar-thumb:hover{
   background: white;
 }
+
+
+
+  /* width */
+.notifications-section::-webkit-scrollbar{
+    width: 15px;
+    background-color: transparent;
+  }
+  
+  /* Track */
+.notifications-section::-webkit-scrollbar-track {
+    border-radius: 25px;
+  }
+  
+  /* Handle */
+.notifications-section::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 25px;
+    border: solid 5px #242424;
+  }
+  
+  /* Handle on hover */
+.notifications-section::-webkit-scrollbar-thumb:hover {
+    background: white;
+  }
+  

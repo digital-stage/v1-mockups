@@ -24,7 +24,7 @@ const stages = [
     // { title: 'The London Palladium', mineStage: true, image: StageIcon, online: false }
 ];
 
-const StagesLink = (props: { onClick(i: number): void }) => {
+const StagesList = (props: { onClick(i: number): void }) => {
     const [list, setList] = React.useState(stages);
     const [selected, setSelected] = React.useState("");
     const [checkedMyStage, setCheckedMyStage] = React.useState(true);
@@ -62,7 +62,7 @@ const StagesLink = (props: { onClick(i: number): void }) => {
     return <div className="stages-list">
         <div className="search-section">
             <div style={{ display: "inline-block" }}>
-                <SearchInput list={list} onChange={onChangeHandler} clear={clearInput} selected={selected} />
+                <SearchInput list={list} onChange={onChangeHandler} clear={clearInput} selected={selected} placeholder="Search stages"/>
             </div>
         </div>
         <div className="stages-list">
@@ -111,4 +111,4 @@ const StagesLink = (props: { onClick(i: number): void }) => {
     </div>;
 };
 
-export default StagesLink;
+export default StagesList;
