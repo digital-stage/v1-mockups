@@ -75,7 +75,6 @@ const Input = (props: Props) => {
         id={props.id}
         name={props.name}
         value={props.value}
-      // {...props}
       />
       {props.error && <p className={classes.p}>{props.error}</p>}
     </MuiThemeProvider>

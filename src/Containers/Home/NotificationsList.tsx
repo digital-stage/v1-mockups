@@ -9,6 +9,7 @@ const NotificationsList = (props: { onClick(i: number): void, notifications: Arr
     const [list, setList] = React.useState(props.notifications);
     const [searchedWord, setSearchedWord] = React.useState("");
     const [searchedTag, setSearchedTag] = React.useState("");
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [clickedId, setclickedId] = React.useState(0);
 
 
@@ -47,7 +48,7 @@ const NotificationsList = (props: { onClick(i: number): void, notifications: Arr
             setSearchedTag("")
         }
 
-    }, [searchedWord, searchedTag]);
+    }, [searchedWord, searchedTag, props.notifications]);
 
 
     return (
@@ -63,7 +64,7 @@ const NotificationsList = (props: { onClick(i: number): void, notifications: Arr
             <div className="notifications-section">
                 <div> {list.map((option: any, i) => {
                     return (
-                        <div onClick={() => { props.onClick(i); setclickedId(i) }}
+                        <div onClick={() => { props.onClick(i); setclickedId(i) }} key={option.title}
                         >
                             <NotificationCard notification={option} />
                         </div>

@@ -34,7 +34,7 @@ const Login = (props: Props) => {
 
 
   return (
-    <Box component="body" className="body">
+    <Box className="welcome-body">
       <Grid container direction="column" justify="center" alignItems="center">
         <Grid item>
           <img

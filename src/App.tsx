@@ -45,7 +45,6 @@ function Routes() {
 }
 
 function ProtectedRoutes({ auth, component: Component, ...rest }: any) {
-  console.log(auth);
   return (
     <Route
       {...rest}
@@ -59,7 +58,6 @@ function ProtectedRoutes({ auth, component: Component, ...rest }: any) {
 }
 
 function ProtectedLogin({ auth, component: Component, ...rest }: any) {
-  console.log(auth);
   return (
     <Route
       {...rest}

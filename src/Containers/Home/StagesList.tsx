@@ -62,7 +62,7 @@ const StagesList = (props: { onClick(i: number): void }) => {
     return <div className="stages-list">
         <div className="search-section">
             <div style={{ display: "inline-block" }}>
-                <SearchInput list={list} onChange={onChangeHandler} clear={clearInput} selected={selected} placeholder="Search stages"/>
+                <SearchInput list={list} onChange={onChangeHandler} clear={clearInput} selected={selected} placeholder="Search stages" />
             </div>
         </div>
         <div className="stages-list">
@@ -72,7 +72,7 @@ const StagesList = (props: { onClick(i: number): void }) => {
             </div>
             <div> {list.map((option, i) => {
                 return (
-                    <div onClick={() => { props.onClick(i); setclickedId(i) }} className={`clickable ${clickedId === i ? 'left-border' : 'left-border-normal'}`}>
+                    <div onClick={() => { props.onClick(i); setclickedId(i) }} className={`clickable ${clickedId === i ? 'left-border' : 'left-border-normal'}`} key={option.title}>
                         <Collapse in={checkedMyStage}>
                             {option.mineStage &&
                                 <StageCard stage={option}/>
@@ -86,7 +86,7 @@ const StagesList = (props: { onClick(i: number): void }) => {
             </div>
             <div> {list.map((option, i) => {
                 return (
-                    <div onClick={() => { props.onClick(i); setclickedId(i) }} className={`clickable ${clickedId === i ? 'left-border' : 'left-border-normal'}`}>
+                    <div onClick={() => { props.onClick(i); setclickedId(i) }} className={`clickable ${clickedId === i ? 'left-border' : 'left-border-normal'}`}  key={option.title}>
                         <Collapse in={checkedJoindedStages}>
                             {!option.mineStage && <StageCard stage={option} />}
                         </Collapse>
