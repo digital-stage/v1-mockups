@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import StagesList from "./StagesList";
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -6,20 +6,14 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import VideoLabelIcon from '@material-ui/icons/VideoLabel';
 import SettingsIcon from '@material-ui/icons/Settings';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import StageDetails from "./StageDetails";
 import StageIcon from "../../assets/images/stage-icon.svg"
-import UserIcon1 from "../../assets/images/user-img-1.png"
-import UserIcon2 from "../../assets/images/user-img-2.png"
-import UserIcon3 from "../../assets/images/user-img-3.png"
-import MenuIcon from '@material-ui/icons/Menu';
 import { IconButton } from "@material-ui/core";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { useAuth } from "../../hooks/useAuth";
-import { Redirect } from "react-router-dom";
 import ArrowBackIosSharpIcon from '@material-ui/icons/ArrowBackIosSharp';
 import ArrowForwardIosSharpIcon from '@material-ui/icons/ArrowForwardIosSharp';
 import NotificationsList from "./NotificationsList";
@@ -130,7 +124,7 @@ enum Selected {
   NOTIFICATIONS = "NOTIFICATIONS"
 }
 
-const Home = (props: any) => {
+const Home = () => {
   const auth = useAuth();
   const classes = useStyles();
   const [value, setValue] = React.useState(0);

@@ -81,7 +81,7 @@ export default function SignInForm(props: Props) {
       node.parentNode.removeChild(node);
     };
 
-  }, []);
+  }, [auth]);
 
   useEffect(() => {
     if (auth.error){
@@ -107,7 +107,6 @@ export default function SignInForm(props: Props) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const validationErrors = validate();
-    console.log(checked)
     if (Object.keys(validationErrors).length === 0) {
       auth.signin(email, password, checked);
     }

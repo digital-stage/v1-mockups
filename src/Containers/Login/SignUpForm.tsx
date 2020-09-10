@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from "react";
 import {
-  FormControlLabel,
-  Checkbox,
   Link,
   Grid,
-  Typography,
   Container,
   IconButton,
   Icon,
 } from "@material-ui/core";
-import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
-import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import { makeStyles } from "@material-ui/core/styles";
 // @ts-ignore
 import { loadCSS } from "fg-loadcss";
@@ -19,7 +14,6 @@ import Input from "../../Components/Form/Input";
 import ButtonStyled from "../../Components/Form/Button";
 
 import { useAuth } from "../../hooks/useAuth";
-import { Redirect } from "react-router-dom";
 import validator from 'validator';
 
 const useStyles = makeStyles((theme) => ({
