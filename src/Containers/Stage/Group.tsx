@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Portrait from "./StagePreviews/Portrait";
 import Landscape from "./StagePreviews/Landscape";
 import SoundControler from "../../Components/StageControlers/SoundControler";
@@ -10,8 +9,33 @@ import { FaVolumeUp } from "react-icons/fa";
 import VolumeSlider from "../../Components/StageControlers/VolumeSlider";
 import Masonry from "./StagePreviews/Masonry";
 
-class Group extends React.Component {
-  constructor(props) {
+interface Props {
+  color: string,
+  soundTrackerHeight: string,
+  totalStages: number,
+  breakpoints: Object,
+  changeStagePreview: number,
+  stagesEffect: Object,
+  participants: Array<Object>
+}
+
+interface State {
+  selectedValue: string,
+  closeDropdown: boolean,
+  next: boolean,
+  participants: Array<Object>,
+  hiddenScreens: Array<Object>,
+  enableHideScreens: boolean,
+  arrangeVolume: boolean,
+  effect: boolean,
+  effectOnSingleImage: number | null,
+  elementToDrop: Object,
+  dragStarted: number | null,
+  dragoverElement?: number | null | undefined,
+}
+
+class Group extends React.Component<Props, State>  {
+  constructor(props: Props) {
     super(props);
     this.state = {
       selectedValue: "portrait",
@@ -22,6 +46,9 @@ class Group extends React.Component {
       enableHideScreens: false,
       arrangeVolume: false,
       effect: false,
+      effectOnSingleImage: null,
+      elementToDrop: {},
+      dragStarted: null
     };
   }
 
@@ -37,17 +64,17 @@ class Group extends React.Component {
     }, 2000);
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps: Props, prevState: State) {
     if (this.state.next !== prevState.next) {
       this.participantsToMap();
     }
   }
 
-  onSelectChange = (e) => {
+  onSelectChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ selectedValue: e.target.value });
   };
 
-  onDropDownClick = (el) => {
+  onDropDownClick = (el: string) => {
     this.setState({
       selectedValue: el,
       closeDropdown: !this.state.closeDropdown,
@@ -98,7 +125,7 @@ class Group extends React.Component {
     }
   };
 
-  handleDragStart(e, data, i) {
+  handleDragStart(e: React.DragEvent<HTMLDivElement>, data: Object, i: number) {
     this.setState({
       ...this.state,
       elementToDrop: data,
@@ -106,14 +133,14 @@ class Group extends React.Component {
     });
   }
 
-  onDragOverHandler = (e, i) => {
+  onDragOverHandler = (e: React.DragEvent<HTMLDivElement>, i: number) => {
     e.preventDefault();
     this.setState({
-      dragover: i,
+      dragoverElement: i,
     });
   };
 
-  handleDrop = (e, data, i) => {
+  handleDrop = (e: React.DragEvent<HTMLDivElement>, data: Object) => {
     e.stopPropagation();
     let dragedData = this.state.participants.indexOf(this.state.elementToDrop);
     let dataToDrop = this.state.participants.indexOf(data);
@@ -124,11 +151,11 @@ class Group extends React.Component {
       ...this.state,
       participants: final,
       dragStarted: null,
-      dragover: null,
+      dragoverElement: null,
     });
   };
 
-  hideScreenHandler = (i) => {
+  hideScreenHandler = (i: number) => {
     let hiddenScreens = [
       ...this.state.hiddenScreens,
       this.state.participants[i],
@@ -141,7 +168,7 @@ class Group extends React.Component {
     });
   };
 
-  onShowScreenClick = (el) => {
+  onShowScreenClick = (el: string) => {
     let participants = [...this.state.participants, el];
     this.state.hiddenScreens.splice(this.state.hiddenScreens.indexOf(el), 1);
     this.setState({
@@ -185,24 +212,22 @@ class Group extends React.Component {
     const stagesWidth =
       changeStagePreview === 0
         ? stageWidth(
-            participants.length,
-            selectedValue,
-            breakpoints,
-            totalStages
-          )
+          participants.length,
+          selectedValue,
+          breakpoints,
+          totalStages
+        )
         : null;
     const addEffectClass =
       effect || stagesEffect ? "stage-container-animation" : "";
     return (
       <>
         <div
-          ref={(el) => (this.container = el)}
           className={["stage-container", addEffectClass].join(" ")}
           style={{
             ...stagesWidth,
             position: "relative",
-            width:
-              changeStagePreview === 1 ? `calc(100% / ${totalStages})` : null,
+            width: `${changeStagePreview === 1 ? `calc(100% / ${totalStages})` : null}`,
           }}
         >
           <div
@@ -225,6 +250,7 @@ class Group extends React.Component {
               onShowScreenClick={this.onShowScreenClick}
               enableHideScreensHandler={this.enableHideScreensHandler}
               enableHideScreens={enableHideScreens}
+              hover={this.hover}
             />
             <Dropdown
               value={selectedValue}
@@ -261,7 +287,7 @@ class Group extends React.Component {
 
           <div
             className={"photos"}
-            style={{ display: selectedValue !== "masonry" && "flex" }}
+            style={selectedValue !== "masonry" ? { display: "flex" } : { display: "initial" }}
           >
             {participants.map((participant, i) => {
               if (selectedValue === "portrait")
@@ -270,11 +296,11 @@ class Group extends React.Component {
                     effectOnSingleImage={effectOnSingleImage}
                     hideScreen={() => this.hideScreenHandler(i)}
                     enableHideScreens={enableHideScreens}
-                    onDragStart={(e) => this.handleDragStart(e, participant, i)}
-                    onDragOver={(e) => this.onDragOverHandler(e, i)}
-                    onDrop={(e) => this.handleDrop(e, participant, i)}
+                    onDragStart={(e: React.DragEvent<HTMLDivElement>) => this.handleDragStart(e, participant, i)}
+                    onDragOver={(e: React.DragEvent<HTMLDivElement>) => this.onDragOverHandler(e, i)}
+                    onDrop={(e: React.DragEvent<HTMLDivElement>) => this.handleDrop(e, participant)}
                     dragStarted={this.state.dragStarted}
-                    dragover={this.state.dragover}
+                    dragoverElement={this.state.dragoverElement}
                     participant={participant}
                     participants={participants}
                     i={i}
@@ -287,11 +313,11 @@ class Group extends React.Component {
                     effectOnSingleImage={effectOnSingleImage}
                     hideScreen={() => this.hideScreenHandler(i)}
                     enableHideScreens={enableHideScreens}
-                    onDragStart={(e) => this.handleDragStart(e, participant, i)}
-                    onDragOver={(e) => this.onDragOverHandler(e, i)}
-                    onDrop={(e) => this.handleDrop(e, participant, i)}
+                    onDragStart={(e: React.DragEvent<HTMLDivElement>) => this.handleDragStart(e, participant, i)}
+                    onDragOver={(e: React.DragEvent<HTMLDivElement>) => this.onDragOverHandler(e, i)}
+                    onDrop={(e: React.DragEvent<HTMLDivElement>) => this.handleDrop(e, participant)}
                     dragStarted={this.state.dragStarted}
-                    dragover={this.state.dragover}
+                    dragoverElement={this.state.dragoverElement}
                     participant={participant}
                     participants={participants}
                     i={i}
@@ -304,11 +330,11 @@ class Group extends React.Component {
                     effectOnSingleImage={effectOnSingleImage}
                     hideScreen={() => this.hideScreenHandler(i)}
                     enableHideScreens={enableHideScreens}
-                    onDragStart={(e) => this.handleDragStart(e, participant, i)}
-                    onDragOver={(e) => this.onDragOverHandler(e, i)}
-                    onDrop={(e) => this.handleDrop(e, participant, i)}
+                    onDragStart={(e:React.DragEvent<HTMLDivElement>) => this.handleDragStart(e, participant, i)}
+                    onDragOver={(e: React.DragEvent<HTMLDivElement>) => this.onDragOverHandler(e, i)}
+                    onDrop={(e: React.DragEvent<HTMLDivElement>) => this.handleDrop(e, participant)}
                     dragStarted={this.state.dragStarted}
-                    dragover={this.state.dragover}
+                    dragoverElement={this.state.dragoverElement}
                     participant={participant}
                     participants={participants}
                     i={i}
@@ -323,8 +349,5 @@ class Group extends React.Component {
   }
 }
 
-Group.propTypes = {
-  stageNumber: PropTypes.number,
-};
 
 export default Group;

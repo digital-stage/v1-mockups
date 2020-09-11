@@ -1,0 +1,79 @@
+.body {
+  background: linear-gradient(30deg,
+      $stage-dark-blue 2%,
+      $stage-red);
+  width: 100%;
+  min-height: 100vh;
+
+  .root-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 0;
+  }
+}
+
+.center {
+  margin: auto;
+  height: 90vh;
+  width: auto;
+}
+
+//sigin and signup boxes in login form
+.box-controller {
+  display: flex;
+  align-items: center;
+
+  margin-right: auto;
+  margin-left: auto;
+  height: 24px;
+
+  border-radius: 5px;
+  color: #F5F5F5
+}
+
+.controller {
+  flex: 1;
+  text-align: center;
+  padding-top: 22px;
+
+  line-height: 2;
+  cursor: pointer;
+  color: #F5F5F5
+}
+
+//Currently Selected Controller
+.selected-controller {
+  transition: border 0.5s ease-out;
+  border-bottom: 2px solid #a81044;
+  margin: 0 30px
+}
+
+.box-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 24em;
+  min-width: 21em;
+  box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
+  border-radius: 6px;
+  padding: 24px;
+}
+
+form{
+  text-align:initial !important;
+}
+
+.alert-box{
+  width: 220px;
+  margin: 0 auto;
+  background-color: rgb(240, 212, 209);
+  margin-top: 30px;
+  p{
+    color:rgb(97, 26, 21) !important;
+    font-size: 14px !important;
+    margin: 0 auto;
+    padding: 10px 10px;
+  }
+}
