@@ -4,7 +4,7 @@ import { Box, Grid, Typography } from "@material-ui/core";
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
 import logo from "../../assets/images/welcome_icon.png";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../js/useAuth";
 
 type Props = {
   history: Array<string> | undefined

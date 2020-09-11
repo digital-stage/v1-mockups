@@ -18,7 +18,7 @@ import { loadCSS } from "fg-loadcss";
 import Input from "../../Components/Form/Input";
 import ButtonStyled from "../../Components/Form/Button";
 
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../js/useAuth";
 import { Redirect } from "react-router-dom";
 import validator from 'validator';
 

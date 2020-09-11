@@ -6,7 +6,7 @@ import { Switch, Route, Redirect, useLocation, useHistory } from "react-router-d
 import JoinStage from "./Containers/Stage/JoinStage";
 import Welcome from "./Containers/Login/Welcome";
 import Home from "./Containers/Home";
-import { ProvideAuth, useAuth } from "./hooks/useAuth.js";
+import { ProvideAuth, useAuth } from "./js/useAuth.js";
 import PageNotFound from "./Containers/PageNotFound";
 
 function App() {
