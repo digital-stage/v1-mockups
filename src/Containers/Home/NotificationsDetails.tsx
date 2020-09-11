@@ -67,9 +67,9 @@ const NotificationsDetails = (props: { stage: { title: string, image: string, on
                 <p>{props.stage.users.length} users</p>
                 <div className="users-list-scrollablle">
                     {
-                        props.stage.users.map(user => {
+                        props.stage.users.map((user, i) => {
                             return(
-                                <div className="d-inline-block mr-2">
+                                <div className="d-inline-block mr-2" key={user.username + 1}>
                                 <img src={user.userPhoto} alt="fotoja e perdoruesit" width="80px" height="80px"/>
                                 <p className="text-center">{user.username}</p>
                                 </div>
