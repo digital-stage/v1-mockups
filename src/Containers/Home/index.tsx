@@ -18,7 +18,7 @@ import UserIcon3 from "../../assets/images/user-img-3.png"
 import MenuIcon from '@material-ui/icons/Menu';
 import { IconButton} from "@material-ui/core";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { useAuth } from "../../js/useAuth";
+import { useAuth } from "../../hooks/useAuth";
 import { Redirect } from "react-router-dom";
 
 interface TabPanelProps {
