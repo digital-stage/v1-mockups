@@ -13,7 +13,7 @@ import StageDetails from "./StageDetails";
 import StageIcon from "../../assets/images/stage-icon.svg"
 import { IconButton } from "@material-ui/core";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import { useAuth } from "../../js/useAuth";
+import { useAuth } from "../../hooks/useAuth";
 import ArrowBackIosSharpIcon from '@material-ui/icons/ArrowBackIosSharp';
 import ArrowForwardIosSharpIcon from '@material-ui/icons/ArrowForwardIosSharp';
 import NotificationsList from "./NotificationsList";
