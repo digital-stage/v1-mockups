@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React from "react";
 import Portrait from "./StagePreviews/Portrait";
 import Landscape from "./StagePreviews/Landscape";

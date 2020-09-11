@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./App.css";
 import Stage from "./Containers/Stage/Stage";
 import Login from "./Containers/Login";
-import { Switch, Route, Redirect, useLocation, useHistory } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import JoinStage from "./Containers/Stage/JoinStage";
 import Welcome from "./Containers/Login/Welcome";
 import Home from "./Containers/Home";
@@ -21,8 +21,8 @@ function App() {
 
 function Routes() {
   const auth = useAuth();
-  const location = useLocation();
-  const history = useHistory();
+  // const location = useLocation();
+  // const history = useHistory();
 
   // useEffect(() => {
   //   let { pathname } = location;
@@ -45,7 +45,6 @@ function Routes() {
 }
 
 function ProtectedRoutes({ auth, component: Component, ...rest }: any) {
-  console.log(auth);
   return (
     <Route
       {...rest}
@@ -59,7 +58,6 @@ function ProtectedRoutes({ auth, component: Component, ...rest }: any) {
 }
 
 function ProtectedLogin({ auth, component: Component, ...rest }: any) {
-  console.log(auth);
   return (
     <Route
       {...rest}

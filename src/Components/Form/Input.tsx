@@ -27,6 +27,7 @@ type Props = {
   InputProps?: Object,
   value?: string,
   error?: string
+  context?:string
 }
 
 const Input = (props: Props) => {
@@ -36,10 +37,10 @@ const Input = (props: Props) => {
       borderRadius: "24px",
       color: "black",
       height: "36px",
-      width: "199px",
+      width: `${props.context === "search" ? "300px" : "199px"}`,
       fontFamily: "Poppins",
       fontSize: "14px",
-      boxShadow: "0px 5px 30px #0B2140",
+      // boxShadow: "0px 5px 30px #0B2140",
       marginTop: "20px",
       fontWeight: 600,
       borderBottom: `${props.error && "1px solid #F20544"}`
@@ -74,7 +75,6 @@ const Input = (props: Props) => {
         id={props.id}
         name={props.name}
         value={props.value}
-      // {...props}
       />
       {props.error && <p className={classes.p}>{props.error}</p>}
     </MuiThemeProvider>

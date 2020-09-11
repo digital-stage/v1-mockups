@@ -19,15 +19,16 @@ theme.overrides = {
 };
 
 
-const SearchInput = (props: { list: Array<{ title: string }>, onChange: any, clear: () => void, selected: string, style?: Object }) => {
+const SearchInput = (props: { list: Array<{ title: string }>, onChange: any, clear: () => void, selected: string, style?: Object, placeholder?:any }) => {
     return (
         <div style={{ margin: "auto 0", color: "white" }}>
             <Input
                 required
                 name="search"
-                placeholder="Search stage"
+                placeholder={props.placeholder}
                 type="text"
                 id="search"
+                context="search"
                 value={props.selected}
                 onInputChange={props.onChange}
                 InputProps={{
@@ -40,7 +41,7 @@ const SearchInput = (props: { list: Array<{ title: string }>, onChange: any, cle
                     </IconButton>
                 }}
             />
-            <SearchIcon style={{ marginTop: "25px", marginLeft:"15px"}} />
+            <SearchIcon style={{ marginTop: "25px", marginLeft:"20px"}} />
         </div>
     );
 };

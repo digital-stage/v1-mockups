@@ -1,5 +1,5 @@
 import React, { MouseEventHandler } from "react";
-import Icon from "../Icons/Icons";
+import Icon from "../Icons/Icon";
 import { preview } from "../../js/stageMock";
 
 type Props = {

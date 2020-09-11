@@ -25,7 +25,7 @@
 // }
 
 
-  /* width */
+/* width */
 .stages-list::-webkit-scrollbar {
   width: 15px;
   background-color: transparent;
@@ -46,4 +46,54 @@
 /* Handle on hover */
 .stages-list::-webkit-scrollbar-thumb:hover {
   background: white;
+}
+
+
+
+/* width */
+.notifications-section::-webkit-scrollbar {
+  width: 15px;
+  background-color: transparent;
+}
+
+/* Track */
+.notifications-section::-webkit-scrollbar-track {
+  border-radius: 25px;
+}
+
+/* Handle */
+.notifications-section::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 25px;
+  border: solid 5px #242424;
+}
+
+/* Handle on hover */
+.notifications-section::-webkit-scrollbar-thumb:hover {
+  background: white;
+}
+
+
+
+/* width */
+.users-list-scrollablle::-webkit-scrollbar {
+  width: 0px;
+  background-color: transparent;
+}
+
+/* Track */
+.users-list-scrollablle::-webkit-scrollbar-track {
+  border-radius: 25px;
+}
+
+/* Handle */
+.users-list-scrollablle::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 25px;
+  border: 0;
+}
+
+/* Handle on hover */
+.users-list-scrollablle::-webkit-scrollbar-thumb:hover {
+  background: transparent;
 }

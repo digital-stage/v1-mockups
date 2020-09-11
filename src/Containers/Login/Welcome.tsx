@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const Welcome = () => {
   return (
-    <Box component="body" className="body">
+    <Box className="welcome-body">
       <Grid container direction="column" justify="center" alignItems="center">
         <Grid item>
           <img

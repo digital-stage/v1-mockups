@@ -1,0 +1,278 @@
+// $left-panel-width: 370px;
+
+.home {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+
+    .left-side {
+        min-width: 370px;
+        max-width: 370px;
+        display: inline-block;
+        min-height: 100vh;
+        max-height: auto;
+        background: $dark-gray-01;
+
+        .stages-list {
+            text-align: center;
+            min-height: calc(100vh - 100px);
+            margin-right: 10px;
+
+            .search-section {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .stage-card {
+                width: 95%;
+                display: flex;
+                text-align: left;
+                margin: 5px 0;
+                justify-content: space-between;
+
+                span.online {
+                    min-width: 8px;
+                    height: 8px;
+                    background-color: #00FF08;
+                    border-radius: 25px;
+                    margin-top: 0 !important
+                }
+
+
+                .stage-card-details {
+                    text-align: left;
+
+                    div {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                    }
+
+                    img {
+                        display: inline-block;
+                    }
+
+                    p {
+                        color: white !important;
+                        font-weight: initial !important;
+                    }
+                }
+
+            }
+
+            .stages-list {
+                max-height: calc(100vh - 220px);
+                min-height: calc(100vh - 220px);
+                overflow-y: scroll;
+                margin: 10px 0;
+
+                h5.title {
+                    color: white;
+                    text-align: left;
+                    padding-left: 20px;
+                    display: inline-block;
+                }
+
+                span {
+                    text-align: left;
+                    margin-top: 3px;
+                }
+            }
+        }
+    }
+
+    .content {
+        background-image: linear-gradient(to bottom, #575757, $dark-gray-01);
+        display: inline-block;
+        width: calc(100vw - 370px);
+        max-height: 100vh;
+        overflow-y: auto;
+        padding-top: 50px;
+        text-align: center;
+    }
+
+    .stage-details {
+        text-align: left;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        vertical-align: middle;
+        align-content: center;
+        margin-top: 30px;
+        padding: 0 4rem;
+
+        h2,
+        h5,
+        h4,
+        p {
+            color: white !important;
+        }
+
+        a {
+            color: $light-violet !important;
+        }
+
+        .title {
+            span,
+            h5,
+            h2 {
+                margin: auto 0;
+            }
+
+            h2 {
+                margin-right: 35px;
+                font-weight: 600 !important;
+            }
+
+            span {
+                margin-right: 5px
+            }
+
+        }
+
+        img.stage-icon {
+            text-align: left;
+            width: 171px;
+            height: 171px;
+        }
+
+        p {
+            width: 70%;
+        }
+
+        span.online {
+            width: 23px;
+            height: 23px;
+            background-color: #00FF08;
+            border-radius: 25px
+        }
+    }
+
+    .toggle-home-tabs {
+        position: absolute;
+        top: 10px;
+        // left: 370px;
+        z-index: 99999;
+
+        button:focus {
+            outline: 0;
+        }
+    }
+
+    .log-out-button {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        z-index: 99999;
+
+        button:focus {
+            outline: 0;
+        }
+    }
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.left-border {
+    border-left: 4px solid white !important;
+}
+
+.left-border-normal {
+    border-left: 4px solid $dark-gray-01 !important;
+}
+
+.show {
+    display: block !important;
+}
+
+.hide-toggle-button {
+    display: none !important;
+}
+
+// Small devices (landscape phones, 576px and up)
+// @media only screen and (max-width: 576px) {
+//     .show {
+//         display: none !important;
+//     }
+
+//     .hide-toggle-button {
+//         display: block !important;
+//     }
+
+//     .content {
+//         margin-top: 20px;
+//         min-width: 100vw !important;
+//     }
+
+//     .stage-details {
+//         min-width: 80% !important;
+//     }
+// }
+
+// Medium devices (tablets, 768px and up)
+// @media only screen and (max-width: 768px) {
+//     .left-side {
+//         min-width: 330px !important;
+//     }
+
+//     .content {
+//         width: calc(100vw - 300px) !important;
+//     }
+
+//     .stage-details {
+//         width: 80% !important;
+
+//         .title {
+
+//             span {
+//                 font-size: 10px !important;
+//             }
+
+//             h5 {
+//                 font-size: 12px !important;
+//             }
+
+//             h4 {
+//                 font-size: 14px !important;
+//             }
+
+//             h2 {
+//                 font-size: 18px !important;
+//             }
+
+//         }
+
+//         img.stage-icon {
+//             width: 90px !important;
+//             height: 90px !important;
+//         }
+
+//         p {
+//             width: 100% !important;
+//         }
+//     }
+
+//     .search-section {
+//         .makeStyles-input-12 {
+//             width: 150px !important;
+//         }
+//     }
+// }
+
+// Large devices (desktops, 992px and up)
+// @media only screen and (max-width: 992px) {
+//     .stage-details {
+//         width: 80% !important;
+//     }
+
+//     p {
+//         width: 100% !important;
+//     }
+
+//     h2 {
+//         font-size: 24px !important;
+//     }
+// }

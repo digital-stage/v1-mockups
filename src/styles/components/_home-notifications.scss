@@ -1,0 +1,77 @@
+.notifications-list {
+
+    .notifications-section {
+        margin: 20px;
+        max-height: calc(100vh - 220px);
+        min-height: calc(100vh - 220px);
+        overflow-y: scroll;
+    }
+
+    .notification-card {
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+        margin-right: 10px;
+
+
+        img {
+            width: 48px;
+            height: 48px;
+        }
+
+        .notification-card-details {
+            text-align: left;
+            display: flex;
+            flex: auto;
+            flex-direction: column;
+        }
+
+        span {
+            color: white
+        }
+
+        .notification-card-image {
+            max-width: 80px
+        }
+    }
+}
+
+.notification-details {
+    display: flex;
+    color: white;
+    text-align: left;
+    margin: 0 4rem;
+    justify-content: space-around;
+
+    .notification-details-intro {
+        .stage-icon {
+            text-align: center;
+            img {
+                width: 160px;
+                height: 160px;
+            }
+        }
+    }
+
+    .notification-details-users{
+        p{
+            color:white;
+            max-width:300px;
+        }
+        .users-list-scrollablle{
+            display: flex;
+            max-width: 330px;
+            overflow-x: scroll;
+            cursor: auto;
+        }
+    }
+
+    .notification-details-status{
+        .online{
+            width: 16px;
+            height: 16px;
+            background-color: #00FF08;
+            border-radius: 25px
+        }
+    }
+}
