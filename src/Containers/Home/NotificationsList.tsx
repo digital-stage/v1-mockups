@@ -55,7 +55,7 @@ const NotificationsList = (props: { onClick(i: number): void, notifications: Arr
             <div className="search-section">
                 <div style={{ display: "inline-block" }}>
                     <SearchInput list={list} onChange={onChangeHandler} clear={clearInput} selected={searchedWord} placeholder="Search notifications" />
-                    <Icons icon="acusticGuitar"/>
+                    {/* <Icons icon="acusticGuitar"/> */}
                     <div className="mt-2 ml-2 text-left">
                         {searchTags.map((tag, i) => { 
                             return <Chip 

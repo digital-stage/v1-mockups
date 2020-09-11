@@ -68,7 +68,7 @@ const StagesList = (props: { onClick(i: number): void }) => {
         <div className="stages-list">
             <div className="d-flex">
                 <h5 className="pt-3 mb-3 title">My stages</h5>
-                <span className="pt-2 pl-2" onClick={handleMySatgeClick}>{!checkedMyStage ? <ExpandMoreIcon /> : <ExpandLessIcon />}</span>
+                <span className="pt-2 pl-2" onClick={handleMySatgeClick}>{!checkedMyStage ? <ExpandMoreIcon style={{color:"#fff"}}/> : <ExpandLessIcon style={{color:"#fff"}}/>}</span>
             </div>
             <div> {list.map((option, i) => {
                 return (
@@ -82,7 +82,7 @@ const StagesList = (props: { onClick(i: number): void }) => {
             })}</div>
             <div className="d-flex">
                 <h5 className="pt-3 mb-3 title">Joined stages</h5>
-                <span className="pt-2 pl-2" onClick={handleJoindeStagesClick}>{!checkedJoindedStages ? <ExpandMoreIcon /> : <ExpandLessIcon />}</span>
+                <span className="pt-2 pl-2" onClick={handleJoindeStagesClick}>{!checkedJoindedStages ? <ExpandMoreIcon style={{color:"#fff"}}/> : <ExpandLessIcon style={{color:"#fff"}}/>}</span>
             </div>
             <div> {list.map((option, i) => {
                 return (
