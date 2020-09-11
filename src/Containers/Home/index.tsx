@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import StagesLink from "./StagesList";
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -17,6 +17,9 @@ import UserIcon2 from "../../assets/images/user-img-2.png"
 import UserIcon3 from "../../assets/images/user-img-3.png"
 import MenuIcon from '@material-ui/icons/Menu';
 import { IconButton} from "@material-ui/core";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { useAuth } from "../../hooks/useAuth";
+import { Redirect } from "react-router-dom";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -110,7 +113,8 @@ enum Selected {
   ACTIVITIES = "ACTIVITIES"
 }
 
-const Home = () => {
+const Home = (props:any) => {
+  const auth = useAuth();
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const [stageId, setStageId] = React.useState(0);
@@ -125,6 +129,7 @@ const Home = () => {
 
   return (
     <div className="home">
+      <div className="log-out-button" onClick={()=>auth.signout()}><ExitToAppIcon/></div>
       {showToggleButton && <div className="toggle-home-tabs hide-toggle-button">
         <IconButton aria-label="hide" onClick={() => { setShowLeftMenu(true); setShowToggleButton(false) }}>
           <MenuIcon />

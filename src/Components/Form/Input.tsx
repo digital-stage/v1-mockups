@@ -10,27 +10,11 @@ theme.overrides = {
     root: {
       "&$focused $notchedOutline": {
         borderColor: "#707070",
-        borderWidth: 2,
+        borderWidth: 1,
       },
     },
   },
 };
-
-const useStyles = makeStyles(() => ({
-  input: {
-    background: "white",
-    borderRadius: "24px",
-    color: "black",
-    height: "36px",
-    width: "199px",
-    fontFamily: "Poppins",
-    fontSize: "14px",
-    // boxShadow: "0px 5px 30px #0B2140",
-    marginTop: "20px",
-    fontWeight: 600,
-  },
-
-}));
 
 
 type Props = {
@@ -41,10 +25,37 @@ type Props = {
   id: string,
   name: string,
   InputProps?: Object,
-  value?: string
+  value?: string,
+  error?: string
 }
 
 const Input = (props: Props) => {
+  const useStyles = makeStyles(() => ({
+    input: {
+      background: `${props.error ? "rgb(240, 212, 209)" : "white"}`,
+      borderRadius: "24px",
+      color: "black",
+      height: "36px",
+      width: "199px",
+      fontFamily: "Poppins",
+      fontSize: "14px",
+      boxShadow: "0px 5px 30px #0B2140",
+      marginTop: "20px",
+      fontWeight: 600,
+      borderBottom: `${props.error && "1px solid #F20544"}`
+    },
+    p:{
+      color:"white",
+      marginLeft: "0 !important",
+      fontFamily: "Poppins",
+      fontSize: "12px",
+      fontWeight: 600,
+      paddingLeft:"20px",
+      marginTop:"5px",
+      marginBottom:"0 !important"
+    }
+  }));
+
   const classes = useStyles();
 
   return (
@@ -65,6 +76,7 @@ const Input = (props: Props) => {
         value={props.value}
       // {...props}
       />
+      {props.error && <p className={classes.p}>{props.error}</p>}
     </MuiThemeProvider>
   );
 };

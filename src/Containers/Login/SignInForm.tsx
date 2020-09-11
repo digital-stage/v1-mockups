@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FormControlLabel,
   Checkbox,
@@ -12,16 +12,14 @@ import {
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import { makeStyles } from "@material-ui/core/styles";
-import Alert from "@material-ui/lab/Alert";
 // @ts-ignore
 import { loadCSS } from "fg-loadcss";
 
 import Input from "../../Components/Form/Input";
 import ButtonStyled from "../../Components/Form/Button";
 
-//Firebase
-import * as firebase from "firebase/app";
-import "firebase/auth";
+import { useAuth } from "../../hooks/useAuth";
+import validator from 'validator';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -53,14 +51,27 @@ type Props = {
   history?: Array<string> | undefined,
 }
 
+export interface IError {
+  email?: string;
+  password?: string;
+}
+
 export default function SignInForm(props: Props) {
+
+  // Get auth state and re-render anytime it changes
+  const auth = useAuth();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [checked, setChecked] = useState(false);
+
+  const [errors, setErrors] = useState<IError>({});
 
   const classes = useStyles();
 
   React.useEffect(() => {
+    console.log(auth)
     const node = loadCSS(
       "https://use.fontawesome.com/releases/v5.12.0/css/all.css",
       document.querySelector("#font-awesome-css")
@@ -69,22 +80,42 @@ export default function SignInForm(props: Props) {
     return () => {
       node.parentNode.removeChild(node);
     };
+
   }, []);
+
+  useEffect(() => {
+    if (auth.error){
+      setShowAlert(true)
+    }
+  }, [auth.error, auth.cookie]);
+
+  const validate = () => {
+    const errors: IError = {}
+    if (validator.isEmpty(email)) {
+      errors.email = "Email is required"
+    }
+    else if (!validator.isEmail(email)) {
+      errors.email = "Enter a valid email"
+    }
+    if (validator.isEmpty(password)) {
+      errors.password = "Password is required"
+    }
+    setErrors(errors)
+    return errors
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((res) => {
-        props.history && props.history.push("/home");
-      })
-      .catch((error) => setError(error.message));
+    const validationErrors = validate();
+    console.log(checked)
+    if (Object.keys(validationErrors).length === 0) {
+      auth.signin(email, password, checked);
+    }
   };
 
   return (
     <Container maxWidth="sm" className={`${classes.back}, p-0`}>
-      {error && <Alert severity="error">{error}</Alert>}
+      {showAlert && <div className="alert-box"><p>{auth.error}</p></div>}
       <div className={classes.paper}>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Input
@@ -93,6 +124,7 @@ export default function SignInForm(props: Props) {
             placeholder="Username"
             name="email"
             type="text"
+            error={errors && errors.email}
             onInputChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
           />
           <Input
@@ -101,6 +133,7 @@ export default function SignInForm(props: Props) {
             placeholder="Password"
             type="password"
             id="password"
+            error={errors && errors.password}
             onInputChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
           />
           <Grid
@@ -116,6 +149,8 @@ export default function SignInForm(props: Props) {
                   <Checkbox
                     value="remember"
                     color="primary"
+                    onChange={() => setChecked(!checked)} 
+                    checked={checked}
                     checkedIcon={
                       <CheckRoundedIcon
                         style={{
@@ -153,7 +188,7 @@ export default function SignInForm(props: Props) {
                 </h6>
               </Link>
             </Grid>
-            <Grid item>
+            <Grid item className="text-center">
               <h5 style={{ color: "white" }}>
                 Or Via
               </h5>
