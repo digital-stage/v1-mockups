@@ -71,6 +71,7 @@ export default function SignInForm(props: Props) {
   const classes = useStyles();
 
   React.useEffect(() => {
+    console.log(auth)
     const node = loadCSS(
       "https://use.fontawesome.com/releases/v5.12.0/css/all.css",
       document.querySelector("#font-awesome-css")
@@ -81,6 +82,12 @@ export default function SignInForm(props: Props) {
     };
 
   }, [auth]);
+
+  useEffect(() => {
+    if (auth.error){
+      setShowAlert(true)
+    }
+  }, [auth.error, auth.cookie]);
 
   useEffect(() => {
     if (auth.error){
