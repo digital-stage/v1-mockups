@@ -71,7 +71,6 @@ export default function SignInForm(props: Props) {
   const classes = useStyles();
 
   React.useEffect(() => {
-    console.log(auth)
     const node = loadCSS(
       "https://use.fontawesome.com/releases/v5.12.0/css/all.css",
       document.querySelector("#font-awesome-css")
@@ -84,16 +83,16 @@ export default function SignInForm(props: Props) {
   }, [auth]);
 
   useEffect(() => {
-    if (auth.error){
+    if (auth.loginError){
       setShowAlert(true)
     }
-  }, [auth.error, auth.cookie]);
+  }, [auth.loginError]);
 
   useEffect(() => {
-    if (auth.error){
+    if (auth.loginError){
       setShowAlert(true)
     }
-  }, [auth.error, auth.cookie]);
+  }, [auth.loginError]);
 
   const validate = () => {
     const errors: IError = {}
@@ -120,7 +119,7 @@ export default function SignInForm(props: Props) {
 
   return (
     <Container maxWidth="sm" className={`${classes.back}, p-0`}>
-      {showAlert && <div className="alert-box"><p>{auth.error}</p></div>}
+      {showAlert && <div className="alert-box"><p>{auth.loginError}</p></div>}
       <div className={classes.paper}>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Input

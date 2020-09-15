@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import SearchInput from "../../Components/Form/SearchInput";
 import NotificationCard from "./NotificationCard";
-import SearchTags from "../../Components/Form/SearchTags";
+// import SearchTags from "../../Components/Form/SearchTags";
 import AvatarImg from "../../assets/images/Avatar.png";
 import { Chip, Avatar } from "@material-ui/core";
-import Icons from "../../Components/Icons/Icons";
 
 
 const searchTags = ["All", "Invitations", "Updates"]
@@ -46,16 +45,14 @@ const NotificationsList = (props: { onClick(i: number): void, notifications: Arr
             setList(props.notifications)
         }
         
-        console.log(list)
 
-    }, [searchedWord, searchedTag, props.notifications]);
+    }, [searchedWord, searchedTag, props.notifications, list]);
 
     return (
         <div className="notifications-list">
             <div className="search-section">
                 <div style={{ display: "inline-block" }}>
                     <SearchInput list={list} onChange={onChangeHandler} clear={clearInput} selected={searchedWord} placeholder="Search notifications" />
-                    {/* <Icons icon="acusticGuitar"/> */}
                     <div className="mt-2 ml-2 text-left">
                         {searchTags.map((tag, i) => { 
                             return <Chip 

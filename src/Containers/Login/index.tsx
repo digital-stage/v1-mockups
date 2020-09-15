@@ -18,11 +18,13 @@ const Login = (props: Props) => {
   const showLoginBox = () => {
     setLoginOpen(true);
     setSignupOpen(false);
+    auth.setSignupError(null)
   };
 
   const showRegisterBox = () => {
     setSignupOpen(true);
     setLoginOpen(false);
+    auth.setLoginError(null)
   };
   
   useEffect(() => {

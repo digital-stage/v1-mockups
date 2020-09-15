@@ -8,6 +8,7 @@ import Welcome from "./Containers/Login/Welcome";
 import Home from "./Containers/Home";
 import { ProvideAuth, useAuth } from "./hooks/useAuth.js";
 import PageNotFound from "./Containers/PageNotFound";
+// import CookieDialog from "./Components/CookieDialog";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <div className="App">
         <Routes />
       </div>
+      {/* <CookieDialog/> */}
     </ProvideAuth>
   );
 }
