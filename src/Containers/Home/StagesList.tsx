@@ -60,6 +60,7 @@ const StagesList = (props: { onClick(i: number): void }) => {
 
 
     return <div className="stages-list">
+        <h5 style={{color:"white", textAlign:"left", padding:"20px 20px"}}>Stages</h5>
         <div className="search-section">
             <div style={{ display: "inline-block" }}>
                 <SearchInput list={list} onChange={onChangeHandler} clear={clearInput} selected={selected} placeholder="Search stages" />

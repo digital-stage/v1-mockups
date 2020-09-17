@@ -26,8 +26,13 @@ export const useAuth = () => {
 function useProvideAuth() {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
+  const [loginError, setLoginError] = useState(null);
+  const [signupError, setSignupError] = useState(null);
   const [cookie, setCookie, removeCookie] = useCookies(null);
   const [redirectToLogin, setRedirectToLogin] = useState(false);
+  // const [acceptedCookie, setAcceptedCookie] = useState(false);
+  // const [sessionStorageSet, setSetSessionStorage] = useState(false);
+  // const [auth, setAuth] = useState(false);
 
   // Wrap any Firebase methods we want to use making sure ...
   // ... to save the user to state.
@@ -41,15 +46,24 @@ function useProvideAuth() {
           .signInWithEmailAndPassword(email, password)
           .then((response) => {
             setUser(response.user);
-            setError(null);
-            setCookie("digital-stage", response.user, {
-              maxAge: checked ? (6*30*24*3600) : null,
-            });
+            // setError(null);
+            setLoginError(null)
+            // if (acceptedCookie) {
+              setCookie("digital-stage", response.user, {
+                maxAge: checked ? 6 * 30 * 24 * 3600 : null,
+              });
+              // setAuth(true);
+            // } else if (!acceptedCookie) {
+            //   sessionStorage.setItem("digital-stage", response.user);
+            //   setSetSessionStorage(true);
+            //   setAuth(true);
+            // }
             return response.user;
           });
       })
       .catch((error) => {
-        setError(error.message);
+        // setError(error.message);
+        setLoginError(error.message)
         return error;
       });
   };
@@ -63,11 +77,13 @@ function useProvideAuth() {
           setRedirectToLogin(true);
         });
         setUser(response.user);
-        setError(null);
+        // setError(null);
+        setSignupError(null);
         return response.user;
       })
       .catch((error) => {
-        setError(error.message);
+        // setError(error.message);
+        setSignupError(error.message)
         return error;
       });
   };
@@ -79,7 +95,12 @@ function useProvideAuth() {
       .then(() => {
         setUser(false);
         setError(null);
+        setLoginError(null);
+        setSignupError(null);
         removeCookie("digital-stage");
+        // sessionStorage.removeItem("digital-stage");
+        // setSetSessionStorage(false);
+        // setAuth(false);
       })
       .catch((error) => {
         setError(error.message);
@@ -117,6 +138,11 @@ function useProvideAuth() {
         setUser(false);
       }
     });
+
+    // if(sessionStorageSet || Object.keys(cookie).length > 0){
+    //   setAuth(true);
+    //   setAcceptedCookie(true)
+    // }
     // Cleanup subscription on unmount
     return () => unsubscribe();
   }, []);
@@ -132,5 +158,13 @@ function useProvideAuth() {
     error,
     cookie,
     redirectToLogin,
+    // setAcceptedCookie,
+    // acceptedCookie,
+    // sessionStorageSet,
+    // auth,
+    loginError,
+    setLoginError,
+    setSignupError,
+    signupError
   };
 }

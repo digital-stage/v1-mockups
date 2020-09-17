@@ -37,11 +37,11 @@ const Input = (props: Props) => {
       borderRadius: "24px",
       color: "black",
       height: "36px",
-      width: `${props.context === "search" ? "300px" : "199px"}`,
+      width: `${props.context === "search" ? "200px" : "199px"}`,
       fontFamily: "Poppins",
       fontSize: "14px",
       // boxShadow: "0px 5px 30px #0B2140",
-      marginTop: "20px",
+      marginTop: `${props.context === "search" ? "0px" : "20px"}`,
       fontWeight: 600,
       borderBottom: `${props.error && "1px solid #F20544"}`
     },

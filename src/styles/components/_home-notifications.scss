@@ -1,9 +1,9 @@
 .notifications-list {
 
     .notifications-section {
-        margin: 20px;
-        max-height: calc(100vh - 220px);
-        min-height: calc(100vh - 220px);
+        margin: 20px 5px;
+        max-height: calc(100vh - 200px);
+        min-height: calc(100vh - 200px);
         overflow-y: scroll;
     }
 

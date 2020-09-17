@@ -73,9 +73,9 @@ export default function SignUpForm() {
   }, []);
 
   useEffect(() => {
-    if (auth.error)
+    if (auth.signupError)
       setShowAlert(true)
-  }, [auth.error]);
+  }, [auth.signupError]);
 
   const validate = () => {
     const errors: IError = {}
@@ -116,7 +116,7 @@ export default function SignUpForm() {
   return (
     <Container maxWidth="sm" className={`${classes.back}, p-0 mt-0`}>
       <div className={classes.paper}>
-        {showAlert && <div className="alert-box"><p>{auth.error}</p></div>}
+        {showAlert && <div className="alert-box"><p>{auth.signupError}</p></div>}
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Input
             required id="email"

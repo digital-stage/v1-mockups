@@ -3,7 +3,7 @@ import ButtonStyled from "../../Components/Form/Button";
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 import { Link } from "react-router-dom";
-import UserIcon1 from "../../assets/images/user-img-1.png";
+import Icons from "../../Components/Icons/Icons";
 
 const StageDetails = (props: { stage: { title: string, image: string, online: boolean, users: { userPhoto: string }[] } }) => {
     return (
@@ -20,23 +20,29 @@ const StageDetails = (props: { stage: { title: string, image: string, online: bo
                 <div className="groups mt-4 mb-2">
                     <h5>Groups</h5>
                     <div className="d-inline-block mr-3 text-center">
-                        <img src={UserIcon1} alt={UserIcon1} width="40px" height="40px" />
+                        {/* <img src={UserIcon1} alt={UserIcon1} width="40px" height="40px" />
+                         */}
+                        <Icons icon="singer-sopran" type="circled"/>
                         <p>Sopran</p>
                     </div>
                     <div className="d-inline-block mr-3 text-center">
-                        <img src={UserIcon1} alt={UserIcon1} width="40px" height="40px" />
+                        {/* <img src={UserIcon1} alt={UserIcon1} width="40px" height="40px" /> */}
+                        <Icons icon="singer-bass" type="circled"/>
                         <p>Bass</p>
                     </div>
                     <div className="d-inline-block mr-3 text-center">
-                        <img src={UserIcon1} alt={UserIcon1} width="40px" height="40px" />
+                        {/* <img src={UserIcon1} alt={UserIcon1} width="40px" height="40px" /> */}
+                        <Icons icon="singer-alto" type="circled"/>
                         <p>Alt</p>
                     </div>
                     <div className="d-inline-block mr-3 text-center">
-                        <img src={UserIcon1} alt={UserIcon1} width="40px" height="40px" />
+                        {/* <img src={UserIcon1} alt={UserIcon1} width="40px" height="40px" /> */}
+                        <Icons icon="singer-tenor" type="circled"/>
                         <p>Tenor</p>
                     </div>
                     <div className="d-inline-block mr-3 text-center">
-                        <img src={UserIcon1} alt={UserIcon1} width="40px" height="40px" />
+                        {/* <img src={UserIcon1} alt={UserIcon1} width="40px" height="40px" /> */}
+                        <Icons icon="conductor" type="circled"/>
                         <p>Conductor</p>
                     </div>
                 </div>
