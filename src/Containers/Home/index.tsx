@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme: Theme) =>
       '& .makeStyles-drawerClose-8': {
         width: '56px !important'
       },
+      '& .jss8':{
+        width: '56px !important'
+      },
       '& .MuiDrawer-paper': {
         overflow: "hidden !important"
       }
