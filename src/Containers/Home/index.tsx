@@ -1,112 +1,110 @@
-import React from "react";
-import StagesList from "./StagesList";
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import VideoLabelIcon from '@material-ui/icons/VideoLabel';
-import SettingsIcon from '@material-ui/icons/Settings';
-import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
-import StageDetails from "./StageDetails";
+import React from 'react';
+import clsx from 'clsx';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import StagesList from './StagesList'
+import Icons from '../../Components/Icons/Icons';
+import StageDetails from './StageDetails';
+import NotificationsDetails from './NotificationsDetails';
 import StageIcon from "../../assets/images/stage-icon.svg"
-import { IconButton } from "@material-ui/core";
+import NotificationsList from './NotificationsList';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import { useAuth } from "../../hooks/useAuth";
-import ArrowBackIosSharpIcon from '@material-ui/icons/ArrowBackIosSharp';
-import ArrowForwardIosSharpIcon from '@material-ui/icons/ArrowForwardIosSharp';
-import NotificationsList from "./NotificationsList";
-import NotificationsDetails from "./NotificationsDetails";
+import { useAuth } from '../../hooks/useAuth';
 
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: any;
-  value: any;
-  className?: any;
-}
+const drawerWidth = 380;
 
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, className, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`scrollable-force-tabpanel-${index}`}
-      aria-labelledby={`scrollable-force-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box p={3}>
-          <Typography component={'span'}>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-function a11yProps(index: any) {
-  return {
-    id: `scrollable-force-tab-${index}`,
-    'aria-controls': `scrollable-force-tabpanel-${index}`,
-  };
-}
-
-const useStyles = makeStyles((theme: any) => ({
-  root: {
-    flexGrow: 1,
-    width: '100%',
-    paddingTop: "0 !important",
-    "& .MuiPaper-elevation4": {
-      boxShadow: "none !important",
-    },
-    "& .MuiTabs-root": {
-      "& button": {
-        textTransform: "none !important",
-        color: "#fff !important",
-        padding: "0 !important",
-        fontFamily: "Poppins",
-        fontSize: "12px",
-        fontWeight: 600,
-        minHeight: "80px",
-        minWidth: "20%",
-        margin: "auto",
-        "&:focus": {
-          outline: '0'
-        },
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      '& .MuiListItem-gutters': {
+        padding: "16px !important"
+      },
+      '& .MuiListItemIcon-root': {
+        minWidth: "56px !important"
+      },
+      '& .makeStyles-drawerClose-8': {
+        width: '56px !important'
+      },
+      '& .MuiDrawer-paper': {
+        overflow: "hidden !important"
       }
     },
-    "& .MuiBox-root": {
-      padding: "0px"
-    }
-  },
-  indicator: {
-    backgroundColor: "#B71250"
-  },
-  // ".MuiTab-textColorPrimary.Mui-selected":{
-  //   color:"white !important"
-  // },
-  ".MuiTab-textColorPrimary": {
-    color: "#999999 !important"
-  },
-  // selected: {
-  //   color: "red",
-  //   ".MuiTab-textColorPrimary.Mui-selected": {
-  //     color: "white"
-  //   },
-  //   "& path": {
-  //     color: "white"
-  //   }
-  // }
-}));
+
+    appBar: {
+      zIndex: theme.zIndex.drawer + 1,
+      transition: theme.transitions.create(['width', 'margin'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+    },
+    appBarShift: {
+      marginLeft: drawerWidth,
+      width: `calc(100% - ${drawerWidth}px)`,
+      transition: theme.transitions.create(['width', 'margin'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+    menuButton: {
+      marginRight: 0,
+      justifyContent: "center",
+      color: "#979797",
+      "&:focus": {
+        outline: "0px",
+      },
+    },
+    hide: {
+      display: 'none',
+    },
+    drawer: {
+      width: drawerWidth,
+      flexShrink: 0,
+      whiteSpace: 'normal',
+    },
+    drawerOpen: {
+      width: drawerWidth,
+      backgroundColor: "#272727",
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+    drawerClose: {
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      overflowX: 'hidden',
+      backgroundColor: "#272727",
+      width: theme.spacing(7) + 1,
+      [theme.breakpoints.up('sm')]: {
+        width: theme.spacing(9) + 1,
+      },
+    },
+    toolbar: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+      padding: theme.spacing(0, 1),
+      // necessary for content to be below app bar
+      ...theme.mixins.toolbar,
+    },
+    content: {
+      flexGrow: 1,
+      padding: theme.spacing(3),
+    },
+  }),
+);
 
 const stages = [
-  { title: 'Bulshemier Theatre', mineStage: true, image: StageIcon, online: true, users: [{ userPhoto: StageIcon , username: "username"}] },
+  { title: 'Bulshemier Theatre', mineStage: true, image: StageIcon, online: true, users: [{ userPhoto: StageIcon, username: "username" }] },
   { title: 'National Theatre', mineStage: false, image: StageIcon, online: true, users: [{ userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }] },
-  { title: 'Theatre National Royal', mineStage: true, image: StageIcon, online: false, users: [{ userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon , username: "username"}] },
-  { title: 'The Old Theatre', mineStage: false, image: StageIcon, online: false, users: [{ userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon , username: "username"}, { userPhoto: StageIcon, username: "username" }] },
-  { title: 'Lyceum Theatre', mineStage: true, image: StageIcon, online: true, users: [{ userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon , username: "username"}, { userPhoto: StageIcon , username: "username"}, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon , username: "username"}, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }] },
+  { title: 'Theatre National Royal', mineStage: true, image: StageIcon, online: false, users: [{ userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }] },
+  { title: 'The Old Theatre', mineStage: false, image: StageIcon, online: false, users: [{ userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }] },
+  { title: 'Lyceum Theatre', mineStage: true, image: StageIcon, online: true, users: [{ userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }, { userPhoto: StageIcon, username: "username" }] },
 ];
 
 const notifications = [
@@ -118,67 +116,102 @@ const notifications = [
   { title: "You have been invited to Bulshemier Theatre", time: "2500", image: StageIcon, stageId: 0, type: "invitations" },
 ]
 
-enum Selected {
-  STAGES = "STAGES",
+enum SelectedItem {
+  MENU = "MENU",
+  STAGE = "STAGE",
   SETTINGS = "SETTINGS",
-  NOTIFICATIONS = "NOTIFICATIONS"
+  NOTIFICATION = "NOTIFICATION"
 }
 
-const Home = () => {
-  const auth = useAuth();
+export default function Home() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const auth = useAuth();
+  const [open, setOpen] = React.useState(true);
   const [stageId, setStageId] = React.useState(0);
+  const [selectedItem, setSelectedItem] = React.useState<string>(SelectedItem.STAGE);
   const [notificationId, setNotificationId] = React.useState(0);
-  const [selectedStage, setSelectedStage] = React.useState(Selected.STAGES);
-  const [showLeftMenu, setShowLeftMenu] = React.useState(true);
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    setValue(newValue);
+
+  const handleDrawer = (icon: string) => {
+    if (icon === "menu") {
+      setOpen(!open);
+    }
   };
 
+  const setDrawerSelection = (selection: string) => {
+    console.log(selection)
+    if (selection === SelectedItem.MENU) {
+      setSelectedItem(selectedItem);
+    }
+    else {
+      setSelectedItem(selection);
+    }
+  };
+
+  const setDrawerIconColor = (selected: string) => {
+    let color = "#999";
+    if (selected === SelectedItem.MENU) {
+      color = "#fff"
+    }
+    if (selected === selectedItem) {
+      color = "#fff"
+    }
+    return color
+  }
+
   return (
-    <div className="home">
+    <div className={clsx(classes.root, "home")}>
       <div className="log-out-button" onClick={() => auth.signout()}><AccountCircleIcon style={{ color: "white" }} /></div>
-      <div className="toggle-home-tabs" style={showLeftMenu ? { left: "370px" } : { left: "20px" }}>
-        <IconButton aria-label="hide" onClick={() => { setShowLeftMenu(!showLeftMenu) }}>
-          {showLeftMenu ? <ArrowBackIosSharpIcon style={{ color: "white" }} /> : <ArrowForwardIosSharpIcon style={{ color: "white" }} />}
-        </IconButton>
-      </div>
-      {showLeftMenu && <div className="left-side">
-        <div className={classes.root}>
-          <AppBar position="static" color="transparent">
-            <Tabs classes={{ indicator: classes.indicator }}
-              value={value}
-              onChange={handleChange}
-              scrollButtons="on"
-              textColor="primary"
-              aria-label="scrollable force tabs example"
-            >
-              <Tab label="Stages" icon={<VideoLabelIcon />} {...a11yProps(0)} onClick={() => setSelectedStage(Selected.STAGES)} />
-              <Tab label="Notifications" icon={<NotificationsNoneIcon />} {...a11yProps(1)} onClick={() => setSelectedStage(Selected.NOTIFICATIONS)} />
-              <Tab label="Settings" icon={<SettingsIcon />} {...a11yProps(2)} onClick={() => setSelectedStage(Selected.SETTINGS)} />
-            </Tabs>
-          </AppBar>
-          <TabPanel value={value} index={0}>
-            <StagesList onClick={(id) => { setStageId(id) }} />
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            <NotificationsList onClick={(id) => { setNotificationId(id) }} notifications={notifications} />
-          </TabPanel>
-          <TabPanel value={value} index={2}>
-            Settings
-          </TabPanel>
+      <Drawer
+        variant="permanent"
+        className={clsx(classes.drawer, {
+          [classes.drawerOpen]: open,
+          [classes.drawerClose]: !open,
+        })}
+        classes={{
+          paper: clsx({
+            [classes.drawerOpen]: open,
+            [classes.drawerClose]: !open,
+          }),
+        }}
+      >
+        <div style={{ display: 'flex', flexDirection: "row" }} className="left-side">
+          <div className="side-drawer">
+            <List>
+              {['menu', 'stage', 'notification'].map((text) => (
+                <ListItem button key={text} onClick={() => { handleDrawer(text); setDrawerSelection(text.toUpperCase()) }}>
+                  <Icons icon={text} color="none" fillColor={setDrawerIconColor(text.toUpperCase())} width={30} height={25} />
+                </ListItem>
+              ))}
+            </List>
+            <List>
+              {['feedback', 'settings'].map((text) => (
+                <ListItem button key={text}>
+                  <Icons icon={text} color="none" fillColor={setDrawerIconColor(text.toUpperCase())} width={30} height={25} />
+                </ListItem>
+              ))}
+            </List>
+          </div>
+          <div>
+            {
+              selectedItem === SelectedItem.STAGE &&
+              <><StagesList onClick={(id) => { setStageId(id) }} /></>
+            }
+            {
+              selectedItem === SelectedItem.NOTIFICATION &&
+              <NotificationsList onClick={(id) => { setNotificationId(id) }} notifications={notifications} />
+            }
+          </div>
         </div>
-      </div>}
-      <div className="content" style={showLeftMenu ? { width: "calc(100% -370px)" } : { width: "100%" }}>
-        {/* {selectedStage === Selected.HOME && <h4>Home</h4>} */}
-        {selectedStage === Selected.STAGES && <StageDetails stage={stages[stageId]} />}
-        {selectedStage === Selected.NOTIFICATIONS && <NotificationsDetails stage={stages[notifications[notificationId].stageId]} />}
-        {selectedStage === Selected.SETTINGS && <h4>Settings</h4>}
-      </div>
+
+      </Drawer>
+
+
+      <main className={clsx(classes.content, "content")}>
+        {selectedItem === SelectedItem.STAGE && <StageDetails stage={stages[stageId]} />}
+        {selectedItem === SelectedItem.NOTIFICATION && <NotificationsDetails stage={stages[notifications[notificationId].stageId]} />}
+        {selectedItem === SelectedItem.SETTINGS && <h4>Settings</h4>}
+      </main>
     </div>
   );
-};
-
-export default Home;
+}

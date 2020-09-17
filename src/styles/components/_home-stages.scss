@@ -13,6 +13,14 @@
         max-height: auto;
         background: $dark-gray-01;
 
+        .side-drawer{
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            max-height: 100vh;
+            border-right: 1px solid #95989A
+        }
+
         .stages-list {
             text-align: center;
             min-height: calc(100vh - 100px);
@@ -62,8 +70,8 @@
             }
 
             .stages-list {
-                max-height: calc(100vh - 220px);
-                min-height: calc(100vh - 220px);
+                max-height: calc(100vh - 180px);
+                min-height: calc(100vh - 840px);
                 overflow-y: scroll;
                 margin: 10px 0;
 
@@ -85,10 +93,9 @@
     .content {
         background-image: linear-gradient(to bottom, #575757, $dark-gray-01);
         display: inline-block;
-        width: calc(100vw - 370px);
+        width: calc(100vw - 380px);
         max-height: 100vh;
         overflow-y: auto;
-        padding-top: 50px;
         text-align: center;
     }
 

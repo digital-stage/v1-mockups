@@ -46,10 +46,11 @@ const NotificationsList = (props: { onClick(i: number): void, notifications: Arr
         }
         
 
-    }, [searchedWord, searchedTag, props.notifications, list]);
+    }, [searchedWord, searchedTag, props.notifications]);
 
     return (
         <div className="notifications-list">
+        <h5 style={{color:"white", textAlign:"left", padding:"20px 20px"}}>Notifications</h5>
             <div className="search-section">
                 <div style={{ display: "inline-block" }}>
                     <SearchInput list={list} onChange={onChangeHandler} clear={clearInput} selected={searchedWord} placeholder="Search notifications" />

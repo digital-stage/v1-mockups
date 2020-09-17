@@ -41,7 +41,7 @@ const SearchInput = (props: { list: Array<{ title: string }>, onChange: any, cle
                     </IconButton>
                 }}
             />
-            <SearchIcon style={{ marginTop: "25px", marginLeft:"20px"}} />
+            <SearchIcon style={{ marginTop: "5px", marginLeft:"20px"}} />
         </div>
     );
 };
