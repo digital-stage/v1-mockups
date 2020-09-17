@@ -46,6 +46,7 @@ const NotificationsList = (props: { onClick(i: number): void, notifications: Arr
         }
         
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchedWord, searchedTag, props.notifications]);
 
     return (
