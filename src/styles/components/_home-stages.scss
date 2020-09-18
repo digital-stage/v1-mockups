@@ -103,12 +103,16 @@
         text-align: left;
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
+        // justify-content: space-around;
         vertical-align: middle;
         align-content: center;
-        margin-top: 30px;
+        margin-top: 5%;
         padding: 0 4rem;
 
+        .stage-details-content{
+            min-width: 50%;
+            max-width: 50%;
+        }
         h2,
         h5,
         h4,
@@ -140,12 +144,12 @@
 
         img.stage-icon {
             text-align: left;
-            width: 171px;
-            height: 171px;
+            width: 130px;
+            height: 130px;
         }
 
         p {
-            width: 70%;
+            width: 90%;
         }
 
         span.online {
@@ -199,6 +203,13 @@
     display: none !important;
 }
 
+.display-online{
+    display: none !important;
+}
+.hide-online{
+    display: block !important;
+}
+
 // Small devices (landscape phones, 576px and up)
 // @media only screen and (max-width: 576px) {
 //     .show {
@@ -219,8 +230,18 @@
 //     }
 // }
 
-// Medium devices (tablets, 768px and up)
-// @media only screen and (max-width: 768px) {
+// Medium devices (tablets, 768px and below)
+@media only screen and (max-width: 768px) {
+    .stage-details {
+        display: initial !important
+    }
+    .display-online{
+        display:block !important
+    }
+    .hide-online{
+        display: none !important;
+    }
+}
 //     .left-side {
 //         min-width: 330px !important;
 //     }

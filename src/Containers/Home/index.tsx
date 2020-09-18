@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme: Theme) =>
       },
       '& .MuiDrawer-paper': {
         overflow: "hidden !important"
+      },
+      '& .makeStyles-content-10':{
+        padding: "0px !important"
       }
     },
 

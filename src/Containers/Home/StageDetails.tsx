@@ -4,8 +4,31 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 import { Link } from "react-router-dom";
 import Icons from "../../Components/Icons/Icons";
+import { Badge, createStyles, makeStyles } from "@material-ui/core";
 
-const StageDetails = (props: { stage: { title: string, image: string, online: boolean, users: { userPhoto: string }[] } }) => {
+const useStyles = makeStyles(() =>
+    createStyles({
+        root: {
+            '& .MuiBadge-anchorOriginTopRightCircle': {
+                backgroundColor: "#272727 !important",
+                color: "white !important",
+                boxShadow: "0px 1px 10px #464747"
+            }
+        }
+    })
+);
+
+const StageDetails = (props: {
+    stage: {
+        title: string,
+        image: string,
+        online: boolean,
+        users: {
+            userPhoto: string
+        }[]
+    }
+}) => {
+    const classes = useStyles();
     return (
         <div className="stage-details">
             <div className="stage-image">
@@ -16,33 +39,43 @@ const StageDetails = (props: { stage: { title: string, image: string, online: bo
                     <h5>Stage</h5>
                     <h2>{props.stage.title}</h2>
                     <h6 style={{ color: "#B7B7B7" }}>Created by info@digital-stage.org</h6>
+                    <span className="display-online">
+                        <div className="stage-status d-flex d-flex-row my-2">
+                            {props.stage.online && <span style={{ color: "white" }} className="online d-inline-block mr-3"></span>}
+                            {props.stage.online && <h5 className="d-inline-block mr-4">Online</h5>}
+                        </div>
+                    </span>
                 </div>
                 <div className="groups mt-4 mb-2">
                     <h5>Groups</h5>
                     <div className="d-inline-block mr-3 text-center">
-                        {/* <img src={UserIcon1} alt={UserIcon1} width="40px" height="40px" />
-                         */}
-                        <Icons icon="singer-sopran" type="circled"/>
+                        <Badge badgeContent={2} className={classes.root} showZero overlap="circle">
+                            <Icons icon="singer-sopran" type="circled" />
+                        </Badge>
                         <p>Sopran</p>
                     </div>
                     <div className="d-inline-block mr-3 text-center">
-                        {/* <img src={UserIcon1} alt={UserIcon1} width="40px" height="40px" /> */}
-                        <Icons icon="singer-bass" type="circled"/>
+                        <Badge badgeContent={1} className={classes.root} showZero overlap="circle">
+                            <Icons icon="singer-bass" type="circled" />
+                        </Badge>
                         <p>Bass</p>
                     </div>
                     <div className="d-inline-block mr-3 text-center">
-                        {/* <img src={UserIcon1} alt={UserIcon1} width="40px" height="40px" /> */}
-                        <Icons icon="singer-alto" type="circled"/>
+                        <Badge badgeContent={12} className={classes.root} showZero overlap="circle">
+                            <Icons icon="singer-alto" type="circled" />
+                        </Badge>
                         <p>Alt</p>
                     </div>
                     <div className="d-inline-block mr-3 text-center">
-                        {/* <img src={UserIcon1} alt={UserIcon1} width="40px" height="40px" /> */}
-                        <Icons icon="singer-tenor" type="circled"/>
+                        <Badge badgeContent={10} className={classes.root} showZero overlap="circle">
+                            <Icons icon="singer-tenor" type="circled" />
+                        </Badge>
                         <p>Tenor</p>
                     </div>
                     <div className="d-inline-block mr-3 text-center">
-                        {/* <img src={UserIcon1} alt={UserIcon1} width="40px" height="40px" /> */}
-                        <Icons icon="conductor" type="circled"/>
+                        <Badge badgeContent={2} className={classes.root} showZero overlap="circle">
+                            <Icons icon="conductor" type="circled" />
+                        </Badge>
                         <p>Conductor</p>
                     </div>
                 </div>
@@ -79,10 +112,12 @@ const StageDetails = (props: { stage: { title: string, image: string, online: bo
                 </div>
                 <a href="/#" style={{ fontSize: "12px" }}>Show stage invitation</a>
             </div>
-            <div className="stage-status d-flex d-flex-row">
-                {props.stage.online && <span style={{ color: "white" }} className="online d-inline-block mr-3"></span>}
-                {props.stage.online && <h5 className="d-inline-block mr-4">Online</h5>}
-            </div>
+            <span className="hide-online">
+                <div className="stage-status d-flex d-flex-row">
+                    {props.stage.online && <span style={{ color: "white" }} className="online d-inline-block mr-3"></span>}
+                    {props.stage.online && <h5 className="d-inline-block mr-4">Online</h5>}
+                </div>
+            </span>
         </div>
     );
 };

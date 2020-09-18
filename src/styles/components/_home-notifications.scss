@@ -40,25 +40,31 @@
     display: flex;
     color: white;
     text-align: left;
-    margin: 0 4rem;
-    justify-content: space-around;
+    padding: 5% 10%;
+    // justify-content: space-around;
 
     .notification-details-intro {
+        min-width: 40%;
+        max-width:40%;
         .stage-icon {
             text-align: center;
+
             img {
-                width: 160px;
-                height: 160px;
+                width: 130px;
+                height: 130px;
             }
         }
     }
 
-    .notification-details-users{
-        p{
-            color:white;
-            max-width:300px;
+    .notification-details-users {
+        min-width:40%;
+        max-width:40%;
+        p {
+            color: white;
+            max-width: 300px;
         }
-        .users-list-scrollablle{
+
+        .users-list-scrollablle {
             display: flex;
             max-width: 330px;
             overflow-x: scroll;
@@ -66,12 +72,39 @@
         }
     }
 
-    .notification-details-status{
-        .online{
+    .notification-details-status {
+        .online {
             width: 16px;
             height: 16px;
             background-color: #00FF08;
             border-radius: 25px
         }
+    }
+}
+
+.display-online {
+    display: none !important;
+}
+
+.hide-online {
+    display: block !important;
+}
+
+@media only screen and (max-width: 768px) {
+    .notification-details {
+        display: block !important
+    }
+
+    .stage-icon {
+        text-align: left !important;
+
+    }
+
+    .display-online {
+        display: block !important
+    }
+
+    .hide-online {
+        display: none !important;
     }
 }
