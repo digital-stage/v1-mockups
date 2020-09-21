@@ -10,15 +10,25 @@ import { ProvideAuth, useAuth } from "./hooks/useAuth.js";
 import PageNotFound from "./Containers/PageNotFound";
 import Drawer from "./Containers/Home/Drawer";
 // import CookieDialog from "./Components/CookieDialog";
+import { StagesContextProvider } from "./lib/useStages";
+import { RequestContextProvider } from "./lib/useRequest";
+import { DeviceContextProvider } from "./lib/useDevices";
+
 
 function App() {
   return (
-    <ProvideAuth>
-      <div className="App">
-        <Routes />
-      </div>
-      {/* <CookieDialog/> */}
-    </ProvideAuth>
+    <RequestContextProvider>
+      <ProvideAuth>
+        <DeviceContextProvider>
+          <StagesContextProvider>
+            <div className="App">
+              <Routes />
+            </div>
+            {/* <CookieDialog/> */}
+          </StagesContextProvider>
+        </DeviceContextProvider>
+      </ProvideAuth>
+    </RequestContextProvider>
   );
 }
 

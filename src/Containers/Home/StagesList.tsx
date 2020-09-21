@@ -11,6 +11,7 @@ import { Collapse } from "@material-ui/core";
 import ButtonStyled from "../../Components/Form/Button";
 import AddIcon from '@material-ui/icons/Add';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import { useStages } from "../../lib/useStages";
 
 const stages = [
     { title: 'Bulshemier Theatre', mineStage: true, image: StageIcon, online: true, users: [{ userPhoto: UserIcon1 }], description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, corporis." },
@@ -30,6 +31,8 @@ const StagesList = (props: { onClick(i: number): void }) => {
     const [checkedMyStage, setCheckedMyStage] = React.useState(true);
     const [checkedJoindedStages, setCheckedJoinedStages] = React.useState(true);
     const [clickedId, setclickedId] = React.useState(0);
+    const stage = useStages();
+    
 
     const handleMySatgeClick = () => {
         setCheckedMyStage((prev) => !prev);
@@ -55,6 +58,8 @@ const StagesList = (props: { onClick(i: number): void }) => {
         if (selected.length === 0) {
             setList(stages)
         }
+
+        console.log(stage)
 
     }, [selected]);
 
@@ -101,6 +106,7 @@ const StagesList = (props: { onClick(i: number): void }) => {
                 text="New stage"
                 type="submit"
                 startIcon={<AddIcon />}
+                onClick={()=>stage.createStage("Test stage", "123", 200, 200, )}
             />
             <ButtonStyled
                 className="button-white ml-3"
