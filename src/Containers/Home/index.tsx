@@ -12,6 +12,7 @@ import StageIcon from "../../assets/images/stage-icon.svg"
 import NotificationsList from './NotificationsList';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { useAuth } from '../../hooks/useAuth';
+import CreateStageModal from './CreateStageModal';
 
 const drawerWidth = 380;
 
@@ -136,7 +137,7 @@ export default function Home() {
   const [stageId, setStageId] = React.useState(0);
   const [selectedItem, setSelectedItem] = React.useState<string>(SelectedItem.STAGE);
   const [notificationId, setNotificationId] = React.useState(0);
-
+  const [openCreateStageModal, setOpenCreateStageModal] = React.useState(false);
 
   const handleDrawer = (icon: string) => {
     if (icon === "menu") {
@@ -167,6 +168,10 @@ export default function Home() {
 
   return (
     <div className={clsx(classes.root, "home")}>
+      <CreateStageModal 
+      open={openCreateStageModal}
+      handleClose={()=>setOpenCreateStageModal(false)}
+      />
       <div className="log-out-button" onClick={() => auth.signout()}><AccountCircleIcon style={{ color: "white" }} /></div>
       <Drawer
         variant="permanent"
@@ -201,7 +206,10 @@ export default function Home() {
           <div>
             {
               selectedItem === SelectedItem.STAGE &&
-              <><StagesList onClick={(id) => { setStageId(id) }} /></>
+              <><StagesList 
+              onClick={(id) => { setStageId(id) }} 
+              handleOpen={()=>setOpenCreateStageModal(true)}
+              /></>
             }
             {
               selectedItem === SelectedItem.NOTIFICATION &&

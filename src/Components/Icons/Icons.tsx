@@ -15,7 +15,7 @@ type Props = {
     width?: number,
     height?:number,
     type?:string,
-    fillColor?:string 
+    fillColor?:string
 }
 
 const Icons = (props: Props) => {

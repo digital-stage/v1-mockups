@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 import StagesList from "./StagesList";
 import { makeStyles } from '@material-ui/core/styles';
@@ -161,7 +162,7 @@ const MiniDrawer = () => {
             </Tabs>
           </AppBar>
           <TabPanel value={value} index={0}>
-            <StagesList onClick={(id) => { setStageId(id) }} />
+            {/* <StagesList onClick={(id) => { setStageId(id) }} /> */}
           </TabPanel>
           <TabPanel value={value} index={1}>
             <NotificationsList onClick={(id) => { setNotificationId(id) }} notifications={notifications} />
