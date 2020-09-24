@@ -9,8 +9,8 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Collapse } from "@material-ui/core";
 import ButtonStyled from "../../Components/Form/Button";
-import AddIcon from '@material-ui/icons/Add';
-import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+// import AddIcon from '@material-ui/icons/Add';
+// import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 
 const stages = [
     { title: 'Bulshemier Theatre', mineStage: true, image: StageIcon, online: true, users: [{ userPhoto: UserIcon1 }], description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, corporis." },
@@ -24,12 +24,14 @@ const stages = [
     // { title: 'The London Palladium', mineStage: true, image: StageIcon, online: false }
 ];
 
-const StagesList = (props: { onClick(i: number): void }) => {
+const StagesList = (props: { onClick(i: number): void, handleOpen(open: boolean):void  }) => {
     const [list, setList] = React.useState(stages);
     const [selected, setSelected] = React.useState("");
     const [checkedMyStage, setCheckedMyStage] = React.useState(true);
     const [checkedJoindedStages, setCheckedJoinedStages] = React.useState(true);
     const [clickedId, setclickedId] = React.useState(0);
+
+  
 
     const handleMySatgeClick = () => {
         setCheckedMyStage((prev) => !prev);
@@ -98,16 +100,17 @@ const StagesList = (props: { onClick(i: number): void }) => {
         <div className="float-right mb-2 mr-4">
             <ButtonStyled
                 className="button-red"
-                text="New stage"
+                text="Create stage"
                 type="submit"
-                startIcon={<AddIcon />}
+                onClick={()=>props.handleOpen(true)}
+                // startIcon={<AddIcon />}
             />
-            <ButtonStyled
+            {/* <ButtonStyled
                 className="button-white ml-3"
                 text="Enter link"
                 type="submit"
                 startIcon={<EditOutlinedIcon />}
-            />
+            /> */}
         </div>
     </div>;
 };

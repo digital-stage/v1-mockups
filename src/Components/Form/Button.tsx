@@ -6,7 +6,9 @@ type Props = {
   text: string,
   className:string,
   type?: string,
-  startIcon?: ReactNode
+  startIcon?: ReactNode,
+  disabled?:boolean,
+  style?:Object
 }
 
 const ButtonStyled = (props: Props) => {

@@ -96,3 +96,26 @@
 .users-list-scrollablle::-webkit-scrollbar-thumb:hover {
   background: transparent;
 }
+
+
+/* width */
+.step-content::-webkit-scrollbar {
+  width: 5px;
+  background-color: #2A2A2A;
+}
+
+/* Track */
+.step-content::-webkit-scrollbar-track {
+  border-radius: 0px;
+}
+
+/* Handle */
+.step-content::-webkit-scrollbar-thumb {
+  background: $med-gray-01;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+.step-content::-webkit-scrollbar-thumb:hover {
+  background: $med-gray-01;
+}

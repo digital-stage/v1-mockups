@@ -8,7 +8,6 @@ import Welcome from "./Containers/Login/Welcome";
 import Home from "./Containers/Home";
 import { ProvideAuth, useAuth } from "./hooks/useAuth.js";
 import PageNotFound from "./Containers/PageNotFound";
-import Drawer from "./Containers/Home/Drawer";
 // import CookieDialog from "./Components/CookieDialog";
 
 function App() {
@@ -42,7 +41,6 @@ function Routes() {
       <ProtectedRoutes path="/stage" component={Stage} auth={auth.cookie} />
       <ProtectedRoutes path="/join-stage" component={JoinStage} auth={auth.cookie} />
       <ProtectedRoutes path="/home" component={Home} auth={auth.cookie} />
-      <ProtectedRoutes path="/drawer" component={Drawer} auth={auth.cookie} />
       <Route path='*' exact={true} component={PageNotFound} />
     </Switch>
   )
