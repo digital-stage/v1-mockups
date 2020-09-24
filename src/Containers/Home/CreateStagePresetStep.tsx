@@ -59,7 +59,7 @@ export type Stages = {
 }
 
 export const CreateStagePresetStep = () => {
-    const [stageGroups, setStageGroups] = React.useState({ choir: choir, theatre: theatre })
+    const [stageGroups, setStageGroups] = React.useState<any>({ choir: choir, theatre: theatre })
     const [deletedGroup, setDeletedGroup] = React.useState<number>();
     const [selectedPreset, setSelectedPreset] = React.useState<string>(Preset.CHOIR);
 
@@ -82,13 +82,10 @@ export const CreateStagePresetStep = () => {
 
     useEffect(() => {
         if (deletedGroup) {
-            if (selectedPreset === Preset.CHOIR) {
-                let groups = stageGroups[selectedPreset === "choir" ? "choir" : "theatre"].filter(group => group.id !== deletedGroup);
-                setStageGroups({ theatre: [...stageGroups.theatre], choir: [...groups] })
-            } else {
-                let groups = stageGroups[selectedPreset === "theatre" ? "theatre" : "choir"].filter(group => group.id !== deletedGroup);
-                setStageGroups({ choir: [...stageGroups.choir], theatre: [...groups] })
-            }
+            // if (selectedPreset === Preset.CHOIR || selectedPreset === Preset.THEATRE ) {
+                let groups = stageGroups[selectedPreset].filter((group:any)=> group.id !== deletedGroup);
+                setStageGroups({...stageGroups, [selectedPreset]: [...groups] })
+            // } 
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [deletedGroup, selectedPreset])
@@ -128,8 +125,8 @@ export const CreateStagePresetStep = () => {
             </div>
             <h6>Groups</h6>
             <div className="d-flex">
-                {stageGroups[selectedPreset === "choir" ? "choir" : "theatre"].map((group) => <GroupLayout group={group} key={group.id} handleGroupDelete={() => deleteGroup(group.id)} />)}
-                {stageGroups[selectedPreset === "choir" ? "choir" : "theatre"].length < 5 &&
+                {stageGroups[selectedPreset].map((group:any) => <GroupLayout group={group} key={group.id} handleGroupDelete={() => deleteGroup(group.id)} />)}
+                {stageGroups[selectedPreset].length < 5 &&
                     <div className="text-center p-2" style={{ width: "calc(100% / 5)" }}>
                         <div style={{
                             border: `1px solid #F20544`,
