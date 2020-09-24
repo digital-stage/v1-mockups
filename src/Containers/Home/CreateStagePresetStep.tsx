@@ -107,7 +107,7 @@ export const CreateStagePresetStep = () => {
                                 cursor: "pointer"
                             }}>
                             {selectPreset(preset, "preset")}
-                            <h6>{preset}</h6>
+                            <h6>{preset.charAt(0).toUpperCase() + preset.slice(1)}</h6>
                         </div>
                     )
                 })
@@ -115,7 +115,7 @@ export const CreateStagePresetStep = () => {
             </div>
             <div className="d-flex mt-4">
                 <div className="w-50 mr-5">
-                    <h6>Choir</h6>
+                    <h6>{selectedPreset.charAt(0).toUpperCase() + selectedPreset.slice(1)}</h6>
                     <p className="white">This is a preset description Text. Lets explain the scenario this preset was created for...  Forage hashtag taiyaki coloring book. Gastropub sustainable kickstarter roof party. </p>
                 </div>
                 <div className="w-50 ml-5">
