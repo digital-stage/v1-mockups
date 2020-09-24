@@ -50,8 +50,39 @@ const useColorlibStepIconStyles = makeStyles({
     },
     active: {
         boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
+        '&.icon1': {
+            backgroundColor: "#5D2950 !important"
+        },
+        '&.icon2': {
+            backgroundColor: "#472B51"
+        },
+        '&.icon3': {
+            backgroundColor: "#81254E"
+        },
+        '&.icon4': {
+            backgroundColor: "#B61E4A"
+        },
+        '&.icon5': {
+            backgroundColor: "#DD1947"
+        },
     },
-    completed: {},
+    completed: {
+        '&.icon1': {
+            backgroundColor: "#5D2950 !important"
+        },
+        '&.icon2': {
+            backgroundColor: "#472B51"
+        },
+        '&.icon3': {
+            backgroundColor: "#81254E"
+        },
+        '&.icon4': {
+            backgroundColor: "#B61E4A"
+        },
+        '&.icon5': {
+            backgroundColor: "#DD1947"
+        },
+    },
 });
 
 function ColorlibStepIcon(props: StepIconProps) {
@@ -92,36 +123,6 @@ const useStyles = makeStyles((theme: Theme) =>
             },
             '& .MuiStepLabel-label.MuiStepLabel-active, .MuiStepLabel-label.MuiStepLabel-completed': {
                 color: "#fff"
-            },
-            '& .makeStyles-completed-35.icon1': {
-                backgroundColor: "#5D2950 !important"
-            },
-            '& .makeStyles-completed-35.icon2': {
-                backgroundColor: "#472B51"
-            },
-            '& .makeStyles-completed-35.icon3': {
-                backgroundColor: "#81254E"
-            },
-            '& .makeStyles-completed-35.icon4': {
-                backgroundColor: "#B61E4A"
-            },
-            '& .makeStyles-completed-35.icon5': {
-                backgroundColor: "#DD1947"
-            },
-            '& .makeStyles-active-34.icon1': {
-                backgroundColor: "#5D2950 !important"
-            },
-            '& .makeStyles-active-34.icon2': {
-                backgroundColor: "#472B51"
-            },
-            '& .makeStyles-active-34.icon3': {
-                backgroundColor: "#81254E"
-            },
-            '& .makeStyles-active-34.icon4': {
-                backgroundColor: "#B61E4A"
-            },
-            '& .makeStyles-active-34.icon5': {
-                backgroundColor: "#DD1947"
             },
             '& .MuiStepper-root': {
                 padding: "0px"
