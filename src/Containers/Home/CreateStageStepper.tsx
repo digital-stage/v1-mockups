@@ -4,15 +4,12 @@ import clsx from 'clsx';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import SettingsIcon from '@material-ui/icons/Settings';
-import GroupAddIcon from '@material-ui/icons/GroupAdd';
-import VideoLabelIcon from '@material-ui/icons/VideoLabel';
 import StepConnector from '@material-ui/core/StepConnector';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import { StepIconProps } from '@material-ui/core/StepIcon';
 import ButtonStyled from '../../Components/Form/Button';
 import Icons from '../../Components/Icons/Icons';
+import { CreateStageSuccessStep } from './CreateStageSuccessStep';
+import { CreateStagePresetStep } from './CreateStagePresetStep';
 
 
 const ColorlibConnector = withStyles({
@@ -22,13 +19,13 @@ const ColorlibConnector = withStyles({
     active: {
         '& $line': {
             backgroundImage:
-                'linear-gradient(to right, #5D2950, #472B51, #81254E, #B61E4A, #DD1947)',
+                'linear-gradient(to right, #472B51, #81254E, #B61E4A)',
         },
     },
     completed: {
         '& $line': {
             backgroundImage:
-            'linear-gradient(to right, #5D2950, #472B51, #81254E, #B61E4A, #DD1947)',
+                'linear-gradient(to right, #472B51, #81254E, #B61E4A)',
         },
     },
     line: {
@@ -88,7 +85,7 @@ const useStyles = makeStyles((theme: Theme) =>
         root: {
             width: '100%',
             '& .MuiPaper-root': {
-                backgroundColor: "transparent"
+                backgroundColor: "transparent",
             },
             '& .MuiStepLabel-label': {
                 color: "#777777"
@@ -126,18 +123,20 @@ const useStyles = makeStyles((theme: Theme) =>
             '& .makeStyles-active-34.icon5': {
                 backgroundColor: "#DD1947"
             },
-            '& .MuiStepper-root':{
-                padding:"0px"
+            '& .MuiStepper-root': {
+                padding: "0px"
             }
         },
         button: {
             marginRight: theme.spacing(2),
         },
         instructions: {
-            marginTop: theme.spacing(5),
-            marginBottom: theme.spacing(5),
+            marginTop: theme.spacing(1),
+            marginBottom: theme.spacing(1),
             color: "#fff",
-            textAlign: "center"
+            textAlign: "center",
+            maxHeight:"53vh",
+            overflowY:"auto"
         },
     }),
 );
@@ -151,7 +150,7 @@ function getStepContent(step: number) {
         case 0:
             return 'Add information';
         case 1:
-            return 'Select preset';
+            return <CreateStagePresetStep/>;
         case 2:
             return 'Invite user';
         case 3:
@@ -182,7 +181,7 @@ export default function CustomizedSteppers() {
 
     return (
         <div className={classes.root}>
-            <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector  style={{backgroundColor:"red"}}/>}>
+            <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector style={{ backgroundColor: "red" }} />}>
                 {steps.map((label, i) => (
                     <Step key={label}>
                         <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
@@ -192,30 +191,33 @@ export default function CustomizedSteppers() {
             <div>
                 {activeStep === steps.length ? (
                     <div className="text-center">
-                        <Typography className={classes.instructions}>
-                            Stage has been successfully created!
-                        </Typography>
+                        <CreateStageSuccessStep/>
                         <ButtonStyled
                             className="button-white"
-                            text="Create another stage"
+                            text="Close"
                             type="submit"
                             onClick={handleReset}
+                        />
+                        <ButtonStyled
+                            className="button-red ml-3"
+                            text="Start stage"
+                            type="submit"
                         />
                     </div>
                 ) : (
                         <div>
-                            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+                            <div className={[classes.instructions, 'step-content'].join(' ')}>{getStepContent(activeStep)}</div>
                             <div className="text-center">
-                                <ButtonStyled
+                                {activeStep > 0 && <ButtonStyled
                                     className="button-white"
                                     text="Back"
                                     type="submit"
-                                    disabled={activeStep === 0}
+                                    // disabled={activeStep === 0}
                                     onClick={handleBack}
-                                />
+                                />}
                                 <ButtonStyled
                                     className="button-red ml-2"
-                                    text={activeStep === steps.length - 1 ? 'Save' : 'Next'}
+                                    text={activeStep === steps.length - 1 ? 'Send invitation' : 'Next'}
                                     type="submit"
                                     onClick={handleNext}
                                 />

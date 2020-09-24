@@ -7,7 +7,8 @@ type Props = {
   className:string,
   type?: string,
   startIcon?: ReactNode,
-  disabled?:boolean
+  disabled?:boolean,
+  style?:Object
 }
 
 const ButtonStyled = (props: Props) => {
