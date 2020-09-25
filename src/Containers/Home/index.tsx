@@ -146,7 +146,6 @@ export default function Home() {
   };
 
   const setDrawerSelection = (selection: string) => {
-    console.log(selection)
     if (selection === SelectedItem.MENU) {
       setSelectedItem(selectedItem);
     }

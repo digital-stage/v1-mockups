@@ -10,6 +10,7 @@ import ButtonStyled from '../../Components/Form/Button';
 import Icons from '../../Components/Icons/Icons';
 import ColorPicker from '../../Components/Presets/ColorPicker';
 import IconPicker from '../../Components/Presets/IconPicker';
+import { Group } from './CreateStagePresetStep';
 
 const useStyles = makeStyles({
     root: {
@@ -81,27 +82,43 @@ export enum IconChipsEnum {
 const ColorChips = [ColorChipsEnum.ALL, ColorChipsEnum.CONTRAST, ColorChipsEnum.PASTEL];
 const IconChips = [IconChipsEnum.ALL, IconChipsEnum.CHOIR, IconChipsEnum.ORCHESTRA, IconChipsEnum.BAND, IconChipsEnum.THEATRE, IconChipsEnum.DANCE, IconChipsEnum.INSTRUMENTS, IconChipsEnum.MISC]
 
-export default function CreateEditGroup(props: any) {
+export default function CreateEditGroup(props: { 
+    group?: Group | null, 
+    open: boolean, 
+    handleClose: any, 
+    InputProps?:any,
+    saveGroup: any
+ }) {
     const classes = useStyles();
     const [selected, setSelected] = React.useState<string>(Tabs.COLORS)
     const [nameLength, setNameLength] = React.useState<number>(0)
+    const [name, setName] = React.useState<string>("")
     const [selectedColor, setColor] = React.useState<string>("#BFBFBF")
     const [selectedIcon, setIcon] = React.useState<string>("choir-tenor")
     const [colorChipSelected, setColorChipSelected] = React.useState<string>(ColorChipsEnum.ALL)
     const [iconChipSelected, setIconChipSelected] = React.useState<string>(IconChipsEnum.ALL)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setNameLength(e.target.value.length)
+        setNameLength(e.target.value.length);
+        setName(e.target.value)
     }
 
     const reset = () => {
         setColor("#BFBFBF");
         setIcon("choir-tenor");
+        setSelected(Tabs.COLORS);
+        setName("")
     }
 
+
     useEffect(() => {
-        console.log(selectedColor)
-    }, [])
+        const arrangeColor = props.group ? props.group.color : selectedColor ? selectedColor : "#BFBFBF"
+        setColor(arrangeColor)
+        const arrangeIcon = props.group ? props.group.icon : selectedIcon ? selectedIcon : "choir-tenor"
+        setIcon(arrangeIcon)
+        const arrangeName = props.group ? props.group.name : name ? name : ""
+        setName(arrangeName)
+    }, [props.group])
 
     return (
         <div>
@@ -137,14 +154,13 @@ export default function CreateEditGroup(props: any) {
                                 <TextField
                                     InputProps={{
                                         className: classes.input,
-                                        maxLength: 16,
                                         ...props.InputProps
                                     }}
                                     className="mt-5 mb-3"
                                     id="standard-helperText"
                                     label="Group name"
                                     helperText={`${nameLength}/16`}
-                                    // defaultValue="Group name"
+                                    value={name}
                                     onChange={handleChange}
                                 />
                             </div>
@@ -229,7 +245,7 @@ export default function CreateEditGroup(props: any) {
                     <ButtonStyled
                         className="button-red"
                         text="Save"
-                        onClick={props.handleClose}
+                        onClick={() => { props.handleClose(); props.saveGroup(selectedColor, selectedIcon, name) }}
                     />
                 </DialogActions>
             </Dialog>

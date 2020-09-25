@@ -65,6 +65,9 @@ export const CreateStagePresetStep = () => {
     const [deletedGroup, setDeletedGroup] = React.useState<number>();
     const [selectedPreset, setSelectedPreset] = React.useState<string>(Preset.CHOIR);
     const [open, setOpen] = React.useState(false);
+    const [groupId, setGroupId] = React.useState<number | null>();
+    const [group, setGroup] = React.useState<Group | null>();
+
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -72,7 +75,37 @@ export const CreateStagePresetStep = () => {
 
     const handleClose = () => {
         setOpen(false);
+        setGroupId(null)
     };
+
+    const saveGroup = (color: any, icon: any, name: any) => {
+        console.log(groupId);
+        
+        if (groupId) {
+            console.log("group id");
+            
+            // let group = stageGroups[selectedPreset].filter((group: any) => group.id === groupId);
+            // if(group){
+                // let group = stageGroups[selectedPreset].filter((group: any) => group.id === groupId);
+                // let index = stageGroups[selectedPreset].map((el:any) => el.findIndex((obj:any) => obj.id = groupId))
+                // console.log(index)
+                
+                const updateGroup = {id: groupId, name: name, color:color, icon:icon}
+                let elementsIndex :any;
+                elementsIndex = stageGroups[selectedPreset].findIndex((el:any) =>  el.id === groupId)
+                let newArray = [...stageGroups[selectedPreset]]
+                newArray[elementsIndex] = updateGroup 
+                setStageGroups({ ...stageGroups, [selectedPreset]: [...newArray] })
+                setOpen(false);
+            // }
+            
+        }
+        else{
+            const newGroup = {id: stageGroups["choir"].length + stageGroups["theatre"].length + 1, name: name, color: color, icon:icon}
+            stageGroups[selectedPreset].push({...newGroup})
+            setOpen(false);
+        }
+    }
 
     const deleteGroup = (id: number) => {
         setDeletedGroup(id);
@@ -91,17 +124,29 @@ export const CreateStagePresetStep = () => {
         return selected;
     }
 
+
+
     useEffect(() => {
+        console.log(stageGroups)
         if (deletedGroup) {
             let groups = stageGroups[selectedPreset].filter((group: any) => group.id !== deletedGroup);
             setStageGroups({ ...stageGroups, [selectedPreset]: [...groups] })
         }
+        if (groupId) {
+            let group = stageGroups[selectedPreset].filter((group: any) => group.id === groupId);
+            setGroup(group[0])
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [deletedGroup, selectedPreset])
+    }, [deletedGroup, selectedPreset, groupId, group])
 
     return (
         <div className="my-1 mx-3 text-left">
-            <CreateEditGroup handleClose={handleClose} open={open} />
+            <CreateEditGroup
+                handleClose={handleClose}
+                open={open}
+                group={groupId !== null ? group : null}
+                saveGroup={(color: any, icon: any, name: any) => saveGroup(color, icon, name)}
+            />
             <h6>What type of stage do you need?</h6>
             <p>Select a preset:</p>
             <div className="text-center d-flex">
@@ -139,7 +184,7 @@ export const CreateStagePresetStep = () => {
                     group={group}
                     key={group.id}
                     handleGroupDelete={() => deleteGroup(group.id)}
-                    onClick={handleClickOpen}
+                    onClick={() => { handleClickOpen(); setGroupId(group.id) }}
                 />
                 )}
                 {stageGroups[selectedPreset].length < 5 && <GroupLayoutEmpty
