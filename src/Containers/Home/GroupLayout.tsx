@@ -4,12 +4,12 @@ import ButtonStyled from '../../Components/Form/Button';
 import CloseIcon from '@material-ui/icons/Close';
 import { Group } from './CreateStagePresetStep';
 
-export const GroupLayout = (props: { group: Group, handleGroupDelete?: MouseEventHandler | undefined}) => {
+export const GroupLayout = (props: { group: Group, handleGroupDelete?: MouseEventHandler | undefined,  onClick?: MouseEventHandler | undefined}) => {
     const { group: {
         name,
         color,
         icon
-    }, handleGroupDelete } = props
+    }, handleGroupDelete, onClick } = props
     return (
         <div className="text-center p-2" style={{ width: "calc(100% / 5)" }}>
             <div style={{ border: `1px solid ${color}`, borderRadius: "10px" }}>
@@ -22,6 +22,7 @@ export const GroupLayout = (props: { group: Group, handleGroupDelete?: MouseEven
                 className="button-white px-2 py-1"
                 text="edit"
                 type="submit"
+                onClick={onClick}
             />
         </div>
     )

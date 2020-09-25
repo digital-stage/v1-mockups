@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { GroupLayout } from './GroupLayout';
-import AddIcon from '@material-ui/icons/Add';
 import Choir from '../../Components/Presets/Choir';
 import Theatre from '../../Components/Presets/Theatre';
+import { GroupLayoutEmpty } from './GroupLayoutEmpty';
+import CreateEditGroup from './CreateEditGroupModal';
+import { Button } from '@material-ui/core';
 
 export enum Preset {
     CHOIR = "choir",
@@ -62,6 +64,15 @@ export const CreateStagePresetStep = () => {
     const [stageGroups, setStageGroups] = React.useState<any>({ choir: choir, theatre: theatre })
     const [deletedGroup, setDeletedGroup] = React.useState<number>();
     const [selectedPreset, setSelectedPreset] = React.useState<string>(Preset.CHOIR);
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const deleteGroup = (id: number) => {
         setDeletedGroup(id);
@@ -82,16 +93,15 @@ export const CreateStagePresetStep = () => {
 
     useEffect(() => {
         if (deletedGroup) {
-            // if (selectedPreset === Preset.CHOIR || selectedPreset === Preset.THEATRE ) {
-                let groups = stageGroups[selectedPreset].filter((group:any)=> group.id !== deletedGroup);
-                setStageGroups({...stageGroups, [selectedPreset]: [...groups] })
-            // } 
+            let groups = stageGroups[selectedPreset].filter((group: any) => group.id !== deletedGroup);
+            setStageGroups({ ...stageGroups, [selectedPreset]: [...groups] })
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [deletedGroup, selectedPreset])
 
     return (
         <div className="my-1 mx-3 text-left">
+            <CreateEditGroup handleClose={handleClose} open={open} />
             <h6>What type of stage do you need?</h6>
             <p>Select a preset:</p>
             <div className="text-center d-flex">
@@ -125,26 +135,17 @@ export const CreateStagePresetStep = () => {
             </div>
             <h6>Groups</h6>
             <div className="d-flex">
-                {stageGroups[selectedPreset].map((group:any) => <GroupLayout group={group} key={group.id} handleGroupDelete={() => deleteGroup(group.id)} />)}
-                {stageGroups[selectedPreset].length < 5 &&
-                    <div className="text-center p-2" style={{ width: "calc(100% / 5)" }}>
-                        <div style={{
-                            border: `1px solid #F20544`,
-                            borderRadius: "10px",
-                            textAlign: "center",
-                            padding: "2px 0px"
-                        }}>
-                            <div className="my-4">
-                                <AddIcon style={{
-                                    fontSize: 38,
-                                    backgroundColor: "#F20544",
-                                    borderRadius: "50%",
-                                    cursor: "pointer"
-                                }} />
-                                <p className="white">Add group</p>
-                            </div>
-                        </div>
-                    </div>}
+                {stageGroups[selectedPreset].map((group: any) => <GroupLayout
+                    group={group}
+                    key={group.id}
+                    handleGroupDelete={() => deleteGroup(group.id)}
+                    onClick={handleClickOpen}
+                />
+                )}
+                {stageGroups[selectedPreset].length < 5 && <GroupLayoutEmpty
+                    onClick={handleClickOpen}
+                />
+                }
             </div>
         </div>
     )
