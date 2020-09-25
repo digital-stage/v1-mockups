@@ -69,9 +69,10 @@ export default function ColorPicker(props: { onClick: any, selectedChip: string,
                         minHeight: "24px",
                         backgroundColor: color.color,
                         borderRadius: "50%",
-                        boxShadow: "0px 5px 30px #3C3C3C",
+                        // boxShadow: "0px 5px 30px #3C3C3C",
                         cursor: "pointer",
-                        border: selectedColor === color.color ? "1px solid #707070" : "0px"
+                        // border: selectedColor === color.color ? "1px solid #121212" : "0px",
+                        boxShadow: selectedColor === color.color ? "0px 2px 10px #121212" : "none",
                     }}></span>
             })}
         </div>

@@ -9,6 +9,7 @@ import { Chip, makeStyles, TextField, withStyles } from '@material-ui/core';
 import ButtonStyled from '../../Components/Form/Button';
 import Icons from '../../Components/Icons/Icons';
 import ColorPicker from '../../Components/Presets/ColorPicker';
+import IconPicker from '../../Components/Presets/IconPicker';
 
 const useStyles = makeStyles({
     root: {
@@ -85,11 +86,17 @@ export default function CreateEditGroup(props: any) {
     const [selected, setSelected] = React.useState<string>(Tabs.COLORS)
     const [nameLength, setNameLength] = React.useState<number>(0)
     const [selectedColor, setColor] = React.useState<string>("#BFBFBF")
+    const [selectedIcon, setIcon] = React.useState<string>("choir-tenor")
     const [colorChipSelected, setColorChipSelected] = React.useState<string>(ColorChipsEnum.ALL)
     const [iconChipSelected, setIconChipSelected] = React.useState<string>(IconChipsEnum.ALL)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setNameLength(e.target.value.length)
+    }
+
+    const reset = () => {
+        setColor("#BFBFBF");
+        setIcon("choir-tenor");
     }
 
     useEffect(() => {
@@ -116,14 +123,15 @@ export default function CreateEditGroup(props: any) {
                             <div className="w-100">
                                 <h6 className="white mt-2 mb-5">Edit Group</h6>
                                 <Icons
-                                    icon="conductor"
+                                    className="ml-3"
+                                    icon={selectedIcon}
                                     type="circled"
                                     circleColor={selectedColor}
                                     width={120}
                                     height={120}
                                     style={{
                                         boxShadow: "0px 5px 30px #3C3C3C",
-                                        borderRadius:"50%"
+                                        borderRadius: "50%"
                                     }}
                                 />
                                 <TextField
@@ -175,7 +183,8 @@ export default function CreateEditGroup(props: any) {
                                             onClick={() => setColorChipSelected(chip)}
                                             style={{
                                                 backgroundColor: colorChipSelected === chip ? "white" : "#BFBFBF",
-                                                padding:"2px 5px"
+                                                padding: "2px 5px",
+                                                fontSize: "12px"
                                             }}
                                         />
                                     })}
@@ -193,11 +202,19 @@ export default function CreateEditGroup(props: any) {
                                             className="mr-1 mt-2"
                                             style={{
                                                 backgroundColor: iconChipSelected === chip ? "white" : "#BFBFBF",
-                                                padding:"2px 5px"
+                                                padding: "2px 5px",
+                                                fontSize: "12px"
                                             }}
-                                            onClick={() => setIconChipSelected(chip)} 
+                                            onClick={() => setIconChipSelected(chip)}
                                         />
                                     })}
+                                    <div className="icons-list" style={{ maxHeight: "180px", overflowY: "auto" }}>
+                                        <IconPicker
+                                            onClick={(icon: any) => setIcon(icon)}
+                                            selectedChip={iconChipSelected}
+                                            selectedIcon={selectedIcon}
+                                        />
+                                    </div>
                                 </div>}
                             </div>
                         </div>
@@ -207,7 +224,7 @@ export default function CreateEditGroup(props: any) {
                     <ButtonStyled
                         className="button-white"
                         text="Cancel"
-                        onClick={props.handleClose}
+                        onClick={() => { props.handleClose(); reset() }}
                     />
                     <ButtonStyled
                         className="button-red"

@@ -40,11 +40,11 @@ export type Group = {
 }
 
 const choir: Group[] = [
-    { id: 1, name: "Conductor", color: "#4EBFAB", icon: "conductor" },
-    { id: 2, name: "Tenor", color: "#FF36CA", icon: "singer-tenor" },
-    { id: 3, name: "Soprano", color: "#5780F2", icon: "singer-sopran" },
-    { id: 4, name: "Bass", color: "#D9486F", icon: "singer-bass" },
-    { id: 5, name: "Alto", color: "#FBD366", icon: "singer-alto" }
+    { id: 1, name: "Conductor", color: "#4EBFAB", icon: "orchestra-conductor" },
+    { id: 2, name: "Tenor", color: "#FF36CA", icon: "choir-tenor" },
+    { id: 3, name: "Soprano", color: "#5780F2", icon: "choir-sopran" },
+    { id: 4, name: "Bass", color: "#D9486F", icon: "choir-bass" },
+    { id: 5, name: "Alto", color: "#FBD366", icon: "choir-alto" }
 ]
 
 const theatre: Group[] = [
