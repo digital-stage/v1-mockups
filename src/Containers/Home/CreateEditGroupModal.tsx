@@ -16,22 +16,22 @@ const useStyles = makeStyles({
     root: {
         boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
         '& label.Mui-focused': {
-            color: 'white',
+            color: (nameError: boolean) => !nameError ? 'white' : "red",
         },
         '& .MuiInput-underline:after': {
-            borderBottomColor: '#C5C5C5',
+            borderBottomColor: (nameError: boolean) => !nameError ? '#C5C5C5' : "red",
         },
         '& label.MuiFormLabel-root': {
-            color: '#C5C5C5',
+            color: (nameError: boolean) => !nameError ? '#C5C5C5' : "red",
         },
         '& .MuiInput-underline:before': {
-            borderBottomColor: '#fff',
+            borderBottomColor: (nameError: boolean) => !nameError ? '#fff' : "red",
         },
         '& .MuiInput-underline': {
-            borderBottomColor: '#fff',
+            borderBottomColor: (nameError: boolean) => !nameError ? '#fff' : "red",
         },
         '& .MuiFormHelperText-root': {
-            color: '#C5C5C5',
+            color: (nameError: boolean) => !nameError ? '#C5C5C5' : "red",
             textAlign: "right"
         }
     },
@@ -82,14 +82,13 @@ export enum IconChipsEnum {
 const ColorChips = [ColorChipsEnum.ALL, ColorChipsEnum.CONTRAST, ColorChipsEnum.PASTEL];
 const IconChips = [IconChipsEnum.ALL, IconChipsEnum.CHOIR, IconChipsEnum.ORCHESTRA, IconChipsEnum.BAND, IconChipsEnum.THEATRE, IconChipsEnum.DANCE, IconChipsEnum.INSTRUMENTS, IconChipsEnum.MISC]
 
-export default function CreateEditGroup(props: { 
-    group?: Group | null, 
-    open: boolean, 
-    handleClose: any, 
-    InputProps?:any,
+export default function CreateEditGroup(props: {
+    group?: Group | null,
+    open: boolean,
+    handleClose: any,
+    InputProps?: any,
     saveGroup: any
- }) {
-    const classes = useStyles();
+}) {
     const [selected, setSelected] = React.useState<string>(Tabs.COLORS)
     const [nameLength, setNameLength] = React.useState<number>(0)
     const [name, setName] = React.useState<string>("")
@@ -97,10 +96,16 @@ export default function CreateEditGroup(props: {
     const [selectedIcon, setIcon] = React.useState<string>("choir-tenor")
     const [colorChipSelected, setColorChipSelected] = React.useState<string>(ColorChipsEnum.ALL)
     const [iconChipSelected, setIconChipSelected] = React.useState<string>(IconChipsEnum.ALL)
+    const [nameError, setNameError] = React.useState<boolean>(false);
+    const classes = useStyles(nameError);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (name)
+            setNameError(false)
+        else
+            setNameError(true)
         setNameLength(e.target.value.length);
-        setName(e.target.value)
+        setName(e.target.value);
     }
 
     const reset = () => {
@@ -112,12 +117,13 @@ export default function CreateEditGroup(props: {
 
 
     useEffect(() => {
+        console.log(name)
         const arrangeColor = props.group ? props.group.color : selectedColor ? selectedColor : "#BFBFBF"
         setColor(arrangeColor)
         const arrangeIcon = props.group ? props.group.icon : selectedIcon ? selectedIcon : "choir-tenor"
         setIcon(arrangeIcon)
-        const arrangeName = props.group ? props.group.name : name ? name : ""
-        setName(arrangeName)
+        props.group && props.group.name && setName(props.group.name)
+        setNameLength(name.length);
     }, [props.group])
 
     return (
@@ -156,10 +162,11 @@ export default function CreateEditGroup(props: {
                                         className: classes.input,
                                         ...props.InputProps
                                     }}
+                                    inputProps={{ maxLength: 16 }}
                                     className="mt-5 mb-3"
                                     id="standard-helperText"
                                     label="Group name"
-                                    helperText={`${nameLength}/16`}
+                                    helperText={name ? `${nameLength}/16` : nameError ? "Enter name" : `${nameLength}/16`}
                                     value={name}
                                     onChange={handleChange}
                                 />
@@ -245,7 +252,7 @@ export default function CreateEditGroup(props: {
                     <ButtonStyled
                         className="button-red"
                         text="Save"
-                        onClick={() => { props.handleClose(); props.saveGroup(selectedColor, selectedIcon, name) }}
+                        onClick={() => {name.length <= 0 ? setNameError(true) : props.saveGroup(selectedColor, selectedIcon, name);}}
                     />
                 </DialogActions>
             </Dialog>
