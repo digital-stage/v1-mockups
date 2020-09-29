@@ -5,7 +5,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import Slide from '@material-ui/core/Slide';
 import { TransitionProps } from '@material-ui/core/transitions';
-import { Chip, makeStyles, TextField, withStyles } from '@material-ui/core';
+import { Chip, makeStyles, TextField } from '@material-ui/core';
 import ButtonStyled from '../../Components/Form/Button';
 import Icons from '../../Components/Icons/Icons';
 import ColorPicker from '../../Components/Presets/ColorPicker';
@@ -14,6 +14,14 @@ import { Group } from './CreateStagePresetStep';
 
 const useStyles = makeStyles({
     root: {
+        '&:hover':{
+            '& .MuiInput-underline:after': {
+                borderBottomColor: (nameError: boolean) => !nameError ? '#C5C5C5' : "red",
+            },
+            '& .MuiInput-underline:before': {
+                borderBottomColor: (nameError: boolean) => !nameError ? '#fff' : "red",
+            },
+        },
         boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
         '& label.Mui-focused': {
             color: (nameError: boolean) => !nameError ? 'white' : "red",
