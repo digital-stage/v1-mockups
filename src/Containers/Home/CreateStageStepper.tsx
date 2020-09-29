@@ -10,6 +10,7 @@ import ButtonStyled from '../../Components/Form/Button';
 import Icons from '../../Components/Icons/Icons';
 import { CreateStageSuccessStep } from './CreateStageSuccessStep';
 import { CreateStagePresetStep } from './CreateStagePresetStep';
+import { AddInformatinStep } from './AddInformationStep';
 
 
 const ColorlibConnector = withStyles({
@@ -136,8 +137,8 @@ const useStyles = makeStyles((theme: Theme) =>
             marginBottom: theme.spacing(1),
             color: "#fff",
             textAlign: "center",
-            maxHeight:"53vh",
-            overflowY:"auto"
+            maxHeight: "53vh",
+            overflowY: "auto"
         },
     }),
 );
@@ -146,31 +147,47 @@ function getSteps() {
     return ['Add information', 'Select preset', 'Invite users', 'Assing roles', 'Create stage'];
 }
 
-function getStepContent(step: number) {
-    switch (step) {
-        case 0:
-            return 'Add information';
-        case 1:
-            return <CreateStagePresetStep/>;
-        case 2:
-            return 'Invite user';
-        case 3:
-            return 'Assign roles';
-        case 4:
-            return 'Create stage';
-        default:
-            return 'Unknown step';
-    }
-}
 
 export default function CustomizedSteppers() {
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
+    const [error, setError] = React.useState<boolean>(false);
+    const [emptyField, setEmptyField] = React.useState<string>("");
     const steps = getSteps();
+
+
+    function getStepContent(step: number) {
+        switch (step) {
+            case 0:
+                return <AddInformatinStep
+                    emptyField={(emptyField: string) => setEmptyField(emptyField)}
+                    error={error} />;
+            case 1:
+                return <CreateStagePresetStep />;
+            case 2:
+                return 'Invite user';
+            case 3:
+                return 'Assign roles';
+            case 4:
+                return 'Create stage';
+            default:
+                return 'Unknown step';
+        }
+    }
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
     };
+
+    const checkStep = () => {
+        if (emptyField.length > 0) {
+            handleNext()
+            setError(false)
+        }
+        else {
+            setError(true)
+        }
+    }
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -192,7 +209,7 @@ export default function CustomizedSteppers() {
             <div>
                 {activeStep === steps.length ? (
                     <div className="text-center">
-                        <CreateStageSuccessStep/>
+                        <CreateStageSuccessStep />
                         <ButtonStyled
                             className="button-white"
                             text="Close"
@@ -220,7 +237,7 @@ export default function CustomizedSteppers() {
                                     className="button-red ml-2"
                                     text={activeStep === steps.length - 1 ? 'Send invitation' : 'Next'}
                                     type="submit"
-                                    onClick={handleNext}
+                                    onClick={checkStep}
                                 />
                             </div>
                         </div>

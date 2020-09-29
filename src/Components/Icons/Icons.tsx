@@ -15,7 +15,8 @@ type Props = {
     width?: number,
     height?:number,
     type?:string,
-    fillColor?:string
+    fillColor?:string,
+    title?:string
 }
 
 const Icons = (props: Props) => {
@@ -31,6 +32,7 @@ const Icons = (props: Props) => {
             xmlnsXlink="http://www.w3.org/1999/xlink"
             onClick={props.onClick}
         >
+            <title id={props.icon}>{props.title}</title>
             <g fill={props.color}>
             {props.type === "circled" && <circle cx="16" cy="16" r="16"  fill={props.circleColor}/>}
             {iconPath(props.icon, props.fillColor)}

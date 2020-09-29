@@ -50,31 +50,31 @@ const NotificationsDetails = (props: {
                     <div className="d-inline-block mr-3 text-center">
                         <Badge badgeContent={4} className={classes.root}
                             showZero overlap="circle">
-                            <Icons icon="singer-sopran" type="circled" />
+                            <Icons icon="choir-sopran" type="circled" />
                         </Badge>
                         <p>Sopran</p>
                     </div>
                     <div className="d-inline-block mr-3 text-center">
                         <Badge badgeContent={0} className={classes.root} showZero overlap="circle">
-                            <Icons icon="singer-bass" type="circled" />
+                            <Icons icon="choir-bass" type="circled" />
                         </Badge>
                         <p>Bass</p>
                     </div>
                     <div className="d-inline-block mr-3 text-center">
                         <Badge badgeContent={6} className={classes.root} showZero overlap="circle">
-                            <Icons icon="singer-alto" type="circled" />
+                            <Icons icon="choir-alto" type="circled" />
                         </Badge>
                         <p>Alt</p>
                     </div>
                     <div className="d-inline-block mr-3 text-center">
                         <Badge badgeContent={3} className={classes.root} showZero overlap="circle">
-                            <Icons icon="singer-tenor" type="circled" />
+                            <Icons icon="choir-tenor" type="circled" />
                         </Badge>
                         <p>Tenor</p>
                     </div>
                     <div className="d-inline-block mr-3 text-center">
                         <Badge badgeContent={12} className={classes.root} showZero overlap="circle">
-                            <Icons icon="conductor" type="circled" />
+                            <Icons icon="orchestra-conductor" type="circled" />
                         </Badge>
                         <p>Conductor</p>
                     </div>
