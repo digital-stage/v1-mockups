@@ -16,30 +16,30 @@ const useStyles = makeStyles({
     root: {
         '&:hover':{
             '& .MuiInput-underline:after': {
-                borderBottomColor: (nameError: boolean) => !nameError ? '#C5C5C5' : "red",
+                borderBottomColor: (nameError: boolean) => !nameError ? '#C5C5C5' : "#f44336",
             },
             '& .MuiInput-underline:before': {
-                borderBottomColor: (nameError: boolean) => !nameError ? '#fff' : "red",
+                borderBottomColor: (nameError: boolean) => !nameError ? '#fff' : "#f44336",
             },
         },
         boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
         '& label.Mui-focused': {
-            color: (nameError: boolean) => !nameError ? 'white' : "red",
+            color: (nameError: boolean) => !nameError ? 'white' : "#f44336",
         },
         '& .MuiInput-underline:after': {
-            borderBottomColor: (nameError: boolean) => !nameError ? '#C5C5C5' : "red",
+            borderBottomColor: (nameError: boolean) => !nameError ? '#C5C5C5' : "#f44336",
         },
         '& label.MuiFormLabel-root': {
-            color: (nameError: boolean) => !nameError ? '#C5C5C5' : "red",
+            color: (nameError: boolean) => !nameError ? '#C5C5C5' : "#f44336",
         },
         '& .MuiInput-underline:before': {
-            borderBottomColor: (nameError: boolean) => !nameError ? '#fff' : "red",
+            borderBottomColor: (nameError: boolean) => !nameError ? '#fff' : "#f44336",
         },
         '& .MuiInput-underline': {
-            borderBottomColor: (nameError: boolean) => !nameError ? '#fff' : "red",
+            borderBottomColor: (nameError: boolean) => !nameError ? '#fff' : "#f44336",
         },
         '& .MuiFormHelperText-root': {
-            color: (nameError: boolean) => !nameError ? '#C5C5C5' : "red",
+            color: (nameError: boolean) => !nameError ? '#C5C5C5' : "#f44336",
             textAlign: "right"
         }
     },
