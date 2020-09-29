@@ -13,6 +13,9 @@ const useStyles = makeStyles({
                 borderBottomColor: '#fff',
             },
         },
+        '& #validation-outlined-input .MuiFormLabel-root.Mui-error':{
+            color: '#f44336',
+        },
         '& label.Mui-focused': {
             color: 'white',
         },
@@ -75,11 +78,11 @@ export const AddInformatinStep = (props: any) => {
         setStageInfo({ ...stageInfo, [e.target.name]: e.target.value })
     }
 
-    const styles = {
-        input: {
-            borderBottom: nameEmpty ? "1px solid #F20544" : "0"
-        }
-    }
+    // const styles = {
+    //     input: {
+    //         borderBottom: nameEmpty ? "1px solid #F20544" : "0"
+    //     }
+    // }
 
     const onClick = () => {
         const node = uplodImage.current;
@@ -140,12 +143,13 @@ export const AddInformatinStep = (props: any) => {
                                 onMouseOver={() => setShowImageUpload(true)}
                             />
                         </div>
+                        <span id="validation-outlined-input">
                         <TextField
                             InputProps={{
-                                className: classes.input,
-                                style: styles.input,
+                                className: classes.input
                             }}
                             required
+                            error={nameEmpty}
                             inputProps={{ maxLength: 16 }}
                             className="mt-5 mb-3"
                             label="Stage name"
@@ -154,7 +158,7 @@ export const AddInformatinStep = (props: any) => {
                             value={stageInfo.name}
                             style={{ width: "90%" }}
                             onChange={handleChange}
-                        />
+                        /></span>
                     </div>
                     <div className="w-100">
                         <h6 className="my-1">Info</h6>
