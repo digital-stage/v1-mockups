@@ -16,9 +16,16 @@ export default function Choir(props: { groups: Group[], context: string }) {
         groups,
         context
     } = props;
-    console.log(groups)
     return (
-        <div className="d-flex" style={{ width: context === Context.PRESET ? PRESET_WIDTH : PREVIEW_WIDTH, height: context === Context.PRESET ? PRESET_HEIGHT : PREVIEW_HEIGHT, backgroundColor: "black", borderRadius: "8px", padding: context === Context.PRESET ? "6px" : "10px" }}>
+        <div
+            className="d-flex"
+            style={{
+                width: context === Context.PRESET ? PRESET_WIDTH : PREVIEW_WIDTH,
+                height: context === Context.PRESET ? PRESET_HEIGHT : PREVIEW_HEIGHT,
+                backgroundColor: "black", borderRadius: "8px",
+                padding: context === Context.PRESET ? "6px" : "10px"
+            }}
+        >
             {groups.map((group) => {
                 return <div style={{
                     margin: context === Context.PRESET ? "0px 1px" : "0px 2px",

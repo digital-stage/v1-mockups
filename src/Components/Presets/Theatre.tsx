@@ -11,13 +11,25 @@ enum Context {
     PREVIEW = "preview"
 }
 
-export default function Theatre(props: { groups: Group[], context: string }) {
+export default function Theatre(props: {
+    groups: Group[],
+    context: string
+}) {
     const {
         groups,
         context
     } = props;
     return (
-        <div className="d-flex flex-column" style={{ width: context === Context.PRESET ? PRESET_WIDTH : PREVIEW_WIDTH, height: context === Context.PRESET ? PRESET_HEIGHT : PREVIEW_HEIGHT, backgroundColor: "black", borderRadius: "8px", padding: context === Context.PRESET ? "6px" : "10px" }}>
+        <div
+            className="d-flex flex-column"
+            style={{
+                width: context === Context.PRESET ? PRESET_WIDTH : PREVIEW_WIDTH,
+                height: context === Context.PRESET ? PRESET_HEIGHT : PREVIEW_HEIGHT,
+                backgroundColor: "black", 
+                borderRadius: "8px",
+                padding: context === Context.PRESET ? "6px" : "10px"
+            }}
+        >
             {groups.map((group) => {
                 return <div style={{
                     margin: context === Context.PRESET ? "1px 0px" : "2px 1px",

@@ -38,17 +38,19 @@ const colors: Color[] = [
     { color: "#F65353", type: ColorChipsEnum.PASTEL },
 ]
 
-export default function ColorPicker(props: { onClick: any, selectedChip: string, selectedColor:string }) {
-    const [pickerColors, setColor] = React.useState(colors)
-
+export default function ColorPicker(props: {
+    onClick: any,
+    selectedChip: string,
+    selectedColor: string
+}) {
     const {
         onClick,
         selectedChip,
         selectedColor
     } = props;
 
+    const [pickerColors, setColor] = React.useState(colors)
     useEffect(() => {
-        console.log(selectedChip, pickerColors)
         if (selectedChip === ColorChipsEnum.ALL) {
             setColor(colors);
         }
@@ -56,7 +58,7 @@ export default function ColorPicker(props: { onClick: any, selectedChip: string,
             const colorsSelected = colors.filter((color) => color.type === selectedChip);
             setColor(colorsSelected);
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedChip])
 
     return (
@@ -70,9 +72,7 @@ export default function ColorPicker(props: { onClick: any, selectedChip: string,
                         minHeight: "24px",
                         backgroundColor: color.color,
                         borderRadius: "50%",
-                        // boxShadow: "0px 5px 30px #3C3C3C",
                         cursor: "pointer",
-                        // border: selectedColor === color.color ? "1px solid #121212" : "0px",
                         boxShadow: selectedColor === color.color ? "0px 2px 10px #121212" : "none",
                     }}></span>
             })}

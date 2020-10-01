@@ -51,14 +51,18 @@ const icons: Icon[] = [
     { name: "dance-ballroom", type: [IconChipsEnum.ALL, IconChipsEnum.DANCE] },
 ]
 
-export default function IconPicker(props: { onClick: any, selectedChip: string, selectedIcon: string }) {
-    const [pickerIcons, setIcons] = React.useState(icons)
-
+export default function IconPicker(props: {
+    onClick: any,
+    selectedChip: string,
+    selectedIcon: string
+}) {
     const {
         onClick,
         selectedChip,
         selectedIcon
     } = props;
+    const [pickerIcons, setIcons] = React.useState(icons)
+
 
     useEffect(() => {
         const iconsSelected = icons.filter((icon) => icon.type.includes(selectedChip));
@@ -75,7 +79,7 @@ export default function IconPicker(props: { onClick: any, selectedChip: string, 
                     width={40}
                     height={40}
                     icon={icon.name}
-                    color={selectedIcon === icon.name ? "#BFBFBF" :"white"}
+                    color={selectedIcon === icon.name ? "#BFBFBF" : "white"}
                     style={{
                         cursor: "pointer",
                         // boxShadow: selectedIcon === icon.name ? "0px 2px 10px #282828" : "none",
