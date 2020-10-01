@@ -13,7 +13,7 @@ const useStyles = makeStyles({
                 borderBottomColor: '#fff',
             },
         },
-        '& #validation-outlined-input .MuiFormLabel-root.Mui-error':{
+        '& #validation-outlined-input .MuiFormLabel-root.Mui-error': {
             color: '#f44336',
         },
         '& label.Mui-focused': {
@@ -62,7 +62,6 @@ export interface IStageInfo {
 }
 
 export const AddInformatinStep = (props: any) => {
-
     const [inputLength, setInputLength] = React.useState<{ name: number, info: number, news: number }>({ name: 0, info: 0, news: 0 })
     const [nameEmpty, setNameEmpty] = React.useState<boolean>(false);
     const [showImageUpload, setShowImageUpload] = React.useState<boolean>(false)
@@ -96,11 +95,10 @@ export const AddInformatinStep = (props: any) => {
         setImage(file)
     }
 
-
     useEffect(() => {
         props.emptyField(stageInfo.name)
         setNameEmpty(props.error)
-    }, [stageInfo,props])
+    }, [stageInfo, props])
 
     return (
         <div className={classes.root}>
@@ -108,7 +106,13 @@ export const AddInformatinStep = (props: any) => {
                 <h5 className="white">Tell us about your stage</h5>
                 <div className="d-flex">
                     <div className="w-100 mt-4">
-                        <div onMouseLeave={() => setShowImageUpload(false)} style={{ position: "relative", maxWidth: "fit-content" }}>
+                        <div
+                            onMouseLeave={() => setShowImageUpload(false)}
+                            style={{
+                                position: "relative",
+                                maxWidth: "fit-content"
+                            }}
+                        >
                             {showImageUpload &&
                                 <>
                                     <PhotoCameraIcon style={{
@@ -144,21 +148,21 @@ export const AddInformatinStep = (props: any) => {
                             />
                         </div>
                         <span id="validation-outlined-input">
-                        <TextField
-                            InputProps={{
-                                className: classes.input
-                            }}
-                            required
-                            error={nameEmpty}
-                            inputProps={{ maxLength: 16 }}
-                            className="mt-5 mb-3"
-                            label="Stage name"
-                            name="name"
-                            helperText={`${inputLength.name}/16`}
-                            value={stageInfo.name}
-                            style={{ width: "90%" }}
-                            onChange={handleChange}
-                        /></span>
+                            <TextField
+                                InputProps={{
+                                    className: classes.input
+                                }}
+                                required
+                                error={nameEmpty}
+                                inputProps={{ maxLength: 16 }}
+                                className="mt-5 mb-3"
+                                label="Stage name"
+                                name="name"
+                                helperText={`${inputLength.name}/16`}
+                                value={stageInfo.name}
+                                style={{ width: "90%" }}
+                                onChange={handleChange}
+                            /></span>
                     </div>
                     <div className="w-100">
                         <h6 className="my-1">Info</h6>

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import {choir} from './SelectPresetStep';
-import { AddUsersToGroupLayout } from './AddUsersToGroupLayout';
+import {choir} from './CreateStageSecondStep';
+import { AddUsersToGroupLayout } from '../../Components/StageCreate/AddUsersToGroupLayout';
 import InviteUserModal from './InviteUserModal';
 
 export interface IStageInfo {

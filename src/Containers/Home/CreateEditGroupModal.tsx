@@ -8,9 +8,9 @@ import { TransitionProps } from '@material-ui/core/transitions';
 import { Chip, makeStyles, TextField } from '@material-ui/core';
 import ButtonStyled from '../../Components/Form/Button';
 import Icons from '../../Components/Icons/Icons';
-import ColorPicker from '../../Components/Presets/ColorPicker';
-import IconPicker from '../../Components/Presets/IconPicker';
-import { Group } from './SelectPresetStep';
+import ColorPicker from '../../Components/StageCreate/ColorPicker';
+import IconPicker from '../../Components/StageCreate/IconPicker';
+import { Group } from './CreateStageSecondStep';
 
 const useStyles = makeStyles({
     root: {
@@ -56,8 +56,6 @@ const useStyles = makeStyles({
     }
 });
 
-
-
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & { children?: React.ReactElement<any, any> },
     ref: React.Ref<unknown>,
@@ -94,7 +92,6 @@ export default function CreateEditGroup(props: {
     group?: Group | null,
     open: boolean,
     handleClose: any,
-    InputProps?: any,
     saveGroup: any
 }) {
     const [selected, setSelected] = React.useState<string>(Tabs.COLORS)
@@ -168,7 +165,6 @@ export default function CreateEditGroup(props: {
                                 <TextField
                                     InputProps={{
                                         className: classes.input,
-                                        ...props.InputProps
                                     }}
                                     inputProps={{ maxLength: 16 }}
                                     className="mt-5 mb-3"
@@ -180,6 +176,7 @@ export default function CreateEditGroup(props: {
                                 />
                             </div>
                             <div className="w-100">
+                                {/* Colors/Icons tabs */}
                                 <div className="d-flex">
                                     <h6
                                         className="mr-4"
@@ -205,6 +202,7 @@ export default function CreateEditGroup(props: {
                                         Icons
                                     </h6>
                                 </div>
+                                {/* Colors content */}
                                 {selected === Tabs.COLORS && <div>
                                     {ColorChips.map(chip => {
                                         return <Chip
@@ -225,6 +223,7 @@ export default function CreateEditGroup(props: {
                                         selectedColor={selectedColor}
                                     />
                                 </div>}
+                                {/* Icons content */}
                                 {selected === Tabs.ICONS && <div>
                                     {IconChips.map(chip => {
                                         return <Chip

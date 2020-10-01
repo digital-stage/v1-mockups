@@ -8,7 +8,7 @@ import { TransitionProps } from '@material-ui/core/transitions';
 import { InputAdornment, makeStyles } from '@material-ui/core';
 import ButtonStyled from '../../Components/Form/Button';
 import Icons from '../../Components/Icons/Icons';
-import { choir, Group, User } from './SelectPresetStep';
+import { choir, Group, User } from './CreateStageSecondStep';
 import Input from "../../Components/Form/Input";
 import SearchIcon from '@material-ui/icons/Search';
 import AvatarImg from "../../assets/images/Avatar.png";
@@ -34,8 +34,6 @@ const useStyles = makeStyles({
         fontWeight: 600,
     }
 });
-
-
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & { children?: React.ReactElement<any, any> },
@@ -128,7 +126,6 @@ export default function InviteUserModal(props: {
         if (e.key === 'Enter') {
             const emailArray = emails.split(',');
             const emailObject = emailArray.map((email: string) => { return { email: email } })
-            // console.log()
             setSelectedUsers([...selectedUsers, ...emailObject])
         }
     }

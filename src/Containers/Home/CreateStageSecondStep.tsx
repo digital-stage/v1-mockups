@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { GroupLayout } from './GroupLayout';
-import Choir from '../../Components/Presets/Choir';
-import Theatre from '../../Components/Presets/Theatre';
-import { GroupLayoutEmpty } from './GroupLayoutEmpty';
+import { GroupLayout } from '../../Components/StageCreate/GroupLayout';
+import Choir from '../../Components/StageCreate/Choir';
+import Theatre from '../../Components/StageCreate/Theatre';
+import { GroupLayoutEmpty } from '../../Components/StageCreate/GroupLayoutEmpty';
 import CreateEditGroup from './CreateEditGroupModal';
 
 export enum Preset {
@@ -84,17 +84,7 @@ export const SelectPresetStep = () => {
     };
 
     const saveGroup = (color: any, icon: any, name: any) => {
-        console.log(groupId);
-
         if (groupId) {
-            console.log("group id");
-
-            // let group = stageGroups[selectedPreset].filter((group: any) => group.id === groupId);
-            // if(group){
-            // let group = stageGroups[selectedPreset].filter((group: any) => group.id === groupId);
-            // let index = stageGroups[selectedPreset].map((el:any) => el.findIndex((obj:any) => obj.id = groupId))
-            // console.log(index)
-
             const updateGroup = { id: groupId, name: name, color: color, icon: icon }
             let elementsIndex: any;
             elementsIndex = stageGroups[selectedPreset].findIndex((el: any) => el.id === groupId)
@@ -102,8 +92,6 @@ export const SelectPresetStep = () => {
             newArray[elementsIndex] = updateGroup
             setStageGroups({ ...stageGroups, [selectedPreset]: [...newArray] })
             setOpen(false);
-            // }
-
         }
         else {
             const newGroup = { id: stageGroups["choir"].length + stageGroups["theatre"].length + 1, name: name, color: color, icon: icon }
@@ -132,7 +120,6 @@ export const SelectPresetStep = () => {
 
 
     useEffect(() => {
-        console.log(stageGroups)
         if (deletedGroup) {
             let groups = stageGroups[selectedPreset].filter((group: any) => group.id !== deletedGroup);
             setStageGroups({ ...stageGroups, [selectedPreset]: [...groups] })

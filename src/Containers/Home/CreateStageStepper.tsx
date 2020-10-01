@@ -9,9 +9,9 @@ import { StepIconProps } from '@material-ui/core/StepIcon';
 import ButtonStyled from '../../Components/Form/Button';
 import Icons from '../../Components/Icons/Icons';
 import { CreateStageSuccessStep } from './CreateStageSuccessStep';
-import { SelectPresetStep } from './SelectPresetStep';
-import { AddInformatinStep } from './AddInformationStep';
-import { InviteUsersStep } from './InviteUsersStep';
+import { SelectPresetStep } from './CreateStageSecondStep';
+import { AddInformatinStep } from './CreateStageFirstStep';
+import { InviteUsersStep } from './CreateUserThirdStep';
 
 
 const ColorlibConnector = withStyles({

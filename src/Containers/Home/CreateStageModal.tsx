@@ -17,7 +17,10 @@ const useStyles = makeStyles({
 });
 
 
-export default function CreateStageModal(props: { open: boolean, handleClose(open: boolean): void }) {
+export default function CreateStageModal(props: {
+    open: boolean,
+    handleClose(open: boolean): void
+}) {
     const theme = useTheme();
     const classes = useStyles();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
