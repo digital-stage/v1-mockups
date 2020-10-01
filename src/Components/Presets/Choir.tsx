@@ -1,5 +1,5 @@
 import React from 'react';
-import { Group, ChoirGroups } from '../../Containers/Home/CreateStagePresetStep';
+import { Group, ChoirGroups } from '../../Containers/Home/SelectPresetStep';
 
 const PREVIEW_WIDTH = "150px";
 const PREVIEW_HEIGHT = "90px";

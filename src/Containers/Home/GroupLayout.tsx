@@ -2,7 +2,7 @@ import React, { MouseEventHandler } from 'react';
 import Icons from '../../Components/Icons/Icons';
 import ButtonStyled from '../../Components/Form/Button';
 import CloseIcon from '@material-ui/icons/Close';
-import { Group } from './CreateStagePresetStep';
+import { Group } from './SelectPresetStep';
 
 export const GroupLayout = (props: { group: Group, handleGroupDelete?: MouseEventHandler | undefined,  onClick?: MouseEventHandler | undefined}) => {
     const { group: {

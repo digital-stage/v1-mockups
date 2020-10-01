@@ -9,7 +9,7 @@ import { StepIconProps } from '@material-ui/core/StepIcon';
 import ButtonStyled from '../../Components/Form/Button';
 import Icons from '../../Components/Icons/Icons';
 import { CreateStageSuccessStep } from './CreateStageSuccessStep';
-import { CreateStagePresetStep } from './CreateStagePresetStep';
+import { SelectPresetStep } from './SelectPresetStep';
 import { AddInformatinStep } from './AddInformationStep';
 import { InviteUsersStep } from './InviteUsersStep';
 
@@ -164,7 +164,7 @@ export default function CustomizedSteppers() {
                     emptyField={(emptyField: string) => setEmptyField(emptyField)}
                     error={error} />;
             case 1:
-                return <CreateStagePresetStep />;
+                return <SelectPresetStep />;
             case 2:
                 return <InviteUsersStep />;
             case 3:
@@ -200,7 +200,11 @@ export default function CustomizedSteppers() {
 
     return (
         <div className={classes.root}>
-            <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector style={{ backgroundColor: "red" }} />}>
+            <Stepper
+                alternativeLabel
+                activeStep={activeStep}
+                connector={<ColorlibConnector />}
+            >
                 {steps.map((label, i) => (
                     <Step key={label}>
                         <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
@@ -225,7 +229,10 @@ export default function CustomizedSteppers() {
                     </div>
                 ) : (
                         <div>
-                            <div className={[classes.instructions, 'step-content'].join(' ')}>{getStepContent(activeStep)}</div>
+                            <div
+                                className={[classes.instructions, 'step-content'].join(' ')}>
+                                {getStepContent(activeStep)}
+                            </div>
                             <div className="text-center">
                                 {activeStep > 0 && <ButtonStyled
                                     className="button-white"

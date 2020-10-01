@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {choir} from './CreateStagePresetStep';
+import {choir} from './SelectPresetStep';
 import { AddUsersToGroupLayout } from './AddUsersToGroupLayout';
 import InviteUserModal from './InviteUserModal';
 

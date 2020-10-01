@@ -8,7 +8,7 @@ import { TransitionProps } from '@material-ui/core/transitions';
 import { InputAdornment, makeStyles } from '@material-ui/core';
 import ButtonStyled from '../../Components/Form/Button';
 import Icons from '../../Components/Icons/Icons';
-import { choir, Group, User } from './CreateStagePresetStep';
+import { choir, Group, User } from './SelectPresetStep';
 import Input from "../../Components/Form/Input";
 import SearchIcon from '@material-ui/icons/Search';
 import AvatarImg from "../../assets/images/Avatar.png";

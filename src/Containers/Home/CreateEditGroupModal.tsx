@@ -10,7 +10,7 @@ import ButtonStyled from '../../Components/Form/Button';
 import Icons from '../../Components/Icons/Icons';
 import ColorPicker from '../../Components/Presets/ColorPicker';
 import IconPicker from '../../Components/Presets/IconPicker';
-import { Group } from './CreateStagePresetStep';
+import { Group } from './SelectPresetStep';
 
 const useStyles = makeStyles({
     root: {

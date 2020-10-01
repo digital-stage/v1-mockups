@@ -65,7 +65,7 @@ export type Stages = {
     theatre: Group[]
 }
 
-export const CreateStagePresetStep = () => {
+export const SelectPresetStep = () => {
     const [stageGroups, setStageGroups] = React.useState<any>({ choir: choir, theatre: theatre })
     const [deletedGroup, setDeletedGroup] = React.useState<number>();
     const [selectedPreset, setSelectedPreset] = React.useState<string>(Preset.CHOIR);
