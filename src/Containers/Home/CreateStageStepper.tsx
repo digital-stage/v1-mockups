@@ -11,6 +11,7 @@ import Icons from '../../Components/Icons/Icons';
 import { CreateStageSuccessStep } from './CreateStageSuccessStep';
 import { CreateStagePresetStep } from './CreateStagePresetStep';
 import { AddInformatinStep } from './AddInformationStep';
+import { InviteUsersStep } from './InviteUsersStep';
 
 
 const ColorlibConnector = withStyles({
@@ -165,7 +166,7 @@ export default function CustomizedSteppers() {
             case 1:
                 return <CreateStagePresetStep />;
             case 2:
-                return 'Invite user';
+                return <InviteUsersStep />;
             case 3:
                 return 'Assign roles';
             case 4:

@@ -67,7 +67,7 @@ export const AddInformatinStep = (props: any) => {
     const [nameEmpty, setNameEmpty] = React.useState<boolean>(false);
     const [showImageUpload, setShowImageUpload] = React.useState<boolean>(false)
     const [image, setImage] = React.useState<string>(Stage)
-    const [stageInfo, setStageInfo] = React.useState<IStageInfo>({ name: "" });
+    const [stageInfo, setStageInfo] = React.useState<IStageInfo>({ name: "Test Stage" });
 
     const uplodImage = React.createRef<HTMLInputElement>();
     const classes = useStyles();

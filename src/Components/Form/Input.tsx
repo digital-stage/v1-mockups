@@ -27,7 +27,8 @@ type Props = {
   InputProps?: Object,
   value?: string,
   error?: string
-  context?:string
+  context?:string,
+  onKeyDown?:(e: React.KeyboardEvent<HTMLInputElement>) => void,
 }
 
 const Input = (props: Props) => {
@@ -37,7 +38,7 @@ const Input = (props: Props) => {
       borderRadius: "24px",
       color: "black",
       height: "36px",
-      width: `${props.context === "search" ? "200px" : "199px"}`,
+      width: `${props.context === "search" ? "200px" : props.context === "group" ? "auto" : "199px"}`,
       fontFamily: "Poppins",
       fontSize: "14px",
       // boxShadow: "0px 5px 30px #0B2140",
@@ -69,6 +70,7 @@ const Input = (props: Props) => {
           ...props.InputProps
         }}
         onChange={props.onInputChange}
+        onKeyDown={props.onKeyDown}
         placeholder={props.placeholder}
         required={props.required}
         type={props.type}

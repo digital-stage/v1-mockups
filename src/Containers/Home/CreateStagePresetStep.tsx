@@ -31,26 +31,32 @@ export enum TheatreGroups {
     ENSEMBLE = "Ensemble",
     ACTOR = "Actor",
 }
+export type User = {
+    id: number;
+    name: string;
+    email:string
+}
 
 export type Group = {
     id: number;
     name: string;
     icon: string;
     color: string;
+    users: User[]
 }
 
-const choir: Group[] = [
-    { id: 1, name: "Conductor", color: "#4EBFAB", icon: "orchestra-conductor" },
-    { id: 2, name: "Tenor", color: "#FF36CA", icon: "choir-tenor" },
-    { id: 3, name: "Soprano", color: "#5780F2", icon: "choir-sopran" },
-    { id: 4, name: "Bass", color: "#D9486F", icon: "choir-bass" },
-    { id: 5, name: "Alto", color: "#FBD366", icon: "choir-alto" }
+export const choir: Group[] = [
+    { id: 1, name: "Conductor", color: "#4EBFAB", icon: "orchestra-conductor", users: [{ id: 1, name: "Brad Daniels", email:"brad.daniels@digital-stage.org" }, { id: 1, name: "Felix Daniels", email:"brad.daniels@digital-stage.org" }] },
+    { id: 2, name: "Tenor", color: "#FF36CA", icon: "choir-tenor", users: [{ id: 1, name: "Brad Daniels", email:"brad.daniels@digital-stage.org" }, { id: 1, name: "Sasha Daniels", email:"brad.daniels@digital-stage.org" }] },
+    { id: 3, name: "Soprano", color: "#5780F2", icon: "choir-sopran", users: [{ id: 1, name: "Brad Daniels",  email:"brad.daniels@digital-stage.org" }] },
+    { id: 4, name: "Bass", color: "#D9486F", icon: "choir-bass", users: [{ id: 1, name: "Brad Daniels",  email:"brad.daniels@digital-stage.org" }] },
+    { id: 5, name: "Alto", color: "#FBD366", icon: "choir-alto", users: [{ id: 1, name: "Brad Daniels",  email:"brad.daniels@digital-stage.org" }] }
 ]
 
 const theatre: Group[] = [
-    { id: 6, name: "Director", color: "#4EBFAB", icon: "theatre-director" },
-    { id: 7, name: "Ensemble", color: "#FF36CA", icon: "theatre-ensemble" },
-    { id: 8, name: "Actor", color: "#5780F2", icon: "theatre-actor" },
+    { id: 6, name: "Director", color: "#4EBFAB", icon: "theatre-director", users: [{ id: 1, name: "Brad Daniels", email:"brad.daniels@digital-stage.org" }] },
+    { id: 7, name: "Ensemble", color: "#FF36CA", icon: "theatre-ensemble", users: [{ id: 1, name: "Brad Daniels", email:"brad.daniels@digital-stage.org" }] },
+    { id: 8, name: "Actor", color: "#5780F2", icon: "theatre-actor", users: [{ id: 1, name: "Brad Daniels", email:"brad.daniels@digital-stage.org" }] },
 ]
 
 const presets: string[] = ["choir", "theatre"];
@@ -80,29 +86,29 @@ export const CreateStagePresetStep = () => {
 
     const saveGroup = (color: any, icon: any, name: any) => {
         console.log(groupId);
-        
+
         if (groupId) {
             console.log("group id");
-            
+
             // let group = stageGroups[selectedPreset].filter((group: any) => group.id === groupId);
             // if(group){
-                // let group = stageGroups[selectedPreset].filter((group: any) => group.id === groupId);
-                // let index = stageGroups[selectedPreset].map((el:any) => el.findIndex((obj:any) => obj.id = groupId))
-                // console.log(index)
-                
-                const updateGroup = {id: groupId, name: name, color:color, icon:icon}
-                let elementsIndex :any;
-                elementsIndex = stageGroups[selectedPreset].findIndex((el:any) =>  el.id === groupId)
-                let newArray = [...stageGroups[selectedPreset]]
-                newArray[elementsIndex] = updateGroup 
-                setStageGroups({ ...stageGroups, [selectedPreset]: [...newArray] })
-                setOpen(false);
+            // let group = stageGroups[selectedPreset].filter((group: any) => group.id === groupId);
+            // let index = stageGroups[selectedPreset].map((el:any) => el.findIndex((obj:any) => obj.id = groupId))
+            // console.log(index)
+
+            const updateGroup = { id: groupId, name: name, color: color, icon: icon }
+            let elementsIndex: any;
+            elementsIndex = stageGroups[selectedPreset].findIndex((el: any) => el.id === groupId)
+            let newArray = [...stageGroups[selectedPreset]]
+            newArray[elementsIndex] = updateGroup
+            setStageGroups({ ...stageGroups, [selectedPreset]: [...newArray] })
+            setOpen(false);
             // }
-            
+
         }
-        else{
-            const newGroup = {id: stageGroups["choir"].length + stageGroups["theatre"].length + 1, name: name, color: color, icon:icon}
-            stageGroups[selectedPreset].push({...newGroup})
+        else {
+            const newGroup = { id: stageGroups["choir"].length + stageGroups["theatre"].length + 1, name: name, color: color, icon: icon }
+            stageGroups[selectedPreset].push({ ...newGroup })
             setOpen(false);
         }
     }

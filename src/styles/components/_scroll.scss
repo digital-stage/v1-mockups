@@ -143,3 +143,26 @@
 .icons-list::-webkit-scrollbar-thumb:hover {
   background: #BFBFBF;
 }
+
+
+/* width */
+.select-user::-webkit-scrollbar {
+  width: 5px;
+  background-color:#4B4B4B;
+}
+
+/* Track */
+.select-user:-webkit-scrollbar-track {
+  border-radius: 0px;
+}
+
+/* Handle */
+.select-user::-webkit-scrollbar-thumb {
+  background: #BFBFBF;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+.select-user::-webkit-scrollbar-thumb:hover {
+  background: #BFBFBF;
+}
