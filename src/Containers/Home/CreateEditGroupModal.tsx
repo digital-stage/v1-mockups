@@ -125,13 +125,13 @@ export default function CreateEditGroup(props: {
 
 
     useEffect(() => {
-        console.log(name)
         const arrangeColor = props.group ? props.group.color : selectedColor ? selectedColor : "#BFBFBF"
         setColor(arrangeColor)
         const arrangeIcon = props.group ? props.group.icon : selectedIcon ? selectedIcon : "choir-tenor"
         setIcon(arrangeIcon)
         props.group && props.group.name && setName(props.group.name)
         setNameLength(name.length);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.group])
 
     return (

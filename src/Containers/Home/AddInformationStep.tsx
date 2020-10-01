@@ -1,4 +1,4 @@
-import { InputProps, makeStyles, TextField } from '@material-ui/core';
+import { makeStyles, TextField } from '@material-ui/core';
 import React, { useEffect } from 'react';
 import Stage from '../../assets/images/stage.png';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';

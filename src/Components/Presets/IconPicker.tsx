@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Icons from '../Icons/Icons';
 
 export enum IconChipsEnum {

@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 enum ColorChipsEnum {
     ALL = "All",
@@ -56,6 +56,7 @@ export default function ColorPicker(props: { onClick: any, selectedChip: string,
             const colorsSelected = colors.filter((color) => color.type === selectedChip);
             setColor(colorsSelected);
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedChip])
 
     return (

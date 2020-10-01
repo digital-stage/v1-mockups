@@ -4,7 +4,6 @@ import Choir from '../../Components/Presets/Choir';
 import Theatre from '../../Components/Presets/Theatre';
 import { GroupLayoutEmpty } from './GroupLayoutEmpty';
 import CreateEditGroup from './CreateEditGroupModal';
-import { Button } from '@material-ui/core';
 
 export enum Preset {
     CHOIR = "choir",
