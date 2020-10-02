@@ -124,7 +124,7 @@ export default function InviteUserModal(props: {
 
     const addEmails = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
-            const emailArray = emails.split(',');
+            const emailArray = emails.split(';');
             const emailObject = emailArray.map((email: string) => { return { email: email } })
             setSelectedUsers([...selectedUsers, ...emailObject])
         }

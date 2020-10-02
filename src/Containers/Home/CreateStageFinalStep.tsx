@@ -8,8 +8,8 @@ export const CreateStageSuccessStep = () => {
     return (
         <div className="my-4">
             <img src={stageIcon} alt="stage" width="100px" height="100px"/>
-            <h3 className="white my-3">TKOB</h3>
-            <h5 className="white my-3">Stage TKOB <br/>
+            <h3 className="white my-3">Test stage</h3>
+            <h5 className="white my-3">Stage "Test stage" <br/>
                 has been succssesfully created!
             </h5>
             <Grow
@@ -17,7 +17,7 @@ export const CreateStageSuccessStep = () => {
                 style={{ transformOrigin: '0 0 0' }}
                 {...(checked ? { timeout: 1000 } : {})}
             >
-            <CheckCircleOutlineIcon className="green my-1" style={{ fontSize: 40 }}/>
+            <CheckCircleOutlineIcon className="white my-1" style={{ fontSize: 40 }}/>
             </Grow>
         </div >
     )

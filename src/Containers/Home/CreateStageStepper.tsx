@@ -8,10 +8,12 @@ import StepConnector from '@material-ui/core/StepConnector';
 import { StepIconProps } from '@material-ui/core/StepIcon';
 import ButtonStyled from '../../Components/Form/Button';
 import Icons from '../../Components/Icons/Icons';
-import { CreateStageSuccessStep } from './CreateStageSuccessStep';
+import { CreateStageSuccessStep } from './CreateStageFinalStep';
 import { SelectPresetStep } from './CreateStageSecondStep';
 import { AddInformatinStep } from './CreateStageFirstStep';
-import { InviteUsersStep } from './CreateUserThirdStep';
+import { InviteUsersStep } from './CreateStageThirdStep';
+import { AssignRolesStep } from './CreateStageFourthStep';
+import { CreateStageStep } from './CreateStageFifthStep';
 
 
 const ColorlibConnector = withStyles({
@@ -145,7 +147,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function getSteps() {
-    return ['Add information', 'Select preset', 'Invite users', 'Assing roles', 'Create stage'];
+    return ['Add information', 'Select preset', 'Invite users', 'Assign roles', 'Create stage'];
 }
 
 
@@ -168,9 +170,9 @@ export default function CustomizedSteppers() {
             case 2:
                 return <InviteUsersStep />;
             case 3:
-                return 'Assign roles';
+                return <AssignRolesStep />;
             case 4:
-                return 'Create stage';
+                return <CreateStageStep/>;
             default:
                 return 'Unknown step';
         }

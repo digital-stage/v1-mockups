@@ -52,7 +52,7 @@ export const choir: Group[] = [
     { id: 5, name: "Alto", color: "#FBD366", icon: "choir-alto", users: [{ id: 1, name: "Brad Daniels",  email:"brad.daniels@digital-stage.org" }] }
 ]
 
-const theatre: Group[] = [
+export const theatre: Group[] = [
     { id: 6, name: "Director", color: "#4EBFAB", icon: "theatre-director", users: [{ id: 1, name: "Brad Daniels", email:"brad.daniels@digital-stage.org" }] },
     { id: 7, name: "Ensemble", color: "#FF36CA", icon: "theatre-ensemble", users: [{ id: 1, name: "Brad Daniels", email:"brad.daniels@digital-stage.org" }] },
     { id: 8, name: "Actor", color: "#5780F2", icon: "theatre-actor", users: [{ id: 1, name: "Brad Daniels", email:"brad.daniels@digital-stage.org" }] },
