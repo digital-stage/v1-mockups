@@ -14,7 +14,7 @@ import { Group } from './CreateStageSecondStep';
 
 const useStyles = makeStyles({
     root: {
-        '&:hover':{
+        '&:hover': {
             '& .MuiInput-underline:after': {
                 borderBottomColor: (nameError: boolean) => !nameError ? '#C5C5C5' : "#f44336",
             },
@@ -91,8 +91,8 @@ const IconChips = [IconChipsEnum.ALL, IconChipsEnum.CHOIR, IconChipsEnum.ORCHEST
 export default function CreateEditGroup(props: {
     group?: Group | null,
     open: boolean,
-    handleClose: any,
-    saveGroup: any
+    handleClose: () => void,
+    saveGroup: (color:string, icon:string, name:string) => void
 }) {
     const [selected, setSelected] = React.useState<string>(Tabs.COLORS)
     const [nameLength, setNameLength] = React.useState<number>(0)
@@ -128,7 +128,7 @@ export default function CreateEditGroup(props: {
         setIcon(arrangeIcon)
         props.group && props.group.name && setName(props.group.name)
         setNameLength(name.length);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.group])
 
     return (
@@ -259,7 +259,7 @@ export default function CreateEditGroup(props: {
                     <ButtonStyled
                         className="button-red"
                         text="Save"
-                        onClick={() => {name.length <= 0 ? setNameError(true) : props.saveGroup(selectedColor, selectedIcon, name);}}
+                        onClick={() => { name.length <= 0 ? setNameError(true) : props.saveGroup(selectedColor, selectedIcon, name); }}
                     />
                 </DialogActions>
             </Dialog>

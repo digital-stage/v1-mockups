@@ -14,6 +14,7 @@ export const AssignRolesStep = () => {
     const [open, setOpen] = React.useState(false);
     const [groupId, setGroupId] = React.useState<number>();
 
+
     const handleClose = () => {
         setOpen(false);
         setGroupId(1)
@@ -24,7 +25,11 @@ export const AssignRolesStep = () => {
 
     return (
             <div className="my-1 mx-3 text-left">
-                <InviteUserModal open={open} handleClose={handleClose} groupId={groupId}/>
+                {/* <InviteUserModal 
+                open={open} 
+                handleClose={handleClose} 
+                groupId={groupId}
+                /> */}
                 <h5 className="white mb-2">Assign roles</h5>
                 <div className="d-flex flex-wrap">
                 {roles.map((role: string) => <AssignRolesLayout

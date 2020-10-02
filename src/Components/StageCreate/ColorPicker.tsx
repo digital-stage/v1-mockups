@@ -34,7 +34,7 @@ const colors: Color[] = [
 
     { color: "#FBD366", type: ColorChipsEnum.PASTEL },
     { color: "#EEF26C", type: ColorChipsEnum.PASTEL },
-    { color: "#A7E566", type: ColorChipsEnum.PASTEL },
+    { color: "#E59D66", type: ColorChipsEnum.PASTEL },
     { color: "#F65353", type: ColorChipsEnum.PASTEL },
 ]
 

@@ -36,8 +36,8 @@ function Routes() {
 
   return (
     <Switch>
-      <ProtectedLogin exact path="/" component={Welcome} auth={auth.cookie} />
-      <ProtectedLogin exact path="/login" component={Login} auth={auth.cookie} />
+      <ProtectedLogin exact={true} path="/" component={Welcome} auth={auth.cookie} />
+      <ProtectedLogin exact={true} path="/login" component={Login} auth={auth.cookie} />
       <ProtectedRoutes path="/stage" component={Stage} auth={auth.cookie} />
       <ProtectedRoutes path="/join-stage" component={JoinStage} auth={auth.cookie} />
       <ProtectedRoutes path="/home" component={Home} auth={auth.cookie} />

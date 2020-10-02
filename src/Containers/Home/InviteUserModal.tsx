@@ -77,10 +77,11 @@ const recentUsers: User[] = [
 export default function InviteUserModal(props: {
     group?: Group | null,
     open: boolean,
-    handleClose: any,
-    InputProps?: any,
-    saveGroup?: any
-    groupId: any
+    handleClose: ()=>void,
+    InputProps?: ()=>void,
+    saveGroup?: ()=>void,
+    groupId: number | undefined,
+    onSave: any
 }) {
     const classes = useStyles();
     const [selected, setSelected] = React.useState<string>(Tabs.USERNAME)
@@ -355,7 +356,7 @@ export default function InviteUserModal(props: {
                     <ButtonStyled
                         className="button-red"
                         text="Add users"
-                        onClick={() => { props.handleClose(); }}
+                        onClick={() => { props.handleClose(); props.onSave(selectedUsers)}}
                     />
                 </DialogActions>
             </Dialog>

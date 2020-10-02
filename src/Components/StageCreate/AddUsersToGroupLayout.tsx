@@ -18,13 +18,14 @@ const useStyles = makeStyles({
 export const AddUsersToGroupLayout = (props: {
     group: Group,
     handleGroupDelete?: MouseEventHandler | undefined,
-    onClick?: MouseEventHandler | undefined
+    onClick?: MouseEventHandler | undefined,
+    users: any
 }) => {
     const { group: {
         name,
         color,
         icon
-    }, onClick } = props
+    }, onClick, users } = props
     const classes = useStyles();
     return (
         <div
@@ -47,6 +48,9 @@ export const AddUsersToGroupLayout = (props: {
                     className="d-inline-block"
                 />
                 <p className="mb-4 mt-1 white d-inline-block">{name}</p>
+                {users && users.length > 0 && users.map((user:any) => {
+                    return <p className="mb-4 mt-1 white d-inline-block">{user.name}</p>
+                })}
             </div>
             <Fab
                 color="secondary"

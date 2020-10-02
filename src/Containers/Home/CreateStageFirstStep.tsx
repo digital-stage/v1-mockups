@@ -61,7 +61,10 @@ export interface IStageInfo {
     news?: string;
 }
 
-export const AddInformatinStep = (props: any) => {
+export const AddInformatinStep = (props: {
+    emptyField: (name: string) => void,
+    error: boolean
+}) => {
     const [inputLength, setInputLength] = React.useState<{ name: number, info: number, news: number }>({ name: 0, info: 0, news: 0 })
     const [nameEmpty, setNameEmpty] = React.useState<boolean>(false);
     const [showImageUpload, setShowImageUpload] = React.useState<boolean>(false)
