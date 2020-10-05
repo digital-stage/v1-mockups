@@ -2,6 +2,7 @@ import { makeStyles, TextField } from '@material-ui/core';
 import React, { useEffect } from 'react';
 import Stage from '../../assets/images/stage.png';
 import { PhotoCamera } from '@material-ui/icons';
+import StageImageModal from './StageImageModal';
 
 const useStyles = makeStyles({
     root: {
@@ -70,6 +71,7 @@ export const AddInformatinStep = (props: {
     const [showImageUpload, setShowImageUpload] = React.useState<boolean>(false)
     const [image, setImage] = React.useState<string>(Stage)
     const [stageInfo, setStageInfo] = React.useState<IStageInfo>({ name: "Test Stage" });
+    const [open, setOpen] = React.useState(false);
 
     const uplodImage = React.createRef<HTMLInputElement>();
     const classes = useStyles();
@@ -85,6 +87,14 @@ export const AddInformatinStep = (props: {
     //         borderBottom: nameEmpty ? "1px solid #F20544" : "0"
     //     }
     // }
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
 
     const onClick = () => {
         const node = uplodImage.current;
@@ -116,6 +126,9 @@ export const AddInformatinStep = (props: {
     return (
         <div className={classes.root}>
             <div className="my-1 mx-3 text-left add-information">
+                <StageImageModal
+                    handleClose={handleClose}
+                    open={open} />
                 <h5 className="white">Tell us about your stage</h5>
                 <div className="d-flex">
                     <div className="w-100 mt-4">
@@ -125,9 +138,10 @@ export const AddInformatinStep = (props: {
                         >
                             {showImageUpload &&
                                 <>
-                                    <PhotoCamera   
+                                    <PhotoCamera
                                         className="camera-icon"
-                                        onClick={onClick}
+                                        // onClick={onClick}
+                                        onClick={handleClickOpen}
                                     />
                                     <input
                                         type="file"
