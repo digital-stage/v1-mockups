@@ -39,7 +39,7 @@ const colors: Color[] = [
 ]
 
 export default function ColorPicker(props: {
-    onClick: (color:Color)=>void,
+    onClick: (color:string)=>void,
     selectedChip: string,
     selectedColor: string
 }) {
@@ -51,7 +51,7 @@ export default function ColorPicker(props: {
 
     const [pickerColors, setColor] = React.useState(colors);
 
-    const handleOnClick = (color:Color) =>{
+    const handleOnClick = (color:string) =>{
         return () => onClick(color)
     }
 
@@ -72,7 +72,7 @@ export default function ColorPicker(props: {
                 return <span
                     key={i + color.color}
                     className="d-inline-flex mx-2 my-2"
-                    onClick={handleOnClick(color)}
+                    onClick={handleOnClick(color.color)}
                     style={{
                         minWidth: "24px",
                         minHeight: "24px",
