@@ -2,7 +2,7 @@ import React, { MouseEventHandler } from 'react';
 import Icons from '../Icons/Icons';
 import ButtonStyled from '../Form/Button';
 import { Close } from '@material-ui/icons';
-import { Group } from '../../Containers/Home/CreateStageSecondStep';
+import { Group } from '../../Containers/CreateStage/CreateStageSecondStep';
 
 export const GroupLayout = (props: {
     group: Group, 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Group, TheatreGroups } from '../../Containers/Home/CreateStageSecondStep';
+import { Group, TheatreGroups } from '../../Containers/CreateStage/CreateStageSecondStep';
 
 const PREVIEW_WIDTH = "150px";
 const PREVIEW_HEIGHT = "90px";

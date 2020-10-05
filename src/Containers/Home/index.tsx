@@ -12,7 +12,7 @@ import StageIcon from "../../assets/images/stage-icon.svg"
 import NotificationsList from './NotificationsList';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { useAuth } from '../../hooks/useAuth';
-import CreateStageModal from './CreateStageModal';
+import CreateStageModal from '../CreateStage/CreateStageModal';
 
 const drawerWidth = 380;
 
