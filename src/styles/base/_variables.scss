@@ -34,3 +34,9 @@ $breakpoints: (
 
 // Get the small breakpoint.
 $breakpoint: map-get($breakpoints, sm);
+
+
+$group-icon-size: 120px;
+$icon-list-max-height: 180px;
+$user-icon-max-height: 80vh;
+$border-radius: 24px

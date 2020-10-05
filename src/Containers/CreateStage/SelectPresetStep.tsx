@@ -147,7 +147,7 @@ export const SelectPresetStep = () => {
     }, [deletedGroup, selectedPreset, groupId, group])
 
     return (
-        <div className="my-1 mx-3 text-left">
+        <div className="my-1 mx-3 text-left select-preset">
             <CreateEditGroup
                 handleClose={handleClose}
                 open={open}
@@ -161,13 +161,10 @@ export const SelectPresetStep = () => {
                     return (
                         <div
                             key={i}
-                            className="mr-2 p-1"
+                            className="mr-2 p-1 preset"
                             onClick={handleSetPreset(preset)}
                             style={{
-                                backgroundColor: selectedPreset === preset ? "#A8214B" : "transparent",
-                                borderRadius: "8px",
-                                maxWidth: "max-content",
-                                cursor: "pointer"
+                                backgroundColor: selectedPreset === preset ? "#A8214B" : "transparent"
                             }}>
                             {selectPreset(preset, "preset")}
                             <h6>{preset.charAt(0).toUpperCase() + preset.slice(1)}</h6>

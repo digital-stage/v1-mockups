@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Dialog, DialogActions, DialogContent, Slide, Chip, makeStyles, TextField } from '@material-ui/core';
 import ButtonStyled from '../../Components/Form/Button';
 import Icons from '../../Components/Icons/Icons';
-import ColorPicker  from '../../Components/StageCreate/ColorPicker';
+import ColorPicker from '../../Components/StageCreate/ColorPicker';
 import IconPicker from '../../Components/StageCreate/IconPicker';
 import { Group } from './SelectPresetStep';
 
@@ -119,11 +119,11 @@ export default function CreateEditGroup(props: {
         return () => setIconChipSelected(chip)
     }
 
-    const handleSetColor = (color:string) => {
+    const handleSetColor = (color: string) => {
         setColor(color)
     }
 
-    const handleSetIcon = (icon:string) => {
+    const handleSetIcon = (icon: string) => {
         setIcon(icon)
     }
 
@@ -171,20 +171,14 @@ export default function CreateEditGroup(props: {
                 aria-describedby="alert-dialog-slide-description"
             >
                 <DialogContent>
-                    <div className="d-flex">
+                    <div className="d-flex create-edit-group-modal">
                         <div className="w-100">
                             <h6 className="white mt-2 mb-5">Edit Group</h6>
                             <Icons
-                                className="ml-3"
+                                className="ml-3 group-icon"
                                 icon={selectedIcon}
                                 type="circled"
                                 circleColor={selectedColor}
-                                width={120}
-                                height={120}
-                                style={{
-                                    boxShadow: "0px 5px 30px #3C3C3C",
-                                    borderRadius: "50%"
-                                }}
                             />
                             <TextField
                                 InputProps={{
@@ -203,23 +197,20 @@ export default function CreateEditGroup(props: {
                             {/* Colors/Icons tabs */}
                             <div className="d-flex">
                                 <h6
-                                    className="mr-4"
+                                    className="mr-4 pointer p-2"
                                     style={{
                                         color: selected === Tabs.COLORS ? "white" : "#979797",
                                         borderBottom: selected === Tabs.COLORS ? "1px solid white" : "",
-                                        cursor: "pointer",
-                                        padding: "10px"
                                     }}
                                     onClick={handleTabSelection(Tabs.COLORS)}
                                 >
                                     Colors
                                     </h6>
                                 <h6
+                                    className="pointer p-2"
                                     style={{
                                         color: selected === Tabs.ICONS ? "white" : "#979797",
                                         borderBottom: selected === Tabs.ICONS ? "1px solid white" : "",
-                                        cursor: "pointer",
-                                        padding: "10px"
                                     }}
                                     onClick={handleTabSelection(Tabs.ICONS)}
                                 >
@@ -233,12 +224,10 @@ export default function CreateEditGroup(props: {
                                         key={chip}
                                         size="small"
                                         label={chip}
-                                        className="ml-1 mt-2"
+                                        className="ml-1 mt-2 group-chip"
                                         onClick={handleColorChipSelection(chip)}
                                         style={{
                                             backgroundColor: colorChipSelected === chip ? "white" : "#BFBFBF",
-                                            padding: "2px 5px",
-                                            fontSize: "12px"
                                         }}
                                     />
                                 })}
@@ -255,16 +244,14 @@ export default function CreateEditGroup(props: {
                                         key={chip}
                                         size="small"
                                         label={chip}
-                                        className="mr-1 mt-2"
+                                        className="mr-1 mt-2 group-chip"
                                         style={{
                                             backgroundColor: iconChipSelected === chip ? "white" : "#BFBFBF",
-                                            padding: "2px 5px",
-                                            fontSize: "12px"
                                         }}
                                         onClick={handleIconChipSelection(chip)}
                                     />
                                 })}
-                                <div className="icons-list" style={{ maxHeight: "180px", overflowY: "auto" }}>
+                                <div className="icons-list">
                                     <IconPicker
                                         onClick={handleSetIcon}
                                         selectedChip={iconChipSelected}

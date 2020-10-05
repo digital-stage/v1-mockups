@@ -39,7 +39,7 @@ export default function CreateStageModal(props: {
                 }}
             >
                 <div className="text-right white p-0 pr-2 pt-2" onClick={handleClose}>
-                    <Close style={{ cursor: "pointer" }} />
+                    <Close className="pointer" />
                 </div>
                 <DialogContent>
                     <CreateStageStepper />

@@ -158,26 +158,23 @@ export default function InviteUserModal(props: {
                 aria-describedby="alert-dialog-slide-description"
             >
                 <DialogContent>
-                    <div className="w-100">
+                    <div className="w-100 invite-user-modal">
                         <div className="d-flex">
                             <h6
-                                className="mr-4"
+                                className="mr-4 pointer p-2"
                                 style={{
                                     color: selected === Tabs.USERNAME ? "white" : "#979797",
-                                    borderBottom: selected === Tabs.USERNAME ? "1px solid white" : "",
-                                    cursor: "pointer",
-                                    padding: "10px"
+                                    borderBottom: selected === Tabs.USERNAME ? "1px solid white" : ""
                                 }}
                                 onClick={handleTabSelection(Tabs.USERNAME)}
                             >
                                 Username
                                     </h6>
                             <h6
+                                className="pointer p-2"
                                 style={{
                                     color: selected === Tabs.EMAIL ? "white" : "#979797",
                                     borderBottom: selected === Tabs.EMAIL ? "1px solid white" : "",
-                                    cursor: "pointer",
-                                    padding: "10px"
                                 }}
                                 onClick={handleTabSelection(Tabs.EMAIL)}
                             >
@@ -185,7 +182,7 @@ export default function InviteUserModal(props: {
                                     </h6>
                         </div>
                         {selected === Tabs.USERNAME &&
-                            <div className="select-user" style={{ maxHeight: "60vh", overflowY: "auto" }}>
+                            <div className="select-user">
                                 <div className="d-flex">
                                     <div className="w-100 mx-4 my-0">
                                         <div className="d-flex flex-column">
@@ -204,12 +201,7 @@ export default function InviteUserModal(props: {
                                                         </InputAdornment>
                                                 }}
                                             />
-                                            <div style={{
-                                                backgroundColor: "#2A2A2A",
-                                                borderRadius: "0 0 24px 24px",
-                                                marginTop: "-20px",
-                                                boxShadow: "0px 3px 17px #000000"
-                                            }}>
+                                            <div className="search-info">
                                                 <p className="mt-3 pt-3 px-3">Click on results to invite users to your stage group</p>
                                             </div>
                                         </div>
@@ -217,15 +209,15 @@ export default function InviteUserModal(props: {
                                         {users.map((user: User) => {
                                             return <div
                                                 key={user.id}
-                                                className="d-flex py-2 px-1 ml-3"
-                                                style={{
-                                                    borderBottom: "1px solid #3D3D3D",
-                                                    whiteSpace: "nowrap",
-                                                    cursor: "pointer",
-                                                }}
+                                                className="d-flex py-2 px-1 ml-3 pointer  user-container"
                                                 onClick={handleUserAdd(user.id!)}
                                             >
-                                                <img className="mr-2 my-auto" src={AvatarImg} alt={user.name} width="24px" height="24px" />
+                                                <img
+                                                    className="mr-2 my-auto"
+                                                    src={AvatarImg} alt={user.name}
+                                                    width="24px"
+                                                    height="24px"
+                                                />
                                                 <span className="mr-2" >
                                                     <h6 className="white m-0">{user.name}</h6>
                                                     <p className="m-0">{user.email}</p>
@@ -233,12 +225,15 @@ export default function InviteUserModal(props: {
                                             </div>
                                         })}
                                     </div>
-                                    {group && Object.keys(group).length > 0 ? <div className="w-100 mx-4 pr-4  pb-2 mt-3 text-left" style={{ border: `2px solid ${group.color}`, borderRadius: "24px" }}>
+                                    {group && Object.keys(group).length > 0 ? <div
+                                        className="w-100 mx-4 pr-4  pb-2 mt-3 text-left"
+                                        style={{
+                                            border: `2px solid ${group.color}`,
+                                            borderRadius: "24px"
+                                        }}>
                                         <Icons
                                             className="d-inline-block mx-1"
                                             icon={group.icon}
-                                            // type="circled" 
-                                            // circleColor={group[0].color} 
                                             width={40}
                                             height={40}
                                         />
@@ -247,20 +242,28 @@ export default function InviteUserModal(props: {
                                         {selectedUsers.map((user: User) => {
                                             return <div
                                                 key={user.id}
-                                                className="d-flex px-1 ml-3"
-                                                style={{
-                                                    borderBottom: "1px solid #3D3D3D",
-                                                    whiteSpace: "nowrap",
-                                                    cursor: "pointer",
-
-                                                }}
+                                                className="d-flex px-1 ml-3 pointer user-container"
                                             >
-                                                <img className="mr-2 mt-4" src={AvatarImg} alt={user.name} width="24px" height="24px" />
-                                                <span className="mr-2" style={{ minWidth: "100%" }}>
-                                                    <div className="text-right mt-2 mr-5" style={{ minWidth: "max-content" }}>
-                                                        <Clear style={{ color: "white", fontSize: "17", marginBottom: "-20px" }} onClick={handleUserRemove(user.id!)} />
-                                                    </div>
-                                                    <h6 className="white m-0">{user.name}</h6>
+                                                {user.id && <img
+                                                    className="mr-2 mt-4"
+                                                    src={AvatarImg}
+                                                    alt={user.name}
+                                                    width="24px"
+                                                    height="24px"
+                                                />}
+                                                <span className="mr-2 user-span">
+                                                    {user.id && <div
+                                                        className="text-right mt-2 mr-5">
+                                                        <Clear
+                                                            style={{
+                                                                color: "white",
+                                                                fontSize: "17",
+                                                                marginBottom: "-20px"
+                                                            }}
+                                                            className="remove-user-icon"
+                                                            onClick={handleUserRemove(user.id!)} />
+                                                    </div>}
+                                                    <h6 className="white m-0">{user.id ? user.name : "Email user"}</h6>
                                                     <p className="m-0">{user.email}</p>
                                                 </span>
                                             </div>
@@ -268,7 +271,7 @@ export default function InviteUserModal(props: {
                                     </div> : null}
                                 </div>
                             </div>}
-                        {selected === Tabs.EMAIL && <div className="select-user" style={{ maxHeight: "60vh", overflowY: "auto" }}>
+                        {selected === Tabs.EMAIL && <div className="select-user">
                             <div className="d-flex">
                                 <div className="w-100 mx-4 my-0">
                                     <div className="d-flex flex-column">
@@ -288,12 +291,7 @@ export default function InviteUserModal(props: {
                                                     </InputAdornment>
                                             }}
                                         />
-                                        <div style={{
-                                            backgroundColor: "#2A2A2A",
-                                            borderRadius: "0 0 24px 24px",
-                                            marginTop: "-20px",
-                                            boxShadow: "0px 3px 17px #000000"
-                                        }}>
+                                        <div className="search-info">
                                             <p className="mt-3 pt-3 px-3">Search or paste E-mail addresses, separated by semicolon</p>
                                         </div>
                                     </div>
@@ -301,15 +299,16 @@ export default function InviteUserModal(props: {
                                     {users.map((user: User) => {
                                         return <div
                                             key={user.id}
-                                            className="d-flex py-2 px-1 ml-3"
-                                            style={{
-                                                borderBottom: "1px solid #3D3D3D",
-                                                whiteSpace: "nowrap",
-                                                cursor: "pointer",
-                                            }}
+                                            className="d-flex py-2 px-1 ml-3 pointer user-container"
                                             onClick={handleUserAdd(user.id!)}
                                         >
-                                            <img className="mr-2 my-auto" src={AvatarImg} alt={user.name} width="24px" height="24px" />
+                                            <img
+                                                className="mr-2 my-auto"
+                                                src={AvatarImg}
+                                                alt={user.name}
+                                                width="24px"
+                                                height="24px"
+                                            />
                                             <span className="mr-2" >
                                                 <h6 className="white m-0">{user.name}</h6>
                                                 <p className="m-0">{user.email}</p>
@@ -318,7 +317,7 @@ export default function InviteUserModal(props: {
                                     })}
                                 </div>
                                 {group && Object.keys(group).length > 0 ?
-                                    <div className="w-100 mx-4 pb-2 mt-3 text-left">
+                                    <div className="w-100 mx-4 pr-4  pb-2 mt-3 text-left">
                                         <Icons
                                             className="d-inline-block mx-1"
                                             icon={group.icon}
@@ -332,17 +331,25 @@ export default function InviteUserModal(props: {
                                         {selectedUsers.map((user: User) => {
                                             return <div
                                                 key={user.email}
-                                                className="d-flex px-1 ml-3"
-                                                style={{
-                                                    borderBottom: "1px solid #3D3D3D",
-                                                    whiteSpace: "nowrap",
-                                                    cursor: "pointer",
-                                                }}
+                                                className="d-flex px-1 ml-3 pointer user-container"
                                             >
-                                                {user.id && <img className="mr-2 mt-4" src={AvatarImg} alt={user.name} width="24px" height="24px" />}
-                                                <span className="mr-2" style={{ minWidth: "100%" }}>
-                                                    <div className="text-right mt-2 mr-5" style={{ minWidth: "max-content" }}>
-                                                        {user.id && <Clear style={{ color: "white", fontSize: "17", marginBottom: "-20px" }} onClick={handleUserRemove(user.id)} />}
+                                                {user.id && <img
+                                                    className="mr-2 mt-4"
+                                                    src={AvatarImg}
+                                                    alt={user.name}
+                                                    width="24px"
+                                                    height="24px"
+                                                />}
+                                                <span className="mr-2 user-span">
+                                                    <div className="text-right mt-2 mr-5">
+                                                        {user.id && <Clear
+                                                            style={{
+                                                                color: "white",
+                                                                fontSize: "17",
+                                                                marginBottom: "-20px"
+                                                            }}
+                                                            onClick={handleUserRemove(user.id)}
+                                                        />}
                                                     </div>
                                                     {!user.id && <h6 className="white d-block">Mail user</h6>}
                                                     <h6 className="white m-0">{user.name}</h6>

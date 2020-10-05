@@ -1,0 +1,115 @@
+// Add Information step
+.add-information {
+    .photo-container {
+        position: relative;
+        max-width: fit-content
+    }
+
+    .camera-icon {
+        position: absolute;
+        z-index: 999;
+        top: 18%;
+        left: 23%;
+        width: 100px;
+        height: 100px
+    }
+
+    .file-input {
+        display: none
+    }
+
+    .stage-image {
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: 50% 50%
+    }
+
+    .text-input {
+        width: 100%
+    }
+}
+
+// Select preset
+.select-preset {
+    .preset {
+        border-radius: 8px;
+        max-width: max-content;
+        cursor: pointer
+    }
+}
+
+// Create stage final step
+.create-stage {
+    .stage-image {
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: 50% 50%
+    }
+
+    .invitation-container {
+        background-color: #333232;
+        border-radius: 11px;
+        width: 90%
+    }
+
+    .invitation-text-field {
+        width: 90%
+    }
+}
+
+// Create edit group modal
+.create-edit-group-modal {
+    .group-icon {
+        width: $group-icon-size;
+        height: $group-icon-size;
+        box-shadow: 0px 5px 30px #3C3C3C;
+        border-radius: 50%;
+    }
+
+    .group-chip {
+        padding: 0.2rem 0.5rem;
+        font-size: 12px
+    }
+
+    .icons-list {
+        max-height: $icon-list-max-height;
+        overflow-y: auto
+    }
+}
+
+// Invite user modal
+.invite-user-modal {
+    .select-user {
+        max-height: $user-icon-max-height;
+        overflow-y: auto
+    }
+
+    .search-info {
+        background-color: #2A2A2A;
+        border-radius: 0 0 24px 24px;
+        margin-top: -20px;
+        box-shadow: 0px 3px 17px #000000;
+        max-width:330px;
+    }
+
+    .user-container {
+        border-bottom: 1px solid #3D3D3D;
+        white-space: nowrap
+    }
+
+    .user-span {
+        min-width: 100%;
+
+        .div {
+            min-width: max-content;
+
+
+        }
+    }
+
+    .remove-user-icon {
+        color: white;
+        font-size: 17;
+        margin-bottom: -20px
+    }
+}

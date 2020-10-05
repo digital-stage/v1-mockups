@@ -115,48 +115,35 @@ export const AddInformatinStep = (props: {
 
     return (
         <div className={classes.root}>
-            <div className="my-1 mx-3 text-left">
+            <div className="my-1 mx-3 text-left add-information">
                 <h5 className="white">Tell us about your stage</h5>
                 <div className="d-flex">
                     <div className="w-100 mt-4">
                         <div
                             onMouseLeave={handleHideImageUpload}
-                            style={{
-                                position: "relative",
-                                maxWidth: "fit-content"
-                            }}
+                            className="photo-container"
                         >
                             {showImageUpload &&
                                 <>
-                                    <PhotoCamera style={{
-                                        position: "absolute",
-                                        zIndex: 999,
-                                        top: "18%",
-                                        left: "23%",
-                                        width: "100px",
-                                        height: "100px"
-                                    }}
+                                    <PhotoCamera   
+                                        className="camera-icon"
                                         onClick={onClick}
                                     />
                                     <input
                                         type="file"
                                         ref={uplodImage}
                                         onChange={handleChangeImage}
-                                        style={{ display: 'none' }}
+                                        className="file-input"
                                         accept="image/*"
                                     />
                                 </>
                             }
                             <img
-                                className="ml-3"
+                                className="ml-3 stage-image"
                                 src={image}
                                 width={140}
                                 height={140}
                                 alt="stage"
-                                style={{
-                                    borderRadius: "50%", objectFit: "cover",
-                                    objectPosition: "50% 50%"
-                                }}
                                 onMouseOver={handleShowImageUpload}
                             />
                         </div>
@@ -168,12 +155,11 @@ export const AddInformatinStep = (props: {
                                 required={true}
                                 error={nameEmpty}
                                 inputProps={{ maxLength: 16 }}
-                                className="mt-5 mb-3"
+                                className="mt-5 mb-3 mr-2 text-input"
                                 label="Stage name"
                                 name="name"
                                 helperText={`${inputLength.name}/16`}
                                 value={stageInfo.name}
-                                style={{ width: "90%" }}
                                 onChange={handleChange}
                             /></span>
                     </div>
@@ -183,7 +169,7 @@ export const AddInformatinStep = (props: {
                             InputProps={{
                                 className: classes.input
                             }}
-                            style={{ width: "100%" }}
+                            className="text-input"
                             multiline={true}
                             name="info"
                             inputProps={{ maxLength: 120 }}
@@ -202,7 +188,7 @@ export const AddInformatinStep = (props: {
                             multiline={true}
                             rowsMax={5}
                             name="news"
-                            style={{ width: "100%" }}
+                            className="text-input"
                             inputProps={{ maxLength: 120 }}
                             id="standard-helperText"
                             label="A place for dates and updates"

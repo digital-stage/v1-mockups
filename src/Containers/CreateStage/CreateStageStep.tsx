@@ -69,20 +69,16 @@ export const CreateStageStep = () => {
 
     return (
         <div className={classes.root}>
-            <div className="my-1 mx-3 text-left">
+            <div className="my-1 mx-3 text-left create-stage">
                 <h5 className="white my-3">Send out invitations and start your digital stage!</h5>
                 <div className="d-flex my-4">
                     <div className="w-100 text-center">
                         <img
-                            className="mx-auto"
+                            className="mx-auto stage-image"
                             src={Stage}
                             width={80}
                             height={80}
                             alt="stage"
-                            style={{
-                                borderRadius: "50%", objectFit: "cover",
-                                objectPosition: "50% 50%"
-                            }}
                         />
                         <h5 className="white my-2 mx-auto">Test stage</h5>
                     </div>
@@ -110,13 +106,13 @@ export const CreateStageStep = () => {
                     })}
                 </div>
                 <h5 className="white mx-2">Invitation:</h5>
-                <div className="p-4" style={{ backgroundColor: "#333232", borderRadius: "11px", width:"90%" }}>
+                <div className="p-4 invitation-container">
                     <TextField
                         InputProps={{
                             className: classes.input
                         }}
-                        style={{ width: "90%" }}
                         multiline={true}
+                        className="invitation-text-field"
                         name="invitation"
                         inputProps={{ maxLength: 120 }}
                         rowsMax={5}
