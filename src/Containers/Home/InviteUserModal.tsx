@@ -77,7 +77,7 @@ export default function InviteUserModal(props: {
     const [selected, setSelected] = React.useState<string>(Tabs.USERNAME)
     const [group, SetGroup] = React.useState<Group>(choir[0])
     const [users, SetUsers] = React.useState(recentUsers)
-    const [selectedUsers, setSelectedUsers] = React.useState<any>([])
+    const [selectedUsers, setSelectedUsers] = React.useState<User[]>([])
     const [emails, setEmails] = React.useState<string>('')
 
     const reset = () => {
