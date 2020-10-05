@@ -7,8 +7,13 @@ import { Link } from 'react-router-dom';
 const Welcome = () => {
   return (
     <Box className="welcome-body">
-      <Grid container direction="column" justify="center" alignItems="center">
-        <Grid item>
+      <Grid
+        container={true}
+        direction="column"
+        justify="center"
+        alignItems="center"
+      >
+        <Grid item={true}>
           <img
             src={logo}
             width="80"
@@ -24,7 +29,6 @@ const Welcome = () => {
         >
           Your digital stage for art, music <br /> and theatre ensembles.
         </Typography>
-        <Grid item></Grid>
       </Grid>
 
       <div className="root-container mt-5" style={{ marginTop: "100px !important" }}>

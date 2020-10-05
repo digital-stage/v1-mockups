@@ -1,10 +1,6 @@
-import React, { useEffect } from 'react';
-import { Dialog, DialogActions, DialogContent, Slide, Chip, makeStyles, TextField } from '@material-ui/core';
+import React from 'react';
+import { Dialog, DialogActions, DialogContent, Slide, makeStyles } from '@material-ui/core';
 import ButtonStyled from '../../Components/Form/Button';
-import Icons from '../../Components/Icons/Icons';
-import ColorPicker from '../../Components/StageCreate/ColorPicker';
-import IconPicker from '../../Components/StageCreate/IconPicker';
-import { Group } from './SelectPresetStep';
 
 const useStyles = makeStyles({
     root: {

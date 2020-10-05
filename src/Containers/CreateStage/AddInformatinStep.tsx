@@ -96,12 +96,12 @@ export const AddInformatinStep = (props: {
         setOpen(true);
     };
 
-    const onClick = () => {
-        const node = uplodImage.current;
-        if (node) {
-            node.click()
-        }
-    };
+    // const onClick = () => {
+    //     const node = uplodImage.current;
+    //     if (node) {
+    //         node.click()
+    //     }
+    // };
 
     const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files !== null) {

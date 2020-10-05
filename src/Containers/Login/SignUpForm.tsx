@@ -5,8 +5,8 @@ import {
   Container,
   IconButton,
   Icon,
+  makeStyles
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 // @ts-ignore
 import { loadCSS } from "fg-loadcss";
 
@@ -78,32 +78,38 @@ export default function SignUpForm() {
   }, [auth.signupError]);
 
   const validate = () => {
-    const errors: IError = {}
+    const errorsList: IError = {}
     if (validator.isEmpty(email)) {
-      errors.email = "Email is required"
+      errorsList.email = "Email is required"
     }
     else if (!validator.isEmail(email)) {
-      errors.email = "Enter a valid email"
+      errorsList.email = "Enter a valid email"
     }
     if (validator.isEmpty(password)) {
-      errors.password = "Password is required"
+      errorsList.password = "Password is required"
     }
-    else if(!validator.matches(password,'^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\\$%\\^&\\*]).{8,}$')){
-      errors.password = "Password must contain numbers, special chars, uppercase and lowercase letters and at least 8 chars"
+    else if (!validator.matches(password, '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\\$%\\^&\\*]).{8,}$')) {
+      errorsList.password = "Password must contain numbers, special chars, uppercase and lowercase letters and at least 8 chars"
     }
     if (validator.isEmpty(repeatPassword)) {
-      errors.repeatPassword = "Repeat password"
+      errorsList.repeatPassword = "Repeat password"
     }
     if (validator.isEmpty(username)) {
-      errors.username = "Username is required"
+      errorsList.username = "Username is required"
     }
     if (!validator.equals(password, repeatPassword)) {
-      errors.repeatPassword = "Passwords must be equal"
-      errors.password = "Passwords must be equal"
+      errorsList.repeatPassword = "Passwords must be equal"
+      errorsList.password = "Passwords must be equal"
     }
-    setErrors(errors)
-    return errors
+    setErrors(errorsList)
+    return errorsList
   }
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)
+  const handleReapeatPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => setRepeatPassword(e.target.value)
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -117,44 +123,45 @@ export default function SignUpForm() {
     <Container maxWidth="sm" className={`${classes.back}, p-0 mt-0`}>
       <div className={classes.paper}>
         {showAlert && <div className="alert-box"><p>{auth.signupError}</p></div>}
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
+        <form className={classes.form} noValidate={true} onSubmit={handleSubmit}>
           <Input
-            required id="email"
+            required={true}
+            id="email"
             type="text"
             placeholder="Email"
             name="email"
             error={errors && errors.email}
-            onInputChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+            onInputChange={handleEmailChange}
           />
           <Input
-            required
+            required={true}
             id="Username"
             placeholder="Username"
             name="Username"
             type="text"
             error={errors && errors.username}
-            onInputChange={(e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
+            onInputChange={handleUsernameChange}
           />
           <Input
-            required
+            required={true}
             id="passwrod"
             placeholder="Password"
             name="password"
             type="password"
             error={errors && errors.password}
-            onInputChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+            onInputChange={handlePasswordChange}
           />
           <Input
-            required
+            required={true}
             id="Repeat password"
             placeholder="Repeat password"
             type="password"
             name="password"
             error={errors && errors.repeatPassword}
-            onInputChange={(e: React.ChangeEvent<HTMLInputElement>) => setRepeatPassword(e.target.value)}
+            onInputChange={handleReapeatPasswordChange}
           />
           <Grid
-            container
+            container={true}
             direction="column"
             justify="center"
             alignItems="center"
@@ -190,13 +197,13 @@ export default function SignUpForm() {
                 }
               />
             </Grid> */}
-            <Grid item>
+            <Grid item={true}>
               <ButtonStyled
                 className="button-primary"
                 text="Sign up"
               />
             </Grid>
-            <Grid item className="mt-3">
+            <Grid item={true} className="mt-3">
               <h5 style={{ color: "white", textAlign: "center" }}>
                 Or Via
               </h5>

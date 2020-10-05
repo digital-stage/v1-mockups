@@ -7,7 +7,7 @@ import logo from "../../assets/images/welcome_icon.png";
 import { useAuth } from "../../hooks/useAuth";
 
 type Props = {
-  history: Array<string> | undefined
+  history: string[] | undefined
 }
 
 const Login = (props: Props) => {
@@ -37,8 +37,8 @@ const Login = (props: Props) => {
 
   return (
     <Box className="welcome-body">
-      <Grid container direction="column" justify="center" alignItems="center">
-        <Grid item>
+      <Grid container={true} direction="column" justify="center" alignItems="center">
+        <Grid item={true}>
           <img
             src={logo}
             width="120"
@@ -54,7 +54,6 @@ const Login = (props: Props) => {
         >
           Welcome
         </Typography>
-        <Grid item></Grid>
       </Grid>
 
       <div className="root-container">
@@ -72,7 +71,7 @@ const Login = (props: Props) => {
               className={
                 "controller " + (LoginOpen ? "selected-controller" : "")
               }
-              onClick={() => showLoginBox()}
+              onClick={showLoginBox}
             >
               <h5>Sign in</h5>
             </div>
@@ -80,7 +79,7 @@ const Login = (props: Props) => {
               className={
                 "controller " + (SignupOpen ? "selected-controller" : "")
               }
-              onClick={() => showRegisterBox()}
+              onClick={showRegisterBox}
             >
               <h5>Sign up</h5>
             </div>

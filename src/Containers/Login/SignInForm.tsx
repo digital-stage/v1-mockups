@@ -8,10 +8,9 @@ import {
   Container,
   IconButton,
   Icon,
+  makeStyles
 } from "@material-ui/core";
-import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
-import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
-import { makeStyles } from "@material-ui/core/styles";
+import { CheckRounded, CheckBoxOutlineBlank } from "@material-ui/icons";
 // @ts-ignore
 import { loadCSS } from "fg-loadcss";
 
@@ -48,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 type Props = {
-  history?: Array<string> | undefined,
+  history?: string[] | undefined,
 }
 
 export interface IError {
@@ -61,10 +60,10 @@ export default function SignInForm(props: Props) {
   // Get auth state and re-render anytime it changes
   const auth = useAuth();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showAlert, setShowAlert] = useState(false);
-  const [checked, setChecked] = useState(false);
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [showAlert, setShowAlert] = useState<boolean>(false);
+  const [checked, setChecked] = useState<boolean>(false);
 
   const [errors, setErrors] = useState<IError>({});
 
@@ -83,31 +82,37 @@ export default function SignInForm(props: Props) {
   }, [auth]);
 
   useEffect(() => {
-    if (auth.loginError){
+    if (auth.loginError) {
       setShowAlert(true)
     }
   }, [auth.loginError]);
 
   useEffect(() => {
-    if (auth.loginError){
+    if (auth.loginError) {
       setShowAlert(true)
     }
   }, [auth.loginError]);
 
   const validate = () => {
-    const errors: IError = {}
+    const errorsList: IError = {}
     if (validator.isEmpty(email)) {
-      errors.email = "Email is required"
+      errorsList.email = "Email is required"
     }
     else if (!validator.isEmail(email)) {
-      errors.email = "Enter a valid email"
+      errorsList.email = "Enter a valid email"
     }
     if (validator.isEmpty(password)) {
-      errors.password = "Password is required"
+      errorsList.password = "Password is required"
     }
-    setErrors(errors)
-    return errors
+    setErrors(errorsList)
+    return errorsList
   }
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)
+
+  const handleCheck = () => setChecked(!checked)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -121,42 +126,42 @@ export default function SignInForm(props: Props) {
     <Container maxWidth="sm" className={`${classes.back}, p-0`}>
       {showAlert && <div className="alert-box"><p>{auth.loginError}</p></div>}
       <div className={classes.paper}>
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
+        <form className={classes.form} noValidate={true} onSubmit={handleSubmit}>
           <Input
-            required
+            required={true}
             id="email"
             placeholder="Username"
             name="email"
             type="text"
             error={errors && errors.email}
-            onInputChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+            onInputChange={handleEmailChange}
           />
           <Input
-            required
+            required={true}
             name="password"
             placeholder="Password"
             type="password"
             id="password"
             error={errors && errors.password}
-            onInputChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+            onInputChange={handlePasswordChange}
           />
           <Grid
-            container
+            container={true}
             direction="column"
             justify="center"
             alignItems="center"
           >
-            <Grid item xs>
+            <Grid item={true} xs={true}>
               <FormControlLabel
                 className="mb-0 mt-2"
                 control={
                   <Checkbox
                     value="remember"
                     color="primary"
-                    onChange={() => setChecked(!checked)} 
+                    onChange={handleCheck}
                     checked={checked}
                     checkedIcon={
-                      <CheckRoundedIcon
+                      <CheckRounded
                         style={{
                           color: "white",
                           backgroundColor: "#444444",
@@ -164,7 +169,7 @@ export default function SignInForm(props: Props) {
                         }}
                       />
                     }
-                    icon={<CheckBoxOutlineBlankIcon />}
+                    icon={<CheckBoxOutlineBlank />}
                     style={{
                       color: "#444444",
                       borderRadius: "24px",
@@ -178,21 +183,21 @@ export default function SignInForm(props: Props) {
                 }
               />
             </Grid>
-            <Grid item className="my-2">
+            <Grid item={true} className="my-2">
               <ButtonStyled
                 className="button-primary"
                 text="Sign in"
                 type="submit"
               />
             </Grid>
-            <Grid item>
+            <Grid item={true}>
               <Link href="#" variant="body2">
                 <h6 style={{ color: "#6E6E6E" }} className="mt-2">
                   Forgot password?
                 </h6>
               </Link>
             </Grid>
-            <Grid item className="text-center">
+            <Grid item={true} className="text-center">
               <h5 style={{ color: "white" }}>
                 Or Via
               </h5>
