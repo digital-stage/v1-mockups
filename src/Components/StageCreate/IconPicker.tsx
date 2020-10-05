@@ -52,7 +52,7 @@ const icons: Icon[] = [
 ]
 
 export default function IconPicker(props: {
-    onClick: any,
+    onClick: (icon:string)=>void,
     selectedChip: string,
     selectedIcon: string
 }) {
@@ -73,6 +73,7 @@ export default function IconPicker(props: {
         <div className="ml-2 mt-2">
             {pickerIcons.map(icon => {
                 return <Icons
+                    key={icon.name}
                     title={icon.name.split('-')[1].charAt(0).toUpperCase() + icon.name.split('-')[1].slice(1)}
                     className="d-inline-flex my-2"
                     onClick={() => onClick(icon.name)}

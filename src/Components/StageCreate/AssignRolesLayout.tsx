@@ -1,5 +1,5 @@
 import React from 'react';
-import AddIcon from '@material-ui/icons/Add';
+import {Add} from '@material-ui/icons';
 import { Fab, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
@@ -43,7 +43,7 @@ export const AssignRolesLayout = (props: {
                     backgroundColor: "#F20544",
                     cursor: "pointer"
                 }}>
-                <AddIcon />
+                <Add />
             </Fab>
         </div>
     )

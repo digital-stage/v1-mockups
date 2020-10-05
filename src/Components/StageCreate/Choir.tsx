@@ -26,14 +26,16 @@ export default function Choir(props: { groups: Group[], context: string }) {
                 padding: context === Context.PRESET ? "6px" : "10px"
             }}
         >
-            {groups.map((group) => {
-                return <div style={{
-                    margin: context === Context.PRESET ? "0px 1px" : "0px 2px",
-                    height: "100%",
-                    backgroundColor: context === Context.PRESET ? 'white' : group.color,
-                    width: group.name !== ChoirGroups.CONDUCTOR ? `calc(${context === Context.PRESET ? PRESET_WIDTH : PREVIEW_WIDTH} / ${groups.length})` : `calc((${context === Context.PRESET ? PRESET_WIDTH : PREVIEW_WIDTH} / ${groups.length}) + 25px)`,
-                    borderRadius: "8px"
-                }}></div>
+            {groups.map((group, i) => {
+                return <div
+                    key={i + group.name}
+                    style={{
+                        margin: context === Context.PRESET ? "0px 1px" : "0px 2px",
+                        height: "100%",
+                        backgroundColor: context === Context.PRESET ? 'white' : group.color,
+                        width: group.name !== ChoirGroups.CONDUCTOR ? `calc(${context === Context.PRESET ? PRESET_WIDTH : PREVIEW_WIDTH} / ${groups.length})` : `calc((${context === Context.PRESET ? PRESET_WIDTH : PREVIEW_WIDTH} / ${groups.length}) + 25px)`,
+                        borderRadius: "8px"
+                    }}/>
             }
             )}
         </div>

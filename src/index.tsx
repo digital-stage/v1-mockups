@@ -17,11 +17,11 @@ const queries = {
 
 ReactDOM.render(
         <BreakpointProvider queries={queries}>
-          <React.StrictMode>
+          {/* <React.StrictMode> */}
             <BrowserRouter>
               <App />
             </BrowserRouter>
-          </React.StrictMode>
+          {/* </React.StrictMode> */}
         </BreakpointProvider>,
   document.getElementById("root")
 );

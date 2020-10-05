@@ -1,7 +1,7 @@
 import React, { MouseEventHandler } from 'react';
 import Icons from '../Icons/Icons';
 import { Group } from '../../Containers/Home/CreateStageSecondStep';
-import AddIcon from '@material-ui/icons/Add';
+import { Add } from '@material-ui/icons';
 import { Fab, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
@@ -48,8 +48,8 @@ export const AddUsersToGroupLayout = (props: {
                     className="d-inline-block"
                 />
                 <p className="mb-4 mt-1 white d-inline-block">{name}</p>
-                {users && users.length > 0 && users.map((user:any) => {
-                    return <p className="mb-4 mt-1 white d-inline-block">{user.name}</p>
+                {users && users.length > 0 && users.map((user: any) => {
+                    return <p className="mb-4 mt-1 white d-inline-block" key={user.name}>{user.name}</p>
                 })}
             </div>
             <Fab
@@ -61,7 +61,7 @@ export const AddUsersToGroupLayout = (props: {
                     backgroundColor: "#F20544",
                     cursor: "pointer"
                 }}>
-                <AddIcon onClick={onClick} />
+                <Add onClick={onClick} />
             </Fab>
         </div>
     )

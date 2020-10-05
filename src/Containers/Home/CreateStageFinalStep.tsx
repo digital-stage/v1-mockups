@@ -1,6 +1,6 @@
 import React from 'react';
 import stageIcon from '../../assets/images/stage-icon-1.png'
-import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+import {CheckCircleOutline} from '@material-ui/icons';
 import { Grow } from '@material-ui/core';
 
 export const CreateStageSuccessStep = () => {
@@ -17,7 +17,7 @@ export const CreateStageSuccessStep = () => {
                 style={{ transformOrigin: '0 0 0' }}
                 {...(checked ? { timeout: 1000 } : {})}
             >
-            <CheckCircleOutlineIcon className="white my-1" style={{ fontSize: 40 }}/>
+            <CheckCircleOutline className="white my-1" style={{ fontSize: 40 }}/>
             </Grow>
         </div >
     )

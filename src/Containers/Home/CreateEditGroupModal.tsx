@@ -1,14 +1,9 @@
 import React, { useEffect } from 'react';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import Slide from '@material-ui/core/Slide';
+import { Dialog, DialogActions, DialogContent, Slide, Chip, makeStyles, TextField } from '@material-ui/core';
 import { TransitionProps } from '@material-ui/core/transitions';
-import { Chip, makeStyles, TextField } from '@material-ui/core';
 import ButtonStyled from '../../Components/Form/Button';
 import Icons from '../../Components/Icons/Icons';
-import ColorPicker from '../../Components/StageCreate/ColorPicker';
+import ColorPicker, { Color } from '../../Components/StageCreate/ColorPicker';
 import IconPicker from '../../Components/StageCreate/IconPicker';
 import { Group } from './CreateStageSecondStep';
 
@@ -92,7 +87,7 @@ export default function CreateEditGroup(props: {
     group?: Group | null,
     open: boolean,
     handleClose: () => void,
-    saveGroup: (color:string, icon:string, name:string) => void
+    saveGroup: (color: string, icon: string, name: string) => void
 }) {
     const [selected, setSelected] = React.useState<string>(Tabs.COLORS)
     const [nameLength, setNameLength] = React.useState<number>(0)
@@ -137,7 +132,7 @@ export default function CreateEditGroup(props: {
                 maxWidth="xs"
                 open={props.open}
                 TransitionComponent={Transition}
-                keepMounted
+                keepMounted={true}
                 classes={{
                     root: classes.root,
                     paper: classes.paper
@@ -146,7 +141,6 @@ export default function CreateEditGroup(props: {
                 aria-describedby="alert-dialog-slide-description"
             >
                 <DialogContent>
-                    <DialogContentText id="alert-dialog-slide-description">
                         <div className="d-flex">
                             <div className="w-100">
                                 <h6 className="white mt-2 mb-5">Edit Group</h6>
@@ -206,6 +200,7 @@ export default function CreateEditGroup(props: {
                                 {selected === Tabs.COLORS && <div>
                                     {ColorChips.map(chip => {
                                         return <Chip
+                                            key={chip}
                                             size="small"
                                             label={chip}
                                             className="ml-1 mt-2"
@@ -218,7 +213,7 @@ export default function CreateEditGroup(props: {
                                         />
                                     })}
                                     <ColorPicker
-                                        onClick={(color: any) => setColor(color.color)}
+                                        onClick={(color: Color) => setColor(color.color)}
                                         selectedChip={colorChipSelected}
                                         selectedColor={selectedColor}
                                     />
@@ -227,6 +222,7 @@ export default function CreateEditGroup(props: {
                                 {selected === Tabs.ICONS && <div>
                                     {IconChips.map(chip => {
                                         return <Chip
+                                            key={chip}
                                             size="small"
                                             label={chip}
                                             className="mr-1 mt-2"
@@ -240,7 +236,7 @@ export default function CreateEditGroup(props: {
                                     })}
                                     <div className="icons-list" style={{ maxHeight: "180px", overflowY: "auto" }}>
                                         <IconPicker
-                                            onClick={(icon: any) => setIcon(icon)}
+                                            onClick={(icon: string) => setIcon(icon)}
                                             selectedChip={iconChipSelected}
                                             selectedIcon={selectedIcon}
                                         />
@@ -248,7 +244,6 @@ export default function CreateEditGroup(props: {
                                 </div>}
                             </div>
                         </div>
-                    </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <ButtonStyled

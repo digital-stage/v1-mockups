@@ -1,12 +1,13 @@
 import React, { MouseEventHandler } from 'react';
 import Icons from '../Icons/Icons';
 import ButtonStyled from '../Form/Button';
-import CloseIcon from '@material-ui/icons/Close';
+import { Close } from '@material-ui/icons';
 import { Group } from '../../Containers/Home/CreateStageSecondStep';
 
 export const GroupLayout = (props: {
-    group: Group, handleGroupDelete?: MouseEventHandler | undefined,
-    onClick?: MouseEventHandler | undefined
+    group: Group, 
+    handleGroupDelete?: MouseEventHandler,
+    onClick?: MouseEventHandler
 }) => {
     const { group: {
         name,
@@ -26,7 +27,7 @@ export const GroupLayout = (props: {
                     className="text-right white p-0 pr-2 pt-0"
                     onClick={handleGroupDelete}
                 >
-                    <CloseIcon style={{
+                    <Close style={{
                         fontSize: 16,
                         cursor: "pointer"
                     }}

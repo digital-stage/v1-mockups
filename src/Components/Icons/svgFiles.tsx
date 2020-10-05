@@ -65,10 +65,10 @@ const iconPath = (name: string, fill?: string) => {
       break;
     case ('group-preset-1'):
       path = <>
-        <rect id="Rectangle_1205" data-name="Rectangle 1205" width="7.273" height="6.308" fill="none" stroke="#fff" stroke-width="2" />
-        <rect id="Rectangle_1206" data-name="Rectangle 1206" width="4.364" height="12.617" transform="translate(7.273)" fill="none" stroke="#fff" strokeWidth="2" />
-        <rect id="Rectangle_1208" data-name="Rectangle 1208" width="4.364" height="12.617" transform="translate(11.273)" fill="none" stroke="#fff" strokeWidth-="2" />
-        <rect id="Rectangle_1207" data-name="Rectangle 1207" width="7.273" height="6.308" transform="translate(0 6.308)" fill="none" stroke="#fff" strokeWidth="2" />
+        <rect id="Rectangle_1205" data-name="Rectangle 1205" width="7.273" height="6.308" fill="none" stroke="#fff"/>
+        <rect id="Rectangle_1206" data-name="Rectangle 1206" width="4.364" height="12.617" transform="translate(7.273)" fill="none" stroke="#fff"/>
+        <rect id="Rectangle_1208" data-name="Rectangle 1208" width="4.364" height="12.617" transform="translate(11.273)" fill="none" stroke="#fff"/>
+        <rect id="Rectangle_1207" data-name="Rectangle 1207" width="7.273" height="6.308" transform="translate(0 6.308)" fill="none" stroke="#fff"/>
       </>
       break;
     case ('add-users'):

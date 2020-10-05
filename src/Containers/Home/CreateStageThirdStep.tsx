@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { choir } from './CreateStageSecondStep';
+import React from 'react';
+import { choir, User } from './CreateStageSecondStep';
 import { AddUsersToGroupLayout } from '../../Components/StageCreate/AddUsersToGroupLayout';
 import InviteUserModal from './InviteUserModal';
 
@@ -24,12 +24,9 @@ export const InviteUsersStep = () => {
         setGroupId(1)
     };
 
-    useEffect(() => {
-    }, [])
-
     return (
         <div className="my-1 mx-3 text-left">
-            <InviteUserModal open={open} handleClose={handleClose} groupId={groupId} onSave={(users: any) => setUsers(users)} />
+            <InviteUserModal open={open} handleClose={handleClose} groupId={groupId} onSave={(users: User[]) => setUsers(users)} />
             <h5 className="white mb-2">Add or invite users to your stage</h5>
             <h5 className="white">Invite digital stage groups</h5>
             <div className="d-flex flex-wrap">

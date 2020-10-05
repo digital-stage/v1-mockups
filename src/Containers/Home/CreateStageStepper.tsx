@@ -203,7 +203,7 @@ export default function CustomizedSteppers() {
     return (
         <div className={classes.root}>
             <Stepper
-                alternativeLabel
+                alternativeLabel={true}
                 activeStep={activeStep}
                 connector={<ColorlibConnector />}
             >

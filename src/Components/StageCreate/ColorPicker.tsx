@@ -6,7 +6,7 @@ enum ColorChipsEnum {
     PASTEL = "Pastel",
 }
 
-type Color = {
+export type Color = {
     color: string;
     type: ColorChipsEnum;
 }
@@ -39,7 +39,7 @@ const colors: Color[] = [
 ]
 
 export default function ColorPicker(props: {
-    onClick: any,
+    onClick: (color:Color)=>void,
     selectedChip: string,
     selectedColor: string
 }) {
@@ -49,7 +49,8 @@ export default function ColorPicker(props: {
         selectedColor
     } = props;
 
-    const [pickerColors, setColor] = React.useState(colors)
+    const [pickerColors, setColor] = React.useState(colors);
+
     useEffect(() => {
         if (selectedChip === ColorChipsEnum.ALL) {
             setColor(colors);
@@ -63,10 +64,11 @@ export default function ColorPicker(props: {
 
     return (
         <div className="ml-2 mt-2">
-            {pickerColors.map(color => {
+            {pickerColors.map((color, i) => {
                 return <span
+                    key={i + color.color}
                     className="d-inline-flex mx-2 my-2"
-                    onClick={() => onClick(color)}
+                    onClick={()=>onClick(color)}
                     style={{
                         minWidth: "24px",
                         minHeight: "24px",
@@ -74,7 +76,7 @@ export default function ColorPicker(props: {
                         borderRadius: "50%",
                         cursor: "pointer",
                         boxShadow: selectedColor === color.color ? "0px 2px 10px #121212" : "none",
-                    }}></span>
+                    }} />
             })}
         </div>
     )

@@ -12,7 +12,7 @@ function PageNotFound() {
             flexDirection: "column",
             justifyContent: "center"
         }}>
-            <img src={logo} alt="logo" width="200px" height="auto" style={{ margin: "0 auto" }} className="mb-4"/>
+            <img src={logo} alt="logo" width="200px" height="auto" style={{ margin: "0 auto" }} className="mb-4" />
             <h1 style={{ color: "black", fontWeight: 600 }}>
                 Page not found
             </h1>

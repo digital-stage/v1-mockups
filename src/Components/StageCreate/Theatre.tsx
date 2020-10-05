@@ -25,19 +25,21 @@ export default function Theatre(props: {
             style={{
                 width: context === Context.PRESET ? PRESET_WIDTH : PREVIEW_WIDTH,
                 height: context === Context.PRESET ? PRESET_HEIGHT : PREVIEW_HEIGHT,
-                backgroundColor: "black", 
+                backgroundColor: "black",
                 borderRadius: "8px",
                 padding: context === Context.PRESET ? "6px" : "10px"
             }}
         >
             {groups.map((group) => {
-                return <div style={{
-                    margin: context === Context.PRESET ? "1px 0px" : "2px 1px",
-                    width: "100%",
-                    backgroundColor: context === Context.PRESET ? 'white' : group.color,
-                    height: group.name !== TheatreGroups.DIRECTOR ? `calc(${context === Context.PRESET ? PRESET_HEIGHT : PREVIEW_HEIGHT} / ${groups.length})` : `calc((${context === Context.PRESET ? PRESET_HEIGHT : PREVIEW_HEIGHT} / ${groups.length}) + 25px)`,
-                    borderRadius: "8px"
-                }}></div>
+                return <div
+                    key={group.id}
+                    style={{
+                        margin: context === Context.PRESET ? "1px 0px" : "2px 1px",
+                        width: "100%",
+                        backgroundColor: context === Context.PRESET ? 'white' : group.color,
+                        height: group.name !== TheatreGroups.DIRECTOR ? `calc(${context === Context.PRESET ? PRESET_HEIGHT : PREVIEW_HEIGHT} / ${groups.length})` : `calc((${context === Context.PRESET ? PRESET_HEIGHT : PREVIEW_HEIGHT} / ${groups.length}) + 25px)`,
+                        borderRadius: "8px"
+                    }} />
             }
             )}
         </div>

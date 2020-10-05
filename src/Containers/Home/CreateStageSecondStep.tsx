@@ -66,7 +66,7 @@ export type Stages = {
 }
 
 export const SelectPresetStep = () => {
-    const [stageGroups, setStageGroups] = React.useState<any>({ choir: choir, theatre: theatre })
+    const [stageGroups, setStageGroups] = React.useState<any>({ choir, theatre })
     const [deletedGroup, setDeletedGroup] = React.useState<number>();
     const [selectedPreset, setSelectedPreset] = React.useState<string>(Preset.CHOIR);
     const [open, setOpen] = React.useState(false);
@@ -85,16 +85,16 @@ export const SelectPresetStep = () => {
 
     const saveGroup = (color: any, icon: any, name: any) => {
         if (groupId) {
-            const updateGroup = { id: groupId, name: name, color: color, icon: icon }
+            const updateGroup = { id: groupId, name, color, icon }
             let elementsIndex: any;
             elementsIndex = stageGroups[selectedPreset].findIndex((el: any) => el.id === groupId)
-            let newArray = [...stageGroups[selectedPreset]]
+            const newArray = [...stageGroups[selectedPreset]]
             newArray[elementsIndex] = updateGroup
             setStageGroups({ ...stageGroups, [selectedPreset]: [...newArray] })
             setOpen(false);
         }
         else {
-            const newGroup = { id: stageGroups["choir"].length + stageGroups["theatre"].length + 1, name: name, color: color, icon: icon }
+            const newGroup = { id: stageGroups.choir.length + stageGroups.theatre.length + 1, name, color, icon }
             stageGroups[selectedPreset].push({ ...newGroup })
             setOpen(false);
         }
@@ -121,12 +121,12 @@ export const SelectPresetStep = () => {
 
     useEffect(() => {
         if (deletedGroup) {
-            let groups = stageGroups[selectedPreset].filter((group: any) => group.id !== deletedGroup);
+            const groups = stageGroups[selectedPreset].filter((el: Group) => el.id !== deletedGroup);
             setStageGroups({ ...stageGroups, [selectedPreset]: [...groups] })
         }
         if (groupId) {
-            let group = stageGroups[selectedPreset].filter((group: any) => group.id === groupId);
-            setGroup(group[0])
+            const selectedGroup = stageGroups[selectedPreset].filter((el: Group) => el.id === groupId);
+            setGroup(selectedGroup[0])
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [deletedGroup, selectedPreset, groupId, group])
@@ -137,14 +137,15 @@ export const SelectPresetStep = () => {
                 handleClose={handleClose}
                 open={open}
                 group={groupId !== null ? group : null}
-                saveGroup={(color: any, icon: any, name: any) => saveGroup(color, icon, name)}
+                saveGroup={(color: string, icon: string, name: string) => saveGroup(color, icon, name)}
             />
             <h6>What type of stage do you need?</h6>
             <p>Select a preset:</p>
             <div className="text-center d-flex">
-                {presets.map((preset) => {
+                {presets.map((preset, i) => {
                     return (
                         <div
+                            key={i}
                             className="mr-2 p-1"
                             onClick={() => setSelectedPreset(preset)}
                             style={{
@@ -172,11 +173,11 @@ export const SelectPresetStep = () => {
             </div>
             <h6>Groups</h6>
             <div className="d-flex">
-                {stageGroups[selectedPreset].map((group: any) => <GroupLayout
-                    group={group}
-                    key={group.id}
-                    handleGroupDelete={() => deleteGroup(group.id)}
-                    onClick={() => { handleClickOpen(); setGroupId(group.id) }}
+                {stageGroups[selectedPreset].map((el: Group) => <GroupLayout
+                    group={el}
+                    key={el.id}
+                    handleGroupDelete={() => deleteGroup(el.id)}
+                    onClick={() => { handleClickOpen(); setGroupId(el.id) }}
                 />
                 )}
                 {stageGroups[selectedPreset].length < 5 && <GroupLayoutEmpty

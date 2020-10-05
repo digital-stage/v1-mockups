@@ -1,5 +1,5 @@
 import { makeStyles, TextField } from '@material-ui/core';
-import React, { useEffect } from 'react';
+import React from 'react';
 import Stage from '../../assets/images/stage.png';
 import Icons from '../../Components/Icons/Icons';
 import { choir } from './CreateStageSecondStep';
@@ -67,9 +67,6 @@ export const CreateStageStep = () => {
         setInvitation(e.target.value)
     }
 
-    useEffect(() => {
-    }, [])
-
     return (
         <div className={classes.root}>
             <div className="my-1 mx-3 text-left">
@@ -98,7 +95,7 @@ export const CreateStageStep = () => {
                 <div className="d-flex flex-wrap justify-content-around my-3">
                     {choir.map(group => {
                         return (
-                            <div className="d-flex flex-column my-2">
+                            <div className="d-flex flex-column my-2" key={group.id}>
                                 <Icons
                                     icon={group.icon}
                                     type="circled"
@@ -119,7 +116,7 @@ export const CreateStageStep = () => {
                             className: classes.input
                         }}
                         style={{ width: "90%" }}
-                        multiline
+                        multiline={true}
                         name="invitation"
                         inputProps={{ maxLength: 120 }}
                         rowsMax={5}

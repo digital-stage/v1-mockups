@@ -1,7 +1,7 @@
 import { makeStyles, TextField } from '@material-ui/core';
 import React, { useEffect } from 'react';
 import Stage from '../../assets/images/stage.png';
-import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
+import { PhotoCamera } from '@material-ui/icons';
 
 const useStyles = makeStyles({
     root: {
@@ -93,9 +93,11 @@ export const AddInformatinStep = (props: {
         }
     };
 
-    const handleChangeImage = (e: any) => {
-        const file = URL.createObjectURL(e.target.files[0]);
-        setImage(file)
+    const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files !== null) {
+            const file = URL.createObjectURL(e.target.files[0]);
+            setImage(file)
+        }
     }
 
     useEffect(() => {
@@ -118,7 +120,7 @@ export const AddInformatinStep = (props: {
                         >
                             {showImageUpload &&
                                 <>
-                                    <PhotoCameraIcon style={{
+                                    <PhotoCamera style={{
                                         position: "absolute",
                                         zIndex: 999,
                                         top: "18%",
@@ -155,7 +157,7 @@ export const AddInformatinStep = (props: {
                                 InputProps={{
                                     className: classes.input
                                 }}
-                                required
+                                required={true}
                                 error={nameEmpty}
                                 inputProps={{ maxLength: 16 }}
                                 className="mt-5 mb-3"
@@ -174,7 +176,7 @@ export const AddInformatinStep = (props: {
                                 className: classes.input
                             }}
                             style={{ width: "100%" }}
-                            multiline
+                            multiline={true}
                             name="info"
                             inputProps={{ maxLength: 120 }}
                             rowsMax={5}
@@ -189,7 +191,7 @@ export const AddInformatinStep = (props: {
                             InputProps={{
                                 className: classes.input
                             }}
-                            multiline
+                            multiline={true}
                             rowsMax={5}
                             name="news"
                             style={{ width: "100%" }}
