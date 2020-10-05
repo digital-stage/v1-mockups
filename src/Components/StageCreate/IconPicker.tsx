@@ -14,7 +14,7 @@ export enum IconChipsEnum {
 
 type Icon = {
     name: string;
-    type: any;
+    type: string[];
 }
 
 const icons: Icon[] = [

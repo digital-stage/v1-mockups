@@ -47,8 +47,10 @@ export const AddUsersToGroupLayout = (props: {
                     className="d-inline-block"
                 />
                 <p className="mb-4 mt-1 white d-inline-block">{name}</p>
-                {users && users.length > 0 && users.map((user: any) => {
-                    return <p className="mb-4 mt-1 white d-inline-block" key={user.name}>{user.name}</p>
+                {users && users.length > 0 && users.map((user: User) => {
+                    return <p
+                        className="mb-4 mt-1 white d-inline-block"
+                        key={user.name}>{user.name}</p>
                 })}
             </div>
             <Fab

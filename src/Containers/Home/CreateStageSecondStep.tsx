@@ -31,8 +31,8 @@ export enum TheatreGroups {
     ACTOR = "Actor",
 }
 export type User = {
-    id: number;
-    name: string;
+    id?: number;
+    name?: string;
     email: string
 }
 
@@ -83,11 +83,11 @@ export const SelectPresetStep = () => {
         setGroupId(null)
     };
 
-    const saveGroup = (color: any, icon: any, name: any) => {
+    const saveGroup = (color: string, icon: string, name: string) => {
         if (groupId) {
             const updateGroup = { id: groupId, name, color, icon }
-            let elementsIndex: any;
-            elementsIndex = stageGroups[selectedPreset].findIndex((el: any) => el.id === groupId)
+            let elementsIndex: number;
+            elementsIndex = stageGroups[selectedPreset].findIndex((el: Group) => el.id === groupId)
             const newArray = [...stageGroups[selectedPreset]]
             newArray[elementsIndex] = updateGroup
             setStageGroups({ ...stageGroups, [selectedPreset]: [...newArray] })

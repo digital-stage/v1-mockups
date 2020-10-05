@@ -75,21 +75,21 @@ export default function InviteUserModal(props: {
 }) {
     const classes = useStyles();
     const [selected, setSelected] = React.useState<string>(Tabs.USERNAME)
-    const [group, SetGroup] = React.useState<any>(choir[0])
+    const [group, SetGroup] = React.useState<Group>(choir[0])
     const [users, SetUsers] = React.useState(recentUsers)
     const [selectedUsers, setSelectedUsers] = React.useState<any>([])
-    const [emails, setEmails] = React.useState<any>([])
+    const [emails, setEmails] = React.useState<string>('')
 
     const reset = () => {
         SetGroup(choir[0]);
         SetUsers(recentUsers);
         setSelectedUsers([]);
-        setEmails([]);
+        setEmails('');
         setSelected(Tabs.USERNAME)
     }
 
     const search = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const user = recentUsers.filter(el => el.name.toLowerCase().includes(e.target.value.toLowerCase()));
+        const user = recentUsers.filter(el => el.name && el.name.toLowerCase().includes(e.target.value.toLowerCase()));
         SetUsers(user)
     }
 
@@ -140,7 +140,7 @@ export default function InviteUserModal(props: {
 
     useEffect(() => {
         const selectedGroup = choir.filter(el => el.id === props.groupId)
-        SetGroup(selectedGroup)
+        SetGroup(selectedGroup[0])
     }, [props.groupId])
 
     return (
@@ -223,7 +223,7 @@ export default function InviteUserModal(props: {
                                                     whiteSpace: "nowrap",
                                                     cursor: "pointer",
                                                 }}
-                                                onClick={handleUserAdd(user.id)}
+                                                onClick={handleUserAdd(user.id!)}
                                             >
                                                 <img className="mr-2 my-auto" src={AvatarImg} alt={user.name} width="24px" height="24px" />
                                                 <span className="mr-2" >
@@ -233,16 +233,16 @@ export default function InviteUserModal(props: {
                                             </div>
                                         })}
                                     </div>
-                                    {group.length > 0 ? <div className="w-100 mx-4 pr-4  pb-2 mt-3 text-left" style={{ border: `2px solid ${group[0].color}`, borderRadius: "24px" }}>
+                                    {group && Object.keys(group).length > 0 ? <div className="w-100 mx-4 pr-4  pb-2 mt-3 text-left" style={{ border: `2px solid ${group.color}`, borderRadius: "24px" }}>
                                         <Icons
                                             className="d-inline-block mx-1"
-                                            icon={group[0].icon}
+                                            icon={group.icon}
                                             // type="circled" 
                                             // circleColor={group[0].color} 
                                             width={40}
                                             height={40}
                                         />
-                                        <h5 className="white d-inline-block"> {group[0].name}</h5>
+                                        <h5 className="white d-inline-block"> {group.name}</h5>
                                         <h6 className="white my-2 mx-3">Selected users</h6>
                                         {selectedUsers.map((user: User) => {
                                             return <div
@@ -258,7 +258,7 @@ export default function InviteUserModal(props: {
                                                 <img className="mr-2 mt-4" src={AvatarImg} alt={user.name} width="24px" height="24px" />
                                                 <span className="mr-2" style={{ minWidth: "100%" }}>
                                                     <div className="text-right mt-2 mr-5" style={{ minWidth: "max-content" }}>
-                                                        <Clear style={{ color: "white", fontSize: "17", marginBottom: "-20px" }} onClick={handleUserRemove(user.id)} />
+                                                        <Clear style={{ color: "white", fontSize: "17", marginBottom: "-20px" }} onClick={handleUserRemove(user.id!)} />
                                                     </div>
                                                     <h6 className="white m-0">{user.name}</h6>
                                                     <p className="m-0">{user.email}</p>
@@ -307,7 +307,7 @@ export default function InviteUserModal(props: {
                                                 whiteSpace: "nowrap",
                                                 cursor: "pointer",
                                             }}
-                                            onClick={handleUserAdd(user.id)}
+                                            onClick={handleUserAdd(user.id!)}
                                         >
                                             <img className="mr-2 my-auto" src={AvatarImg} alt={user.name} width="24px" height="24px" />
                                             <span className="mr-2" >
@@ -317,21 +317,21 @@ export default function InviteUserModal(props: {
                                         </div>
                                     })}
                                 </div>
-                                {group.length > 0 ?
+                                {group && Object.keys(group).length > 0 ?
                                     <div className="w-100 mx-4 pb-2 mt-3 text-left">
                                         <Icons
                                             className="d-inline-block mx-1"
-                                            icon={group[0].icon}
+                                            icon={group.icon}
                                             type="circled"
-                                            circleColor={group[0].color}
+                                            circleColor={group.color}
                                             width={40}
                                             height={40}
                                         />
-                                        <h5 className="white d-inline-block"> {group[0].name}</h5>
+                                        <h5 className="white d-inline-block"> {group.name}</h5>
                                         <h6 className="white my-2 mx-3">Selected users</h6>
                                         {selectedUsers.map((user: User) => {
                                             return <div
-                                                key={user.id}
+                                                key={user.email}
                                                 className="d-flex px-1 ml-3"
                                                 style={{
                                                     borderBottom: "1px solid #3D3D3D",
