@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Dialog, DialogActions, DialogContent, Slide, InputAdornment, makeStyles, } from '@material-ui/core';
 import ButtonStyled from '../../Components/Form/Button';
 import Icons from '../../Components/Icons/Icons';
-import { choir, Group, User } from './CreateStageSecondStep';
+import { choir, Group, User } from './SelectPresetStep';
 import Input from "../../Components/Form/Input";
 import { Search, Clear } from '@material-ui/icons';
 import AvatarImg from "../../assets/images/Avatar.png";

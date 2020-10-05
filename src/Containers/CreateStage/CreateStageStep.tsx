@@ -2,7 +2,7 @@ import { makeStyles, TextField } from '@material-ui/core';
 import React from 'react';
 import Stage from '../../assets/images/stage.png';
 import Icons from '../../Components/Icons/Icons';
-import { choir } from './CreateStageSecondStep';
+import { choir } from './SelectPresetStep';
 
 
 const useStyles = makeStyles({

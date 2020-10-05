@@ -1,6 +1,6 @@
 import React, { MouseEventHandler } from 'react';
 import Icons from '../Icons/Icons';
-import { Group, User } from '../../Containers/CreateStage/CreateStageSecondStep';
+import { Group, User } from '../../Containers/CreateStage/SelectPresetStep';
 import { Add } from '@material-ui/icons';
 import { Fab, makeStyles } from '@material-ui/core';
 

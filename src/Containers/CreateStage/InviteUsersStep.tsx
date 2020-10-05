@@ -1,5 +1,5 @@
 import React from 'react';
-import { choir, User, Group } from './CreateStageSecondStep';
+import { choir, User, Group } from './SelectPresetStep';
 import { AddUsersToGroupLayout } from '../../Components/StageCreate/AddUsersToGroupLayout';
 import InviteUserModal from './InviteUserModal';
 

@@ -4,11 +4,11 @@ import { Stepper, Step, StepLabel, StepConnector, StepIconProps, makeStyles, The
 import ButtonStyled from '../../Components/Form/Button';
 import Icons from '../../Components/Icons/Icons';
 import { CreateStageSuccessStep } from './CreateStageFinalStep';
-import { SelectPresetStep } from './CreateStageSecondStep';
-import { AddInformatinStep } from './CreateStageFirstStep';
-import { InviteUsersStep } from './CreateStageThirdStep';
-import { AssignRolesStep } from './CreateStageFourthStep';
-import { CreateStageStep } from './CreateStageFifthStep';
+import { SelectPresetStep } from './SelectPresetStep';
+import { AddInformatinStep } from './AddInformatinStep';
+import { InviteUsersStep } from './InviteUsersStep';
+import { AssignRolesStep } from './AssignRolesStep';
+import { CreateStageStep } from './CreateStageStep';
 
 
 const ColorlibConnector = withStyles({
