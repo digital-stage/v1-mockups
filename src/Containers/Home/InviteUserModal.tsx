@@ -1,20 +1,11 @@
 import React, { useEffect } from 'react';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import Slide from '@material-ui/core/Slide';
-import { TransitionProps } from '@material-ui/core/transitions';
-import { InputAdornment, makeStyles } from '@material-ui/core';
+import { Dialog, DialogActions, DialogContent, Slide, InputAdornment, makeStyles, } from '@material-ui/core';
 import ButtonStyled from '../../Components/Form/Button';
 import Icons from '../../Components/Icons/Icons';
 import { choir, Group, User } from './CreateStageSecondStep';
 import Input from "../../Components/Form/Input";
-import SearchIcon from '@material-ui/icons/Search';
+import { Search, Clear } from '@material-ui/icons';
 import AvatarImg from "../../assets/images/Avatar.png";
-import ClearIcon from '@material-ui/icons/Clear';
-
-
-
 
 const useStyles = makeStyles({
     root: {
@@ -34,8 +25,8 @@ const useStyles = makeStyles({
     }
 });
 
-const Transition = React.forwardRef(function Transition(
-    props: TransitionProps & { children?: React.ReactElement<any, any> },
+const modalTransition = React.forwardRef(function Transition(
+    props: { children?: React.ReactElement<any, any> },
     ref: React.Ref<unknown>,
 ) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -74,13 +65,13 @@ const recentUsers: User[] = [
     },]
 
 export default function InviteUserModal(props: {
-    group?: Group | null,
+    group?: Group,
     open: boolean,
     handleClose: () => void,
     InputProps?: () => void,
     saveGroup?: () => void,
     groupId: number | undefined,
-    onSave: any
+    onSave: (selectedUsers: User[]) => void
 }) {
     const classes = useStyles();
     const [selected, setSelected] = React.useState<string>(Tabs.USERNAME)
@@ -103,17 +94,21 @@ export default function InviteUserModal(props: {
     }
 
     const handleUserAdd = (id: number) => {
-        const user: User[] = recentUsers.filter((el: User) => el.id === id);
-        const recent = users.filter(el => el.id !== id);
-        SetUsers(recent);
-        setSelectedUsers([...selectedUsers, user[0]])
+        return () => {
+            const user: User[] = recentUsers.filter((el: User) => el.id === id);
+            const recent = users.filter(el => el.id !== id);
+            SetUsers(recent);
+            setSelectedUsers([...selectedUsers, user[0]])
+        }
     }
 
     const handleUserRemove = (id: number) => {
-        const user: User[] = recentUsers.filter(el => el.id === id);
-        const recent = selectedUsers.filter((el: User) => el.id !== id);
-        setSelectedUsers(recent);
-        SetUsers([...users, user[0]])
+        return () => {
+            const user: User[] = recentUsers.filter(el => el.id === id);
+            const recent = selectedUsers.filter((el: User) => el.id !== id);
+            setSelectedUsers(recent);
+            SetUsers([...users, user[0]])
+        }
     }
 
     const searchEmails = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -129,6 +124,20 @@ export default function InviteUserModal(props: {
         }
     }
 
+    const handleTabSelection = (tab: string) => {
+        return () => setSelected(tab)
+    }
+
+    const handleCancel = () => {
+        props.handleClose();
+        reset()
+    }
+
+    const handleAddUsers = () => {
+        props.handleClose()
+        props.onSave(selectedUsers)
+    }
+
     useEffect(() => {
         const selectedGroup = choir.filter(el => el.id === props.groupId)
         SetGroup(selectedGroup)
@@ -139,7 +148,7 @@ export default function InviteUserModal(props: {
             <Dialog
                 // maxWidth="xs"
                 open={props.open}
-                TransitionComponent={Transition}
+                TransitionComponent={modalTransition}
                 keepMounted={true}
                 classes={{
                     root: classes.root,
@@ -159,7 +168,7 @@ export default function InviteUserModal(props: {
                                     cursor: "pointer",
                                     padding: "10px"
                                 }}
-                                onClick={() => setSelected(Tabs.USERNAME)}
+                                onClick={handleTabSelection(Tabs.USERNAME)}
                             >
                                 Username
                                     </h6>
@@ -170,7 +179,7 @@ export default function InviteUserModal(props: {
                                     cursor: "pointer",
                                     padding: "10px"
                                 }}
-                                onClick={() => setSelected(Tabs.EMAIL)}
+                                onClick={handleTabSelection(Tabs.EMAIL)}
                             >
                                 Email
                                     </h6>
@@ -191,7 +200,7 @@ export default function InviteUserModal(props: {
                                                 InputProps={{
                                                     endAdornment:
                                                         <InputAdornment position="end">
-                                                            <SearchIcon />
+                                                            <Search />
                                                         </InputAdornment>
                                                 }}
                                             />
@@ -214,7 +223,7 @@ export default function InviteUserModal(props: {
                                                     whiteSpace: "nowrap",
                                                     cursor: "pointer",
                                                 }}
-                                                onClick={() => handleUserAdd(user.id)}
+                                                onClick={handleUserAdd(user.id)}
                                             >
                                                 <img className="mr-2 my-auto" src={AvatarImg} alt={user.name} width="24px" height="24px" />
                                                 <span className="mr-2" >
@@ -249,7 +258,7 @@ export default function InviteUserModal(props: {
                                                 <img className="mr-2 mt-4" src={AvatarImg} alt={user.name} width="24px" height="24px" />
                                                 <span className="mr-2" style={{ minWidth: "100%" }}>
                                                     <div className="text-right mt-2 mr-5" style={{ minWidth: "max-content" }}>
-                                                        <ClearIcon style={{ color: "white", fontSize: "17", marginBottom: "-20px" }} onClick={() => handleUserRemove(user.id)} />
+                                                        <Clear style={{ color: "white", fontSize: "17", marginBottom: "-20px" }} onClick={handleUserRemove(user.id)} />
                                                     </div>
                                                     <h6 className="white m-0">{user.name}</h6>
                                                     <p className="m-0">{user.email}</p>
@@ -275,7 +284,7 @@ export default function InviteUserModal(props: {
                                             InputProps={{
                                                 endAdornment:
                                                     <InputAdornment position="end">
-                                                        <SearchIcon />
+                                                        <Search />
                                                     </InputAdornment>
                                             }}
                                         />
@@ -298,7 +307,7 @@ export default function InviteUserModal(props: {
                                                 whiteSpace: "nowrap",
                                                 cursor: "pointer",
                                             }}
-                                            onClick={() => handleUserAdd(user.id)}
+                                            onClick={handleUserAdd(user.id)}
                                         >
                                             <img className="mr-2 my-auto" src={AvatarImg} alt={user.name} width="24px" height="24px" />
                                             <span className="mr-2" >
@@ -333,7 +342,7 @@ export default function InviteUserModal(props: {
                                                 {user.id && <img className="mr-2 mt-4" src={AvatarImg} alt={user.name} width="24px" height="24px" />}
                                                 <span className="mr-2" style={{ minWidth: "100%" }}>
                                                     <div className="text-right mt-2 mr-5" style={{ minWidth: "max-content" }}>
-                                                        {user.id && <ClearIcon style={{ color: "white", fontSize: "17", marginBottom: "-20px" }} onClick={() => handleUserRemove(user.id)} />}
+                                                        {user.id && <Clear style={{ color: "white", fontSize: "17", marginBottom: "-20px" }} onClick={handleUserRemove(user.id)} />}
                                                     </div>
                                                     {!user.id && <h6 className="white d-block">Mail user</h6>}
                                                     <h6 className="white m-0">{user.name}</h6>
@@ -350,12 +359,12 @@ export default function InviteUserModal(props: {
                     <ButtonStyled
                         className="button-white"
                         text="Cancel"
-                        onClick={() => { props.handleClose(); reset() }}
+                        onClick={handleCancel}
                     />
                     <ButtonStyled
                         className="button-red"
                         text="Add users"
-                        onClick={() => { props.handleClose(); props.onSave(selectedUsers) }}
+                        onClick={handleAddUsers}
                     />
                 </DialogActions>
             </Dialog>

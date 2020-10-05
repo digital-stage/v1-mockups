@@ -59,12 +59,12 @@ const useStyles = makeStyles({
 
 export const CreateStageStep = () => {
     const [inputLength, setInputLength] = React.useState<number>(0)
-    const [invitation, setInvitation] = React.useState<string>("");
+    const [invitationText, setInvitationText] = React.useState<string>("");
     const classes = useStyles();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputLength(e.target.value.length);
-        setInvitation(e.target.value)
+        setInvitationText(e.target.value)
     }
 
     return (
@@ -123,7 +123,7 @@ export const CreateStageStep = () => {
                         id="standard-helperText"
                         label="Invitation text"
                         helperText={`${inputLength}/120`}
-                        value={invitation}
+                        value={invitationText}
                         onChange={handleChange}
                     />
                 </div>

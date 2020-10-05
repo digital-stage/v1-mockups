@@ -1,9 +1,6 @@
 import React from 'react';
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import CloseIcon from '@material-ui/icons/Close';
+import { Dialog, DialogContent, useMediaQuery, makeStyles, useTheme } from '@material-ui/core';
+import { Close } from '@material-ui/icons';
 import CreateStageStepper from './CreateStageStepper';
 
 const useStyles = makeStyles({
@@ -25,6 +22,10 @@ export default function CreateStageModal(props: {
     const classes = useStyles();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
+    const handleClose = () => {
+        props.handleClose(false)
+    }
+
     return (
         <div>
             <Dialog
@@ -37,7 +38,9 @@ export default function CreateStageModal(props: {
                     paper: classes.paper
                 }}
             >
-                <div className="text-right white p-0 pr-2 pt-2" onClick={() => props.handleClose(false)}><CloseIcon style={{ cursor: "pointer" }} /></div>
+                <div className="text-right white p-0 pr-2 pt-2" onClick={handleClose}>
+                    <Close style={{ cursor: "pointer" }} />
+                </div>
                 <DialogContent>
                     <CreateStageStepper />
                 </DialogContent>

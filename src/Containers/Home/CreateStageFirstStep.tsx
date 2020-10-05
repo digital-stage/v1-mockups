@@ -100,6 +100,14 @@ export const AddInformatinStep = (props: {
         }
     }
 
+    const handleHideImageUpload = () => {
+        setShowImageUpload(false)
+    }
+
+    const handleShowImageUpload = () => {
+        setShowImageUpload(true)
+    }
+
     useEffect(() => {
         props.emptyField(stageInfo.name)
         setNameEmpty(props.error)
@@ -112,7 +120,7 @@ export const AddInformatinStep = (props: {
                 <div className="d-flex">
                     <div className="w-100 mt-4">
                         <div
-                            onMouseLeave={() => setShowImageUpload(false)}
+                            onMouseLeave={handleHideImageUpload}
                             style={{
                                 position: "relative",
                                 maxWidth: "fit-content"
@@ -149,7 +157,7 @@ export const AddInformatinStep = (props: {
                                     borderRadius: "50%", objectFit: "cover",
                                     objectPosition: "50% 50%"
                                 }}
-                                onMouseOver={() => setShowImageUpload(true)}
+                                onMouseOver={handleShowImageUpload}
                             />
                         </div>
                         <span id="validation-outlined-input">

@@ -33,7 +33,7 @@ export enum TheatreGroups {
 export type User = {
     id: number;
     name: string;
-    email:string
+    email: string
 }
 
 export type Group = {
@@ -45,17 +45,17 @@ export type Group = {
 }
 
 export const choir: Group[] = [
-    { id: 1, name: "Conductor", color: "#4EBFAB", icon: "orchestra-conductor", users: [{ id: 1, name: "Brad Daniels", email:"brad.daniels@digital-stage.org" }, { id: 1, name: "Felix Daniels", email:"brad.daniels@digital-stage.org" }] },
-    { id: 2, name: "Tenor", color: "#FF36CA", icon: "choir-tenor", users: [{ id: 1, name: "Brad Daniels", email:"brad.daniels@digital-stage.org" }, { id: 1, name: "Sasha Daniels", email:"brad.daniels@digital-stage.org" }] },
-    { id: 3, name: "Soprano", color: "#5780F2", icon: "choir-sopran", users: [{ id: 1, name: "Brad Daniels",  email:"brad.daniels@digital-stage.org" }] },
-    { id: 4, name: "Bass", color: "#D9486F", icon: "choir-bass", users: [{ id: 1, name: "Brad Daniels",  email:"brad.daniels@digital-stage.org" }] },
-    { id: 5, name: "Alto", color: "#FBD366", icon: "choir-alto", users: [{ id: 1, name: "Brad Daniels",  email:"brad.daniels@digital-stage.org" }] }
+    { id: 1, name: "Conductor", color: "#4EBFAB", icon: "orchestra-conductor", users: [{ id: 1, name: "Brad Daniels", email: "brad.daniels@digital-stage.org" }, { id: 1, name: "Felix Daniels", email: "brad.daniels@digital-stage.org" }] },
+    { id: 2, name: "Tenor", color: "#FF36CA", icon: "choir-tenor", users: [{ id: 1, name: "Brad Daniels", email: "brad.daniels@digital-stage.org" }, { id: 1, name: "Sasha Daniels", email: "brad.daniels@digital-stage.org" }] },
+    { id: 3, name: "Soprano", color: "#5780F2", icon: "choir-sopran", users: [{ id: 1, name: "Brad Daniels", email: "brad.daniels@digital-stage.org" }] },
+    { id: 4, name: "Bass", color: "#D9486F", icon: "choir-bass", users: [{ id: 1, name: "Brad Daniels", email: "brad.daniels@digital-stage.org" }] },
+    { id: 5, name: "Alto", color: "#FBD366", icon: "choir-alto", users: [{ id: 1, name: "Brad Daniels", email: "brad.daniels@digital-stage.org" }] }
 ]
 
 export const theatre: Group[] = [
-    { id: 6, name: "Director", color: "#4EBFAB", icon: "theatre-director", users: [{ id: 1, name: "Brad Daniels", email:"brad.daniels@digital-stage.org" }] },
-    { id: 7, name: "Ensemble", color: "#FF36CA", icon: "theatre-ensemble", users: [{ id: 1, name: "Brad Daniels", email:"brad.daniels@digital-stage.org" }] },
-    { id: 8, name: "Actor", color: "#5780F2", icon: "theatre-actor", users: [{ id: 1, name: "Brad Daniels", email:"brad.daniels@digital-stage.org" }] },
+    { id: 6, name: "Director", color: "#4EBFAB", icon: "theatre-director", users: [{ id: 1, name: "Brad Daniels", email: "brad.daniels@digital-stage.org" }] },
+    { id: 7, name: "Ensemble", color: "#FF36CA", icon: "theatre-ensemble", users: [{ id: 1, name: "Brad Daniels", email: "brad.daniels@digital-stage.org" }] },
+    { id: 8, name: "Actor", color: "#5780F2", icon: "theatre-actor", users: [{ id: 1, name: "Brad Daniels", email: "brad.daniels@digital-stage.org" }] },
 ]
 
 const presets: string[] = ["choir", "theatre"];
@@ -117,7 +117,22 @@ export const SelectPresetStep = () => {
         return selected;
     }
 
+    const handleSaveGroup = (color: string, icon: string, name: string) => saveGroup(color, icon, name)
 
+    const handleSetPreset = (preset: string) => {
+        return () => setSelectedPreset(preset)
+    }
+
+    const handleGroupDelete = (id: number) => {
+        return () => deleteGroup(id)
+    }
+
+    const handleEdiCreateGroupModalOpen = (id: number) => {
+        return () => {
+            handleClickOpen();
+            setGroupId(id)
+        }
+    }
 
     useEffect(() => {
         if (deletedGroup) {
@@ -137,7 +152,7 @@ export const SelectPresetStep = () => {
                 handleClose={handleClose}
                 open={open}
                 group={groupId !== null ? group : null}
-                saveGroup={(color: string, icon: string, name: string) => saveGroup(color, icon, name)}
+                saveGroup={handleSaveGroup}
             />
             <h6>What type of stage do you need?</h6>
             <p>Select a preset:</p>
@@ -147,7 +162,7 @@ export const SelectPresetStep = () => {
                         <div
                             key={i}
                             className="mr-2 p-1"
-                            onClick={() => setSelectedPreset(preset)}
+                            onClick={handleSetPreset(preset)}
                             style={{
                                 backgroundColor: selectedPreset === preset ? "#A8214B" : "transparent",
                                 borderRadius: "8px",
@@ -176,8 +191,8 @@ export const SelectPresetStep = () => {
                 {stageGroups[selectedPreset].map((el: Group) => <GroupLayout
                     group={el}
                     key={el.id}
-                    handleGroupDelete={() => deleteGroup(el.id)}
-                    onClick={() => { handleClickOpen(); setGroupId(el.id) }}
+                    handleGroupDelete={handleGroupDelete(el.id)}
+                    onClick={handleEdiCreateGroupModalOpen(el.id)}
                 />
                 )}
                 {stageGroups[selectedPreset].length < 5 && <GroupLayoutEmpty

@@ -1,11 +1,6 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles, withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import StepConnector from '@material-ui/core/StepConnector';
-import { StepIconProps } from '@material-ui/core/StepIcon';
+import { Stepper, Step, StepLabel, StepConnector, StepIconProps, makeStyles, Theme, createStyles, withStyles } from '@material-ui/core';
 import ButtonStyled from '../../Components/Form/Button';
 import Icons from '../../Components/Icons/Icons';
 import { CreateStageSuccessStep } from './CreateStageFinalStep';
@@ -158,12 +153,13 @@ export default function CustomizedSteppers() {
     const [emptyField, setEmptyField] = React.useState<string>("");
     const steps = getSteps();
 
+    const handleEmptyField = (field: string) => setEmptyField(field)
 
     function getStepContent(step: number) {
         switch (step) {
             case 0:
                 return <AddInformatinStep
-                    emptyField={(emptyField: string) => setEmptyField(emptyField)}
+                    emptyField={handleEmptyField}
                     error={error} />;
             case 1:
                 return <SelectPresetStep />;
@@ -172,7 +168,7 @@ export default function CustomizedSteppers() {
             case 3:
                 return <AssignRolesStep />;
             case 4:
-                return <CreateStageStep/>;
+                return <CreateStageStep />;
             default:
                 return 'Unknown step';
         }
