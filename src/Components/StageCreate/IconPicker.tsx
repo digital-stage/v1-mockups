@@ -63,6 +63,9 @@ export default function IconPicker(props: {
     } = props;
     const [pickerIcons, setIcons] = React.useState(icons)
 
+    const handleOnClick = (icon:string) =>{
+        return () => onClick(icon)
+    }
 
     useEffect(() => {
         const iconsSelected = icons.filter((icon) => icon.type.includes(selectedChip));
@@ -76,7 +79,7 @@ export default function IconPicker(props: {
                     key={icon.name}
                     title={icon.name.split('-')[1].charAt(0).toUpperCase() + icon.name.split('-')[1].slice(1)}
                     className="d-inline-flex my-2"
-                    onClick={() => onClick(icon.name)}
+                    onClick={handleOnClick(icon.name)}
                     width={40}
                     height={40}
                     icon={icon.name}

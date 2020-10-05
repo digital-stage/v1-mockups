@@ -51,6 +51,10 @@ export default function ColorPicker(props: {
 
     const [pickerColors, setColor] = React.useState(colors);
 
+    const handleOnClick = (color:Color) =>{
+        return () => onClick(color)
+    }
+
     useEffect(() => {
         if (selectedChip === ColorChipsEnum.ALL) {
             setColor(colors);
@@ -68,7 +72,7 @@ export default function ColorPicker(props: {
                 return <span
                     key={i + color.color}
                     className="d-inline-flex mx-2 my-2"
-                    onClick={()=>onClick(color)}
+                    onClick={handleOnClick(color)}
                     style={{
                         minWidth: "24px",
                         minHeight: "24px",

@@ -1,6 +1,6 @@
 import React, { MouseEventHandler } from 'react';
 import Icons from '../Icons/Icons';
-import { Group } from '../../Containers/Home/CreateStageSecondStep';
+import { Group, User } from '../../Containers/Home/CreateStageSecondStep';
 import { Add } from '@material-ui/icons';
 import { Fab, makeStyles } from '@material-ui/core';
 
@@ -17,9 +17,8 @@ const useStyles = makeStyles({
 
 export const AddUsersToGroupLayout = (props: {
     group: Group,
-    handleGroupDelete?: MouseEventHandler | undefined,
-    onClick?: MouseEventHandler | undefined,
-    users: any
+    onClick?: MouseEventHandler,
+    users: User[]
 }) => {
     const { group: {
         name,

@@ -22,7 +22,8 @@ export default function Choir(props: { groups: Group[], context: string }) {
             style={{
                 width: context === Context.PRESET ? PRESET_WIDTH : PREVIEW_WIDTH,
                 height: context === Context.PRESET ? PRESET_HEIGHT : PREVIEW_HEIGHT,
-                backgroundColor: "black", borderRadius: "8px",
+                backgroundColor: "black", 
+                borderRadius: "8px",
                 padding: context === Context.PRESET ? "6px" : "10px"
             }}
         >
