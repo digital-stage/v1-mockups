@@ -1,14 +1,14 @@
 import React, { MouseEventHandler, ReactNode } from "react";
-import Button from "@material-ui/core/Button";
+import { Button } from "@material-ui/core";
 
 type Props = {
   onClick?: MouseEventHandler | undefined,
   text: string,
-  className:string,
+  className: string,
   type?: string,
   startIcon?: ReactNode,
-  disabled?:boolean,
-  style?:Object
+  disabled?: boolean,
+  style?: object
 }
 
 const ButtonStyled = (props: Props) => {

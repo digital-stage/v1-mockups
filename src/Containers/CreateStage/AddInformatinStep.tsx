@@ -1,8 +1,10 @@
 import { makeStyles, TextField } from '@material-ui/core';
 import React, { useEffect } from 'react';
-import Stage from '../../assets/images/stage.png';
+// import Stage from '../../assets/images/stage.png';
 import { PhotoCamera } from '@material-ui/icons';
 import StageImageModal from './StageImageModal';
+import { useCreateStage } from '../../hooks/useCreateStage';
+import { IStageInfo } from '../../js/CreateStageUtils';
 
 const useStyles = makeStyles({
     root: {
@@ -56,25 +58,22 @@ const useStyles = makeStyles({
     }
 });
 
-export interface IStageInfo {
-    name: string;
-    info?: string;
-    news?: string;
-}
-
 export const AddInformatinStep = (props: {
     emptyField: (name: string) => void,
     error: boolean
 }) => {
-    const [inputLength, setInputLength] = React.useState<{ name: number, info: number, news: number }>({ name: 0, info: 0, news: 0 })
+    const { info, image, handleSetInfo } = useCreateStage();
+
+    const [inputLength, setInputLength] = React.useState<{ name: number, info: number, news: number }>({ name: info.name.length, info: info.info ? info.info.length : 0, news: info.news ? info.news.length : 0})
     const [nameEmpty, setNameEmpty] = React.useState<boolean>(false);
     const [showImageUpload, setShowImageUpload] = React.useState<boolean>(false)
-    const [image, setImage] = React.useState<string>(Stage)
-    const [stageInfo, setStageInfo] = React.useState<IStageInfo>({ name: "Test Stage" });
+    // const [image, setImage] = React.useState<string>(Stage)
+    const [stageInfo, setStageInfo] = React.useState<IStageInfo>({ ...info });
     const [open, setOpen] = React.useState(false);
 
     const uplodImage = React.createRef<HTMLInputElement>();
     const classes = useStyles();
+
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setNameEmpty(false)
@@ -103,12 +102,12 @@ export const AddInformatinStep = (props: {
     //     }
     // };
 
-    const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files !== null) {
-            const file = URL.createObjectURL(e.target.files[0]);
-            setImage(file)
-        }
-    }
+    // const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     if (e.target.files !== null) {
+    //         const file = URL.createObjectURL(e.target.files[0]);
+    //         setImage(file)
+    //     }
+    // }
 
     const handleHideImageUpload = () => {
         setShowImageUpload(false)
@@ -121,6 +120,7 @@ export const AddInformatinStep = (props: {
     useEffect(() => {
         props.emptyField(stageInfo.name)
         setNameEmpty(props.error)
+        handleSetInfo(stageInfo)
     }, [stageInfo, props])
 
     return (
@@ -146,7 +146,7 @@ export const AddInformatinStep = (props: {
                                     <input
                                         type="file"
                                         ref={uplodImage}
-                                        onChange={handleChangeImage}
+                                        // onChange={handleChangeImage}
                                         className="file-input"
                                         accept="image/*"
                                     />

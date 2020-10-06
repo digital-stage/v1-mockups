@@ -1,3 +1,5 @@
-export const name= "ds"
-
-  
+export interface IStageInfo {
+    name: string;
+    info?: string;
+    news?: string;
+}

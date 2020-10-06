@@ -4,7 +4,7 @@ import logo from "../../assets/images/white_logo.png";
 import ButtonStyled from "../../Components/Form/Button";
 
 type Props = {
-  history: Array<string>,
+  history: string[],
 }
 
 const JoinStage = (props:Props) => {
@@ -18,8 +18,8 @@ const JoinStage = (props:Props) => {
 
   return (
     <Box component="body" className="body">
-      <Grid container direction="column" justify="center" alignItems="center">
-        <Grid item>
+      <Grid container={true} direction="column" justify="center" alignItems="center">
+        <Grid item={true}>
           <img
             src={logo}
             width="80"
@@ -35,7 +35,7 @@ const JoinStage = (props:Props) => {
         >
           Your digital stage for art, music <br /> and theatre ensembles.
         </Typography>
-        <Grid item></Grid>
+        <Grid item/>
       </Grid>
 
       <div className="root-container">
@@ -50,7 +50,7 @@ const JoinStage = (props:Props) => {
             Join stage
           </h3>
           {/* onSubmit={handleSubmit} */}
-          <form noValidate >
+          <form noValidate={true} >
             <ButtonStyled
               // type="submit"
               onClick={handleSubmit}

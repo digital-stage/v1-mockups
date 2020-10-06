@@ -10,6 +10,7 @@ type Props = {
 }
 
 const Dropdown = (props: Props) => {
+  const handleClick = (el:string) => () => props.onClick(el)
   return (
     <div className="dropdown" onMouseLeave={props.hover}>
       <button className="dropbtn" onMouseEnter={props.hover}>
@@ -19,7 +20,7 @@ const Dropdown = (props: Props) => {
         <div className="dropdown-content">
           {preview.map((el: string) => {
             return (
-              <div onClick={() => props.onClick(el)} key={el}>
+              <div onClick={handleClick(el)} key={el}>
                 <Icon icon={el} />
                 <p className="d-inline my-auto">{el.charAt(0).toUpperCase() + el.slice(1)}</p>
               </div>

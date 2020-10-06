@@ -8,15 +8,18 @@ import Welcome from "./Containers/Login/Welcome";
 import Home from "./Containers/Home";
 import { ProvideAuth, useAuth } from "./hooks/useAuth.js";
 import PageNotFound from "./Containers/PageNotFound";
+import { ProvideCreateStage } from "./hooks/useCreateStage";
 // import CookieDialog from "./Components/CookieDialog";
 
 function App() {
   return (
     <ProvideAuth>
-      <div className="App">
-        <Routes />
-      </div>
-      {/* <CookieDialog/> */}
+      <ProvideCreateStage>
+        <div className="App">
+          <Routes />
+        </div>
+        {/* <CookieDialog/> */}
+      </ProvideCreateStage>
     </ProvideAuth>
   );
 }

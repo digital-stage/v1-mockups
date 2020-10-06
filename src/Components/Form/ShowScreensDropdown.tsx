@@ -6,7 +6,7 @@ type Props = {
   hover: () => void,
   enableHideScreensHandler: () => void,
   onShowScreenClick(value: {}): void,
-  hiddenScreens: Array<Object>,
+  hiddenScreens: object[],
   enableHideScreens: boolean
 }
 

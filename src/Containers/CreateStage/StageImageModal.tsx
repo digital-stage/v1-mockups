@@ -1,6 +1,7 @@
 import React from 'react';
 import { Dialog, DialogActions, DialogContent, Slide, makeStyles } from '@material-ui/core';
 import ButtonStyled from '../../Components/Form/Button';
+import { useCreateStage } from '../../hooks/useCreateStage';
 
 const useStyles = makeStyles({
     root: {
@@ -52,7 +53,24 @@ export default function StageImageModal(props: {
         open,
         handleClose
     } = props
-    const classes = useStyles(false);
+    const classes = useStyles();
+    const { image, handleSetImage } = useCreateStage();
+    const [selectedIamge, setSelectedImage] = React.useState<string | undefined>();
+
+
+    const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files !== null) {
+            const file = URL.createObjectURL(e.target.files[0]);
+            setSelectedImage(file)
+        }
+    }
+
+    const handleSave = () => {
+        if (selectedIamge) {
+            handleSetImage(selectedIamge)
+        }
+        handleClose()
+    }
 
     return (
         <div>
@@ -74,19 +92,26 @@ export default function StageImageModal(props: {
                             {/* Colors/Icons tabs */}
                             <div className="d-flex flex-column">
                                 <div className="w-100">
-                                    <h6 className="white">Upload an image:</h6>
+                                    <h6 className="white my-4">Upload an image:</h6>
                                     <input
                                         type="file"
-                                        // onChange={handleChangeImage}
+                                        onChange={handleChangeImage}
                                         className="file-input"
                                         accept="image/*"
                                     />
                                 </div>
                                 <div className="w-100">
-                                    <h6 className="white">Select an image:</h6>
-                                    <div className="d-flex flex-wrap">
-                                        {stageImages.map((image: string) => {
-                                            return <img key={image} src={require(`../../assets/images/presets/${image}.svg`)} width="170px" height="170px" alt="preset" />
+                                    <h6 className="white my-4">Select an image:</h6>
+                                    <div className="d-flex" style={{ overflowX: "auto" }}>
+                                        {stageImages.map((el: string) => {
+                                            return <img
+                                                key={el}
+                                                src={require(`../../assets/images/presets/${el}.svg`)}
+                                                width="150px"
+                                                height="150px"
+                                                alt="preset"
+                                                onClick={()=>setSelectedImage(`../../assets/images/presets/${el}.svg`)}
+                                            />
                                         })}
                                     </div>
                                 </div>
@@ -103,7 +128,7 @@ export default function StageImageModal(props: {
                     <ButtonStyled
                         className="button-red"
                         text="Save"
-                    // onClick={handleSave}
+                        onClick={handleSave}
                     />
                 </DialogActions>
             </Dialog>

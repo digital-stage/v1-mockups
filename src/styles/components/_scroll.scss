@@ -1,4 +1,26 @@
 /* width */
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: $med-gray-01;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $dark-gray-01;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $med-gray-01;
+}
+
+/* width */
 .stages-container::-webkit-scrollbar {
   width: 5px;
   background-color: $dark-gray-01;
@@ -125,7 +147,7 @@
 /* width */
 .icons-list::-webkit-scrollbar {
   width: 5px;
-  background-color:#4B4B4B;
+  background-color: #4B4B4B;
 }
 
 /* Track */
@@ -148,7 +170,7 @@
 /* width */
 .select-user::-webkit-scrollbar {
   width: 5px;
-  background-color:#4B4B4B;
+  background-color: #4B4B4B;
 }
 
 /* Track */

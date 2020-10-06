@@ -1,7 +1,5 @@
 import React from "react";
-import TextField from "@material-ui/core/TextField";
-import { makeStyles } from "@material-ui/core/styles";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { MuiThemeProvider, createMuiTheme, makeStyles, TextField } from "@material-ui/core";
 
 const theme = createMuiTheme({});
 
@@ -24,11 +22,11 @@ type Props = {
   type: string,
   id: string,
   name: string,
-  InputProps?: Object,
+  InputProps?: object,
   value?: string,
   error?: string
-  context?:string,
-  onKeyDown?:(e: React.KeyboardEvent<HTMLInputElement>) => void,
+  context?: string,
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void,
 }
 
 const Input = (props: Props) => {
@@ -46,15 +44,15 @@ const Input = (props: Props) => {
       fontWeight: 600,
       borderBottom: `${props.error && "1px solid #F20544"}`
     },
-    p:{
-      color:"white",
+    p: {
+      color: "white",
       marginLeft: "0 !important",
       fontFamily: "Poppins",
       fontSize: "12px",
       fontWeight: 600,
-      paddingLeft:"20px",
-      marginTop:"5px",
-      marginBottom:"0 !important"
+      paddingLeft: "20px",
+      marginTop: "5px",
+      marginBottom: "0 !important"
     }
   }));
 
