@@ -39,12 +39,14 @@
 }
 
 // Create stage final step
+.stage-image {
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 50% 50%
+}
+
 .create-stage {
-    .stage-image {
-        border-radius: 50%;
-        object-fit: cover;
-        object-position: 50% 50%
-    }
+
 
     .invitation-container {
         background-color: #333232;
@@ -89,7 +91,7 @@
         border-radius: 0 0 24px 24px;
         margin-top: -20px;
         box-shadow: 0px 3px 17px #000000;
-        max-width:330px;
+        max-width: 330px;
     }
 
     .user-container {

@@ -54,7 +54,7 @@ export default function StageImageModal(props: {
         handleClose
     } = props
     const classes = useStyles();
-    const { image, handleSetImage } = useCreateStage();
+    const { handleSetImage } = useCreateStage();
     const [selectedIamge, setSelectedImage] = React.useState<string | undefined>();
 
 

@@ -4,71 +4,15 @@ import Choir from '../../Components/StageCreate/Choir';
 import Theatre from '../../Components/StageCreate/Theatre';
 import { GroupLayoutEmpty } from '../../Components/StageCreate/GroupLayoutEmpty';
 import CreateEditGroup from './CreateEditGroupModal';
+import { Group, Preset, presets } from '../../js/CreateStageUtils';
+import { useCreateStage } from '../../hooks/useCreateStage';
 
-export enum Preset {
-    CHOIR = "choir",
-    BAND = "BAND",
-    ORCHESTRA = "ORCHESTRA",
-    DANCE = "DANCE",
-    THEATRE = "theatre",
-    BAND_REHEARSAL = "BAND REHEARSAL",
-    THEATRE_REHEARSAL = "THEATRE REHEARSAL",
-    PERSONAL_LESSON = "PERSONAL LESSON",
-    CHOIR_PERFORMANCE = "CHOIR PERFORMANCE"
-}
-
-export enum ChoirGroups {
-    CONDUCTOR = "Conductor",
-    TENOR = "Tenor",
-    SOPRANO = "Soprano",
-    BASS = "Bass",
-    ALTO = "Alto",
-}
-
-export enum TheatreGroups {
-    DIRECTOR = "Director",
-    ENSEMBLE = "Ensemble",
-    ACTOR = "Actor",
-}
-export type User = {
-    id?: number;
-    name?: string;
-    email: string
-}
-
-export type Group = {
-    id: number;
-    name: string;
-    icon: string;
-    color: string;
-    users: User[]
-}
-
-export const choir: Group[] = [
-    { id: 1, name: "Conductor", color: "#4EBFAB", icon: "orchestra-conductor", users: [{ id: 1, name: "Brad Daniels", email: "brad.daniels@digital-stage.org" }, { id: 1, name: "Felix Daniels", email: "brad.daniels@digital-stage.org" }] },
-    { id: 2, name: "Tenor", color: "#FF36CA", icon: "choir-tenor", users: [{ id: 1, name: "Brad Daniels", email: "brad.daniels@digital-stage.org" }, { id: 1, name: "Sasha Daniels", email: "brad.daniels@digital-stage.org" }] },
-    { id: 3, name: "Soprano", color: "#5780F2", icon: "choir-sopran", users: [{ id: 1, name: "Brad Daniels", email: "brad.daniels@digital-stage.org" }] },
-    { id: 4, name: "Bass", color: "#D9486F", icon: "choir-bass", users: [{ id: 1, name: "Brad Daniels", email: "brad.daniels@digital-stage.org" }] },
-    { id: 5, name: "Alto", color: "#FBD366", icon: "choir-alto", users: [{ id: 1, name: "Brad Daniels", email: "brad.daniels@digital-stage.org" }] }
-]
-
-export const theatre: Group[] = [
-    { id: 6, name: "Director", color: "#4EBFAB", icon: "theatre-director", users: [{ id: 1, name: "Brad Daniels", email: "brad.daniels@digital-stage.org" }] },
-    { id: 7, name: "Ensemble", color: "#FF36CA", icon: "theatre-ensemble", users: [{ id: 1, name: "Brad Daniels", email: "brad.daniels@digital-stage.org" }] },
-    { id: 8, name: "Actor", color: "#5780F2", icon: "theatre-actor", users: [{ id: 1, name: "Brad Daniels", email: "brad.daniels@digital-stage.org" }] },
-]
-
-const presets: string[] = ["choir", "theatre"];
-
-export type Stages = {
-    choir: Group[],
-    theatre: Group[]
-}
 
 export const SelectPresetStep = () => {
-    const [stageGroups, setStageGroups] = React.useState<any>({ choir, theatre })
+    const { handleSetPreset, preset, stageGroups,  setStageGroups} = useCreateStage()
+    // const [stageGroups, setStageGroups] = React.useState<any>({ choir, theatre })
     const [deletedGroup, setDeletedGroup] = React.useState<number>();
-    const [selectedPreset, setSelectedPreset] = React.useState<string>(Preset.CHOIR);
+    const [selectedPreset, setSelectedPreset] = React.useState<string>(preset);
     const [open, setOpen] = React.useState(false);
     const [groupId, setGroupId] = React.useState<number | null>();
     const [group, setGroup] = React.useState<Group | null>();
@@ -119,8 +63,8 @@ export const SelectPresetStep = () => {
 
     const handleSaveGroup = (color: string, icon: string, name: string) => saveGroup(color, icon, name)
 
-    const handleSetPreset = (preset: string) => {
-        return () => setSelectedPreset(preset)
+    const handlePreset = (preset: string) => {
+        return () => setSelectedPreset(preset);
     }
 
     const handleGroupDelete = (id: number) => {
@@ -143,6 +87,7 @@ export const SelectPresetStep = () => {
             const selectedGroup = stageGroups[selectedPreset].filter((el: Group) => el.id === groupId);
             setGroup(selectedGroup[0])
         }
+        handleSetPreset(selectedPreset)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [deletedGroup, selectedPreset, groupId, group])
 
@@ -162,7 +107,7 @@ export const SelectPresetStep = () => {
                         <div
                             key={i}
                             className="mr-2 p-1 preset"
-                            onClick={handleSetPreset(preset)}
+                            onClick={handlePreset(preset)}
                             style={{
                                 backgroundColor: selectedPreset === preset ? "#A8214B" : "transparent"
                             }}>

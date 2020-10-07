@@ -1,8 +1,8 @@
 import { makeStyles, TextField } from '@material-ui/core';
 import React from 'react';
-import Stage from '../../assets/images/stage.png';
 import Icons from '../../Components/Icons/Icons';
-import { choir } from './SelectPresetStep';
+import { useCreateStage } from '../../hooks/useCreateStage';
+import { Group } from '../../js/CreateStageUtils';
 
 
 const useStyles = makeStyles({
@@ -58,6 +58,7 @@ const useStyles = makeStyles({
 });
 
 export const CreateStageStep = () => {
+    const { info, image, stageGroups, preset } = useCreateStage();
     const [inputLength, setInputLength] = React.useState<number>(0)
     const [invitationText, setInvitationText] = React.useState<string>("");
     const classes = useStyles();
@@ -75,21 +76,21 @@ export const CreateStageStep = () => {
                     <div className="w-100 text-center">
                         <img
                             className="mx-auto stage-image"
-                            src={Stage}
+                            src={image}
                             width={80}
                             height={80}
                             alt="stage"
                         />
-                        <h5 className="white my-2 mx-auto">Test stage</h5>
+                        <h5 className="white my-2 mx-auto">{info.name}</h5>
                     </div>
                     <div className="w-100">
-                        <h5 className="white mb-2">News</h5>
-                        <h6 className="white mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque possimus sequi perspiciatis nostrum autem! Consectetur!</h6>
+                        {info.news ? <><h5 className="white mb-2">News</h5>
+                            <h6 className="white mb-2">{info.news}</h6></> : null}
                     </div>
                 </div>
                 <h5 className="white mx-2 my-3">Groups</h5>
                 <div className="d-flex flex-wrap justify-content-around my-3">
-                    {choir.map(group => {
+                    {stageGroups[preset].map((group: Group) => {
                         return (
                             <div className="d-flex flex-column my-2" key={group.id}>
                                 <Icons

@@ -1,7 +1,8 @@
-import React from 'react';
-import { choir, User, Group } from './SelectPresetStep';
+import React, { useEffect } from 'react';
+import { User, Group } from '../../js/CreateStageUtils';
 import { AddUsersToGroupLayout } from '../../Components/StageCreate/AddUsersToGroupLayout';
 import InviteUserModal from './InviteUserModal';
+import { useCreateStage } from '../../hooks/useCreateStage';
 
 export interface IStageInfo {
     name: string;
@@ -10,6 +11,7 @@ export interface IStageInfo {
 }
 
 export const InviteUsersStep = () => {
+    const { stageGroups, preset } = useCreateStage();
     const [open, setOpen] = React.useState(false);
     const [groupId, setGroupId] = React.useState<number>();
     const [users, setUsers] = React.useState<User[]>([]);
@@ -31,20 +33,24 @@ export const InviteUsersStep = () => {
         }
     }
 
-    const handleSaveUsers = (selectedUsers: User[]) =>  setUsers(selectedUsers)
+    const handleSaveUsers = (selectedUsers: User[]) => setUsers(selectedUsers)
+
+    useEffect(()=>{
+        console.log(stageGroups, preset ,stageGroups[preset] )
+    })
 
     return (
         <div className="my-1 mx-3 text-left">
-            <InviteUserModal 
-            open={open} 
-            handleClose={handleClose} 
-            groupId={groupId} 
-            onSave={handleSaveUsers} 
+            <InviteUserModal
+                open={open}
+                handleClose={handleClose}
+                groupId={groupId}
+                onSave={handleSaveUsers}
             />
             <h5 className="white mb-2">Add or invite users to your stage</h5>
             <h5 className="white">Invite digital stage groups</h5>
             <div className="d-flex flex-wrap">
-                {choir.map((group: Group) => <AddUsersToGroupLayout
+                {stageGroups[preset].map((group: Group) => <AddUsersToGroupLayout
                     group={group}
                     key={group.id}
                     onClick={handleOnClick(group.id)}

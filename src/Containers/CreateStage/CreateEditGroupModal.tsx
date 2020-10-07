@@ -4,7 +4,7 @@ import ButtonStyled from '../../Components/Form/Button';
 import Icons from '../../Components/Icons/Icons';
 import ColorPicker from '../../Components/StageCreate/ColorPicker';
 import IconPicker from '../../Components/StageCreate/IconPicker';
-import { Group } from './SelectPresetStep';
+import { Group } from '../../js/CreateStageUtils';
 
 const useStyles = makeStyles({
     root: {

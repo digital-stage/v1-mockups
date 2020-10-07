@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 import { Dialog, DialogActions, DialogContent, Slide, InputAdornment, makeStyles, } from '@material-ui/core';
 import ButtonStyled from '../../Components/Form/Button';
 import Icons from '../../Components/Icons/Icons';
-import { choir, Group, User } from './SelectPresetStep';
+import { Group, User } from '../../js/CreateStageUtils';
 import Input from "../../Components/Form/Input";
 import { Search, Clear } from '@material-ui/icons';
 import AvatarImg from "../../assets/images/Avatar.png";
+import { useCreateStage } from '../../hooks/useCreateStage';
 
 const useStyles = makeStyles({
     root: {
@@ -74,14 +75,15 @@ export default function InviteUserModal(props: {
     onSave: (selectedUsers: User[]) => void
 }) {
     const classes = useStyles();
+    const { stageGroups, preset } = useCreateStage();
     const [selected, setSelected] = React.useState<string>(Tabs.USERNAME)
-    const [group, SetGroup] = React.useState<Group>(choir[0])
+    const [group, SetGroup] = React.useState<Group>(stageGroups[preset][0])
     const [users, SetUsers] = React.useState(recentUsers)
     const [selectedUsers, setSelectedUsers] = React.useState<User[]>([])
     const [emails, setEmails] = React.useState<string>('')
 
     const reset = () => {
-        SetGroup(choir[0]);
+        SetGroup(stageGroups[preset][0]);
         SetUsers(recentUsers);
         setSelectedUsers([]);
         setEmails('');
@@ -139,8 +141,9 @@ export default function InviteUserModal(props: {
     }
 
     useEffect(() => {
-        const selectedGroup = choir.filter(el => el.id === props.groupId)
+        const selectedGroup = stageGroups[preset].filter((el:Group) => el.id === props.groupId)
         SetGroup(selectedGroup[0])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.groupId])
 
     return (

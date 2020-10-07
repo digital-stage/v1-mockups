@@ -121,6 +121,7 @@ export const AddInformatinStep = (props: {
         props.emptyField(stageInfo.name)
         setNameEmpty(props.error)
         handleSetInfo(stageInfo)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [stageInfo, props])
 
     return (

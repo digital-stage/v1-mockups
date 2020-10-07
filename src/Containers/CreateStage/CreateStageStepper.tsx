@@ -9,6 +9,7 @@ import { AddInformatinStep } from './AddInformatinStep';
 import { InviteUsersStep } from './InviteUsersStep';
 import { AssignRolesStep } from './AssignRolesStep';
 import { CreateStageStep } from './CreateStageStep';
+import { useCreateStage } from '../../hooks/useCreateStage';
 
 
 const ColorlibConnector = withStyles({
@@ -148,6 +149,7 @@ function getSteps() {
 
 export default function CustomizedSteppers() {
     const classes = useStyles();
+    const { resetCreateStageDialog } = useCreateStage();
     const [activeStep, setActiveStep] = React.useState(0);
     const [error, setError] = React.useState<boolean>(false);
     const [emptyField, setEmptyField] = React.useState<string>("");
@@ -194,6 +196,7 @@ export default function CustomizedSteppers() {
 
     const handleReset = () => {
         setActiveStep(0);
+        resetCreateStageDialog()
     };
 
     return (
